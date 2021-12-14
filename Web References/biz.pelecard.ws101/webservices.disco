@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://ws101.pelecard.biz/webservices.asmx?wsdl" docRef="https://ws101.pelecard.biz/webservices.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://ws101.pelecard.biz/webservices.asmx" xmlns:q1="https://ws101.pelecard.biz/" binding="q1:TrxWsSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://ws101.pelecard.biz/webservices.asmx" xmlns:q2="https://ws101.pelecard.biz/" binding="q2:TrxWsSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

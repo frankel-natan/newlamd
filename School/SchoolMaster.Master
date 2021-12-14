@@ -1,0 +1,161 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SchoolMaster.master.cs" Inherits="LamedNetLite.SchoolMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>מערכת עבור מנהל - נתן</title>
+    <asp:ContentPlaceHolder ID="head1" runat="server"></asp:ContentPlaceHolder>
+    <script src="../JQ/jquery.min.js"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/rtl/bootstrap.min.css" rel="stylesheet">
+
+    <!-- not use this in ltr -->
+    <link href="css/rtl/bootstrap.rtl.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/plugins/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/rtl/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- MyCss-->
+    <link href="css/MyCss.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <asp:ContentPlaceHolder ID="head2" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header" style="padding-left: 85px">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">מערכת ניהול בית ספר</a>
+                </div>
+                <!-- /.navbar-header -->
+                <ul class="nav navbar-top-links navbar-right">
+                    <!-- /.dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i>פרופיל משתמש </a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i>הגדרות </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <asp:LinkButton ID="exit" runat="server" OnClick="exit_Click"><i class="fa fa-sign-out fa-fw"></i> יציאה </asp:LinkButton>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                    <li style="text-align:left; padding-right:750px" id="buttexit">
+                    <asp:Button runat="server" ID="exitbutt" OnClick="exit_Click" CssClass="text-left btn btn-primary exit5" Text="יציאה" ></asp:Button>
+                    </li>
+                </ul>
+                <!-- /.navbar-top-links -->
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li>
+                                <h3 style="text-align: center; margin: 0 auto; color: #337ab7; padding: 10px 15px">תפריט </h3>
+                            </li>
+                            <li>
+                                <a href="nananaMas.aspx"><i class="fa fa-edit fa-fw "></i>דף הבית</a>
+                            </li>
+                            <li>
+                                <a  id="appdete" runat="server"><i class="fa fa-table fa-fw" ></i>הפרופיל שלי</a>
+                            </li>
+                            <li>
+                                <a href="listPay.aspx" id="paySc"><i class="fa fa-edit fa-fw "></i>תשלומי בית ספר</a>
+                            </li>
+                            <li>
+                                <a href="listPayT.aspx" id="payte"><i class="fa fa-edit fa-fw "></i>תשלומי מורים</a>
+                            </li>
+                            <li>
+                                <a href="../pay/payPage.aspx" id="paytepage"><i class="fa fa-edit fa-fw "></i>לדף תשלום מאובטח</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Page Content -->
+            <div id="page-wrapper" style="background-color: #9ca2dd57;">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            <asp:ContentPlaceHolder ID="page_header" runat="server"></asp:ContentPlaceHolder>
+                        </h1>
+
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <asp:ContentPlaceHolder ID="main" runat="server"></asp:ContentPlaceHolder>
+            </div>
+            <!-- /#page-wrapper -->
+        </div>
+        <!-- /#wrapper -->
+        <%--    <form id="form1" runat="server">--%>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <%--    </form>--%>
+
+        <!-- jQuery Version 1.11.0 -->
+        <script src="js/jquery-1.11.0.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="js/metisMenu/metisMenu.min.js"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="js/raphael/raphael.min.js"></script>
+        <script src="js/morris/morris.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="js/sb-admin-2.js"></script>
+        <asp:ContentPlaceHolder ID="scripts" runat="server"></asp:ContentPlaceHolder>
+
+    </form>
+</body>
+</html>

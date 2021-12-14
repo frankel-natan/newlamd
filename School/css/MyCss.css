@@ -1,0 +1,62 @@
+﻿body {
+}
+
+#Messages {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #e9ecef;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+    border-left-color: #ff0000;
+    border-right-color:#ff0000;
+    font-size: x-large;
+    background-color: #f5f008;
+    padding: 15px 15px 15px 15px;
+    color:red;
+    /*box-sizing: border-box;*/
+    /*;
+    
+    
+    font-size: x-large;
+    border-color: black;
+    margin: 8px;*/
+}
+#eix {
+    background-color: #f5f008;
+    border: 0px 0px 0px 0px;
+    
+    
+}
+.ui-icon-myicon:after {
+    background-image: url("../_assets/img/glyphish-icons/21-skull.png");
+    background-size: 18px 18px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.exit5 {
+    display:normal;
+}
+@media only screen and (max-width: 728px) {
+    /* For general iPad layouts */
+    .exit5 {
+        display: none;
+    }
+    #exitbutt {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .exit5 {
+        display: none;
+    }
+    #exitbutt {
+        display: none;
+    }
+}
+
+    
