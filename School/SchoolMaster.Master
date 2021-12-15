@@ -15,24 +15,21 @@
     <title>מערכת עבור מנהל - נתן</title>
     <asp:ContentPlaceHolder ID="head1" runat="server"></asp:ContentPlaceHolder>
     <script src="../JQ/jquery.min.js"></script>
-    <!-- Bootstrap Core CSS -->
-    <link href="css/rtl/bootstrap.min.css" rel="stylesheet">
-
-    <!-- not use this in ltr -->
-    <link href="css/rtl/bootstrap.rtl.css" rel="stylesheet">
-
+    //jjj
     <!-- MetisMenu CSS -->
     <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
-
     <!-- Timeline CSS -->
     <link href="css/plugins/timeline.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="css/rtl/sb-admin-2.css" rel="stylesheet">
-
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
-
+    //kmmm
+        <!-- Bootstrap Core CSS -->
+    <link href="css/rtl/bootstrap.min.css" rel="stylesheet">
+    <!-- not use this in ltr -->
+    <link href="css/rtl/bootstrap.rtl.css" rel="stylesheet">
+    //
     <!-- Custom Fonts -->
     <link href="css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- MyCss-->

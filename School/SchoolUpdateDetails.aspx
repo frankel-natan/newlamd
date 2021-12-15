@@ -23,8 +23,7 @@
                     <input type="text" runat="server" class="form-control" id="inputEmail" placeholder="אימייל">
                 </div>
                 <div class="form-group col-md-5">
-                    <label for="inputPassword">סיסמא</label>
-                     
+                    <label for="inputPassword">סיסמא</label>                    
                     <div class="input-group" id="show_hide_password">
                         <input runat="server" class="form-control" id="inputPassword" placeholder="סיסמה">
                         <div class="input-group-addon">
