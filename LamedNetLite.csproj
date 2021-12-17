@@ -83,6 +83,7 @@
   <ItemGroup>
     <Content Include="Admin\AdminMain.aspx" />
     <Content Include="Admin\images\LamedP.jpg" />
+    <Content Include="Admin\images\selectImege.svg" />
     <Content Include="Admin\index.html" />
     <Content Include="Admin\js\heJs\dataTables.bootstrap.min.js" />
     <Content Include="Admin\js\heJs\jquery.dataTables.min.js" />
@@ -212,6 +213,7 @@
     <Content Include="School\ajaxxx.aspx" />
     <Content Include="School\css\MyCss.css" />
     <Content Include="School\images\LamedP.jpg" />
+    <Content Include="School\images\selectImege.svg" />
     <Content Include="School\js\dataTables.bootstrap.min %281%29.js" />
     <Content Include="School\js\dataTables.bootstrap.min.js" />
     <Content Include="School\js\jquery.dataTables.min %281%29.js" />

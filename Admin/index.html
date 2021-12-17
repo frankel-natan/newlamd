@@ -57,6 +57,20 @@
                 <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
             </div>
             <!-- /.navbar-header -->
+            <div class="pull-alert" id="messages">
+                <div class="alert alertGreen pull-center" style=
+        "padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+        color: white;
+        background-color: #28a745;
+        position: absolute;
+        right: 45%;
+        box-shadow: 0px 0px 10px 0px;
+        color: rgb(0 0 0 / 75%);
+    "><strong>המוצר נוסף בהצלחה!</strong></div>
+            </div>
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
@@ -383,8 +397,26 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <!-- /.row -->
+            <div class="form-group">
+                <label for="sel1">Select list (select one):</label>
+                <select class="form-control" id="sel1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <br>
+                <label for="sel2">Mutiple select list (hold shift to select more than one):</label>
+                <select multiple class="form-control" id="sel2">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+
+                <!-- /.row 
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->

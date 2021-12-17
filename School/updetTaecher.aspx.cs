@@ -53,6 +53,8 @@ namespace LamedNetLite
             userte.Phone = inputPhone.Value;
             userte.Password = inputPassword.Value;
             userte.AddOrUpdate_Teather();
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "yesmess()", true);
+
         }
     }
 }

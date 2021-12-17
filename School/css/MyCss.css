@@ -58,3 +58,20 @@
         display: none;
     }
 }
+#massegup {
+    box-sizing: border-box;
+}
+#innerMess {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+
+    color: white;
+    background-color: #28a745;
+
+    position: absolute;
+    right: 27%;
+    box-shadow: 0px 0px 10px 0px
+    rgb(0 0 0 / 75%);
+}
