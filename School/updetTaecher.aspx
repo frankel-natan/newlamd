@@ -68,7 +68,7 @@
             <label for="statusTeacher">מצב</label>
             <input type="text" runat="server" class="form-control" id="statusTeacher">
         </div>
-       <%-- <div class="form-group col-md-5">
+        <%-- <div class="form-group col-md-5">
             <label for="selectedm1">מצב</label>
             <select class="form-select" aria-label="Default select example" size="1" id="selectedm1">
                 <option id="see" runat="server" class="form-control" selected></option>
@@ -81,6 +81,19 @@
                 <option id="see" runat="server" class="form-control" selected></option>
                 <option id="hid" class="form-control" runat="server"></option>
             </select>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="selectedm">סוג רישיון</label>
+            <select class="form-control" id="typeLic1">
+                <option id="typeLics" runat="server" class="form-control" selected></option>
+                <option id="typeLicn" class="form-control" runat="server"></option>
+                <option id="typeLicn2" class="form-control" runat="server"></option>
+            </select>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="areName">אזור/י פעילות</label>
+            <input runat="server" class="form-control" id="areName" />
+            <a href="#">לשינוי לחץ כאן</a>
         </div>
 
         <div class="col-md-10" style="text-align: center;">

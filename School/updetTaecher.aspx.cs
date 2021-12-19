@@ -26,7 +26,6 @@ namespace LamedNetLite
             nameScool.Text = (string)user.SchoolName.ToString();
             Teacher userte = (Teacher)Session["userst"];
             Label2.Text = "  המורה "  + userte.TeacherName;
-
             inputName.Value = userte.TeacherName;
             inputEmail.Value = userte.UserName;
             inputPhone.Value = userte.Phone;
@@ -35,7 +34,9 @@ namespace LamedNetLite
             //Session["user"] = user;
             inputIdTe.Value = userte.ID;
             inputIdTe.Attributes.Add("readonly", "readonly");
-            addTeather.Value = userte.DateAdded;
+            string datt = userte.DateAdded;
+            string dat = datt.Substring(0, datt.IndexOf(" "));
+            addTeather.Value = dat;
             addTeather.Attributes.Add("readonly", "readonly");
             statusTeacher.Value = (userte.StatusId.ToString()=="1" ? "פעיל" :"לא פעיל");
             see.Attributes["Value"]= userte.StatusId.ToString();
@@ -43,6 +44,47 @@ namespace LamedNetLite
             hid.Attributes["Value"] = (userte.StatusId.ToString() == "1" ? "0" : "1");
             //hid.Attributes["Taxt"] = (userte.StatusId.ToString() == "1" ? "לא פעיל" : "פעיל");
             hid.InnerText = (userte.StatusId.ToString() == "1" ? "לא פעיל" : "פעיל");
+            int typeint = (int)int.Parse(userte.LicenseTypesId.ToString());
+            string[] arrtype = new string[2];
+            arrtype[0] =typeint.ToString();
+            arrtype[1] = TeacherData.getTypeLic(typeint);
+            typeLics.InnerText = arrtype[1];
+            typeLics.Attributes["Value"] = arrtype[0];
+            string[] arr = TeacherData.getAllLicAndId();
+            int flag = 0;
+            for(int i = 0;i<arr.Length;i++)
+            {
+                if (arrtype[0] != arr[i] && flag == 0)
+                {
+                    typeLicn.Attributes["Value"] = arr[i];
+                    i++;
+                    typeLicn.InnerText = arr[i];
+                    flag = 1;
+                    continue;
+                }
+                else if (arrtype[0] != arr[i] && flag == 1)
+                {
+                    typeLicn2.Attributes["Value"] = arr[i];
+                    i++;
+                    typeLicn2.InnerText = arr[i];
+                    flag++;
+                }
+                else
+                    i++;
+            }
+            string areId = userte.StudyAreaId;
+            string[] arrareId = areId.Split(',');
+            string[] arrareName = new string[arrareId.Length];
+            string tampArr = "";
+            for (int i = 0; i<arrareId.Length;i++)
+            {
+                arrareName[i] = TeacherData.nameAreId(int.Parse(arrareId[i]));
+                tampArr += arrareName[i] + ", " ;
+            }
+            areName.Value = tampArr.Substring(0, tampArr.Length - 2);
+            areName.Attributes.Add("readonly", "readonly");
+
+
 
         }
         protected void btnUpdate_Click(object sender, EventArgs e)

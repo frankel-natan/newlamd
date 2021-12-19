@@ -114,6 +114,42 @@ namespace LamedNetLite
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl hid;
 
         /// <summary>
+        /// typeLics control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl typeLics;
+
+        /// <summary>
+        /// typeLicn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl typeLicn;
+
+        /// <summary>
+        /// typeLicn2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl typeLicn2;
+
+        /// <summary>
+        /// areName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText areName;
+
+        /// <summary>
         /// Update control.
         /// </summary>
         /// <remarks>

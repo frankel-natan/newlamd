@@ -186,6 +186,36 @@ namespace LamedNetLite
             {
                 return getDt("select * from TableTast inner join TastStatus on TableTast.statusTast = TastStatus.Id inner join Teachers on Teachers.TeacherId = TableTast.TeacherId where Teachers.TeacherId = " + idTaecher);
             }
+            public static string getTypeLic(int typeLic)
+            {               
+                string sql = "select LicenseType from LicenseTypes where LicenseTypeID = " + typeLic.ToString()+"";
+                SqlClass s = new SqlClass();
+                string tamp = s.ExecuteScalar(sql).ToString();
+                return tamp;
+            }
+            public static string[] getAllLicAndId()
+            {
+                SqlClass s = new SqlClass();
+                string sql = "select LicenseTypeID as id, LicenseType as namel  from LicenseTypes";
+                string[] arr = new string[6];
+                SqlDataReader dr = s.ExecuteReader(sql);
+                int i = 0;
+                while (dr.Read())
+                {
+                    arr[i] = dr["id"].ToString();
+                    i++;
+                    arr[i] = dr["namel"].ToString();
+                    i++;
+                }
+                return arr;
+            }
+            public static string nameAreId(int id)
+            {
+                string sql = "select StudyAreaName as nameAre from StudyAreas where StudyAreaId = " + id;
+                SqlClass s = new SqlClass();
+                string tamp = s.ExecuteScalar(sql).ToString();
+                return tamp;
+            }
         }
 
     }
