@@ -17,6 +17,40 @@
                 setTimeout(noMess, 5000)
             );
         }
+
+        function upp() {
+            //let a = $("#Option").text();
+            //let c = $("#selecCity option:selected").text();
+            var conceptName = $('#selecCity').find(":selected").text();//חילוץ הבחירה טקסט
+            var b, a0, a1;
+            a1 = $("#selecCity option:selected").val();//חילוץ ID חדש
+            if ($("#main_areName").attr("data-value") != "-1") {
+
+                b = $("#main_areName").val() + ", " + conceptName;//שרשור הבחירה
+                a0 = $("#main_areName").attr("data-value");//חילוץ ID של קיים
+                $("#main_areName").attr("data-value", a0 + "," + a1);//השמה חדשה של ID ערים
+
+            }
+            else {
+                b = conceptName;
+                $("#main_areName").attr("data-value",a1);//השמה חדשה של ID ערים
+            }
+            $("#main_areName").val(b);//השמה חדשה
+            $("#main_areName").attr("value",b);
+
+            alert($("#main_areName").attr("data-value")); //בדיקה          
+        };
+        function dellCity() {
+            $("#main_areName").val("");
+            $("#main_areName").attr("data-value","-1");
+        }
+        
+
+
+
+        
+       
+       
     </script>
 
 </asp:Content>
@@ -83,7 +117,7 @@
             </select>
         </div>
         <div class="form-group col-md-5">
-            <label for="selectedm">סוג רישיון</label>
+            <label for="typeLic1">סוג רישיון</label>
             <select class="form-control" id="typeLic1">
                 <option id="typeLics" runat="server" class="form-control" selected></option>
                 <option id="typeLicn" class="form-control" runat="server"></option>
@@ -93,14 +127,43 @@
         <div class="form-group col-md-5">
             <label for="areName">אזור/י פעילות</label>
             <input runat="server" class="form-control" id="areName" />
-            <a href="#">לשינוי לחץ כאן</a>
-        </div>
+            <a href="#"  data-toggle="modal" data-target="#myModal">לשינוי לחץ כאן</a>
 
-        <div class="col-md-10" style="text-align: center;">
-            <button id="Update" type="button" runat="server" onserverclick="btnUpdate_Click" class="btn btn-primary">עדכן פרטים</button>
-
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content ">
+                        <div class="modal-header" >
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">בחר עיר מהרשימה שברצונך להוסיף</h4>
+                        </div>
+                        <div class="modal-body" style="height:70px">
+                            <div class="form-group col-md-5">
+                                <select class="form-control" id="selecCity" name="sCity"  >
+                                    <asp:Repeater runat="server" ID="repeaterCity">
+                                        <ItemTemplate>
+                                            <option id="Option"  class="form-control" value="<%#Eval("id") %>"><%#Eval("namecity") %></option>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="upd" onclick="upp()">עדכן</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal" id="res" onclick="dellCity()">איפוס ערים</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <div class="col-md-10" style="text-align: center;">
+        <button id="Update" type="button" runat="server" onserverclick="btnUpdate_Click" class="btn btn-primary">עדכן פרטים</button>
+
+    </div>
+    
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>

@@ -216,7 +216,16 @@ namespace LamedNetLite
                 string tamp = s.ExecuteScalar(sql).ToString();
                 return tamp;
             }
+            public static DataTable getAllCity()
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select StudyAreaId as id , StudyAreaName as namecity from StudyAreas");
+                s.Conn.Close();
+                return Dt;
+
+            }
         }
+
 
     }
 }
