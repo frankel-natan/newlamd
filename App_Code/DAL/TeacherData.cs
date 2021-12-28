@@ -209,6 +209,7 @@ namespace LamedNetLite
                 }
                 return arr;
             }
+            
             public static string nameAreId(int id)
             {
                 string sql = "select StudyAreaName as nameAre from StudyAreas where StudyAreaId = " + id;

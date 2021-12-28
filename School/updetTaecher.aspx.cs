@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using Newtonsoft.Json;
 
 namespace LamedNetLite
 {
@@ -74,6 +75,7 @@ namespace LamedNetLite
                 else
                     i++;
             }
+
             string areId = userte.StudyAreaId;
             string[] arrareId = areId.Split(',');
             string[] arrareName = new string[arrareId.Length];
@@ -104,6 +106,11 @@ namespace LamedNetLite
             userte.AddOrUpdate_Teather();
             Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "yesmess()", true);
 
+        }
+
+        protected void repeaterType_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            
         }
     }
 }
