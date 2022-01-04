@@ -159,6 +159,33 @@ namespace LamedNetLite
         protected global::System.Web.UI.WebControls.Repeater repeaterCity;
 
         /// <summary>
+        /// Option1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Option1;
+
+        /// <summary>
+        /// contentArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel contentArea;
+
+        /// <summary>
+        /// payCunt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText payCunt;
+
+        /// <summary>
         /// Update control.
         /// </summary>
         /// <remarks>

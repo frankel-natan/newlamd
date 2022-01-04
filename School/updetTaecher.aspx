@@ -33,24 +33,24 @@
             }
             else {
                 b = conceptName;
-                $("#main_areName").attr("data-value",a1);//השמה חדשה של ID ערים
+                $("#main_areName").attr("data-value", a1);//השמה חדשה של ID ערים
             }
             $("#main_areName").val(b);//השמה חדשה
-            $("#main_areName").attr("value",b);
+            $("#main_areName").attr("value", b);
 
             alert($("#main_areName").attr("data-value")); //בדיקה          
         };
         function dellCity() {
             $("#main_areName").val("");
-            $("#main_areName").attr("data-value","-1");
+            $("#main_areName").attr("data-value", "-1");
         }
-        
 
 
 
-        
-       
-       
+
+
+
+
     </script>
 
 </asp:Content>
@@ -111,7 +111,7 @@
         </div>--%>
         <div class="form-group col-md-5">
             <label for="selectedm">מצב מתוקן</label>
-            <select class="form-control" id="selectedm">
+            <select class="form-control" id="selectedm" name="seleStatus">
                 <option id="see" runat="server" class="form-control" selected></option>
                 <option id="hid" class="form-control" runat="server"></option>
             </select>
@@ -127,22 +127,22 @@
         <div class="form-group col-md-5">
             <label for="areName">אזור/י פעילות</label>
             <input runat="server" class="form-control" id="areName" />
-            <a href="#"  data-toggle="modal" data-target="#myModal">לשינוי לחץ כאן</a>
+            <a href="#" data-toggle="modal" data-target="#myModal">לשינוי לחץ כאן</a>
 
             <!-- Modal -->
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content ">
-                        <div class="modal-header" >
+                        <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">בחר עיר מהרשימה שברצונך להוסיף</h4>
                         </div>
-                        <div class="modal-body" style="height:70px">
+                        <div class="modal-body" style="height: 70px">
                             <div class="form-group col-md-5">
-                                <select class="form-control" id="selecCity" name="sCity"  >
+                                <select class="form-control" id="selecCity" name="sCity">
                                     <asp:Repeater runat="server" ID="repeaterCity">
                                         <ItemTemplate>
-                                            <option id="Option"  class="form-control" value="<%#Eval("id") %>"><%#Eval("namecity") %></option>
+                                            <option id="Option" class="form-control" value="<%#Eval("id") %>"><%#Eval("namecity") %></option>
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </select>
@@ -157,13 +157,27 @@
                 </div>
             </div>
         </div>
+
+        <div class="form-group col-md-5">
+            <label for="typeLic5">סוג רישיון</label>
+            <select class="form-control" id="typeLic5" name="typeL">
+                <option id="Option1" runat="server" class="form-control" selected></option>
+                <asp:Panel ID="contentArea" runat="server">
+                </asp:Panel>
+            </select>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="payCunt">מספר תשלומים</label>
+            <input type="text" runat="server" class="form-control" id="payCunt">
+        </div>
+
     </div>
 
     <div class="col-md-10" style="text-align: center;">
         <button id="Update" type="button" runat="server" onserverclick="btnUpdate_Click" class="btn btn-primary">עדכן פרטים</button>
 
     </div>
-    
+
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>

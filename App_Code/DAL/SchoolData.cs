@@ -58,14 +58,14 @@ namespace LamedNetLite
                 s.Conn.Close();
             }
 
-            public static void AddOrUpdate_School(int schoolId, string SchoolName, string Password, string AdministratorUserName, string Phone, string DateAdded,int PaymentsNum)
+            public static void AddOrUpdate_School(int schoolId, string SchoolName, string Password, string AdministratorUserName, string Phone, string DateAdded,int PaymentsNum, float MonthlyPayment, int Status)
             {
 
                 SqlClass s = new SqlClass();
                 if (schoolId == -1)
-                    s.ExecuteNonQuery("Insert into [schools] (SchoolName,Password,AdministratorUserName,Phone,DateAdded,PaymentsNum)values(N'" + SchoolName + "','" + Password + "','" + AdministratorUserName + "','" + Phone + "',"  + "GETDATE(),3)");//מספר תשלומים מוגדר 3 ב"מ
+                    s.ExecuteNonQuery("Insert into [schools] (SchoolName,Password,AdministratorUserName,Phone,DateAdded,PaymentsNum)values(N'" + SchoolName + "','" + Password + "','" + AdministratorUserName + "','" + Phone + "',"  + "GETDATE(),3)" + MonthlyPayment +" , " + Status);//מספר תשלומים מוגדר 3 ב"מ
                 else
-                    s.ExecuteNonQuery("update [schools] set schoolId=" + schoolId + ",SchoolName=N'" + SchoolName  + "', Password='" + Password + "', AdministratorUserName='" + AdministratorUserName + "', Phone='" + Phone + "', DateAdded='" + DateAdded + "'PaymentsNum="+PaymentsNum+" where schoolId=" + schoolId);
+                    s.ExecuteNonQuery("update [schools] set " +  "SchoolName=N'" + SchoolName  + "', Password='" + Password + "', AdministratorUserName='" + AdministratorUserName + "', Phone='" + Phone + "', DateAdded='" + DateAdded + "',PaymentsNum="+ PaymentsNum + MonthlyPayment + " , " + Status + " where schoolId=" + schoolId);
                 s.Conn.Close();
             }
             public static DataTable getAllData()
@@ -87,7 +87,7 @@ namespace LamedNetLite
                 SqlClass s = new SqlClass();
                 SqlDataReader Dr = s.ExecuteReader("Select * From schools where schoolId=" + id);
                 Dr.Read();
-                School tmp = new School((int)Dr["schoolId"], (string)Dr["SchoolName"], (string)Dr["Password"], (string)Dr["AdministratorUserName"], (string)Dr["Phone"], ""+Dr["DateAdded"],(int)Dr["PaymentsNum"]);
+                School tmp = new School((int)Dr["schoolId"], (string)Dr["SchoolName"], (string)Dr["Password"], (string)Dr["AdministratorUserName"], (string)Dr["Phone"], "" + Dr["DateAdded"], (int)Dr["PaymentsNum"], (float)Dr["MonthlyPayment"],(int)Dr["Status"]);
                 s.Conn.Close();
                 return tmp; 
             }
@@ -114,7 +114,7 @@ namespace LamedNetLite
                 SqlDataReader Dr = s.ExecuteReader(sql);
                 if (Dr.Read())
                 {
-                    School tmp = new School((int)Dr["schoolId"], (string)Dr["SchoolName"], (string)Dr["Password"], (string)Dr["AdministratorUserName"], (string)Dr["Phone"],((DateTime)Dr["DateAdded"]).ToString(),(int)Dr["PaymentsNum"]);
+                    School tmp = new School((int)Dr["schoolId"], (string)Dr["SchoolName"], (string)Dr["Password"], (string)Dr["AdministratorUserName"], (string)Dr["Phone"],((DateTime)Dr["DateAdded"]).ToString(),(int)Dr["PaymentsNum"],(float)Dr["MonthlyPayment"], (int)Dr["Status"]);
                     s.Conn.Close();
                     return tmp;
                 }               

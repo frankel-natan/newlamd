@@ -20,9 +20,11 @@ namespace LamedNetLite
             public string Phone { get; set; }
             public string DateAdded { get; set; }
             public int PaymentsNum { get; set; }
+            public float MonthlyPayment { get; set; }
+            public int Status { get; set; }
 
 
-            public School(int schoolId, string SchoolName, string Password, string AdministratorUserName, string Phone, string DateAdded,int PaymentsNum)
+            public School(int schoolId, string SchoolName, string Password, string AdministratorUserName, string Phone, string DateAdded,int PaymentsNum,float MonthlyPayment, int Status)
             {
                 this.schoolId = schoolId;
                 this.SchoolName = SchoolName;
@@ -31,10 +33,12 @@ namespace LamedNetLite
                 this.Phone = Phone;
                 this.DateAdded = DateAdded;
                 this.PaymentsNum = PaymentsNum;
+                this.MonthlyPayment = MonthlyPayment;
+                this.Status = Status;
             }
             public void AddOrUpdate_School()//לשקול החלפה לשימוש באובייקט במקום שדות
             {
-                SchoolData.AddOrUpdate_School( schoolId,  SchoolName, Password, AdministratorUserName,  Phone, DateAdded, PaymentsNum);
+                SchoolData.AddOrUpdate_School( schoolId,  SchoolName, Password, AdministratorUserName,  Phone, DateAdded, PaymentsNum, MonthlyPayment,Status);
             }
             public DataTable getAllData()
             {

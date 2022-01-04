@@ -92,7 +92,7 @@ namespace LamedNetLite
                 if (TeacherId == -1)
                     s.ExecuteNonQuery("Insert into [Teachers] ( schoolId, TeacherName, ID, Phone, StudyAreaId, UserName, Password,DateAdded,LicenseTypesId,PaymentsNum,StatusId)values(" + schoolId + ",N'" + TeacherName + "','" + ID + "','" + Phone + "'," + StudyAreaId + ",'" + UserName + "','" + Password + "',GETDATE())," + LicenseTypesId + "," + PaymentsNum + "," + StatusId);
                 else
-                    s.ExecuteNonQuery("update [Teachers] set schoolId=" + schoolId + ",TeacherName=N'" + TeacherName + "', ID='" + ID + "', Phone='" + Phone + "', StudyAreaId='" + StudyAreaId + "', UserName='" + UserName + "', Password='" + Password + "',LicenseTypesId=" + LicenseTypesId + ",PaymentsNum=" + PaymentsNum + ",StatuseId=" + StatusId  + "where TeacherId=" + TeacherId );
+                    s.ExecuteNonQuery("update [Teachers] set schoolId=" + schoolId + ",TeacherName=N'" + TeacherName + "', ID='" + ID + "', Phone='" + Phone + "', StudyAreaId='" + StudyAreaId + "', UserName='" + UserName + "', Password='" + Password + "',LicenseTypesId=" + LicenseTypesId + ",PaymentsNum=" + PaymentsNum + ",StatuseId=" + StatusId + "where TeacherId=" + TeacherId);
                 s.Conn.Close();
             }
             public static DataTable getAllData()
@@ -187,8 +187,8 @@ namespace LamedNetLite
                 return getDt("select * from TableTast inner join TastStatus on TableTast.statusTast = TastStatus.Id inner join Teachers on Teachers.TeacherId = TableTast.TeacherId where Teachers.TeacherId = " + idTaecher);
             }
             public static string getTypeLic(int typeLic)
-            {               
-                string sql = "select LicenseType from LicenseTypes where LicenseTypeID = " + typeLic.ToString()+"";
+            {
+                string sql = "select LicenseType from LicenseTypes where LicenseTypeID = " + typeLic.ToString() + "";
                 SqlClass s = new SqlClass();
                 string tamp = s.ExecuteScalar(sql).ToString();
                 return tamp;
@@ -207,9 +207,10 @@ namespace LamedNetLite
                     arr[i] = dr["namel"].ToString();
                     i++;
                 }
+                s.Conn.Close();
                 return arr;
             }
-            
+
             public static string nameAreId(int id)
             {
                 string sql = "select StudyAreaName as nameAre from StudyAreas where StudyAreaId = " + id;
@@ -225,6 +226,8 @@ namespace LamedNetLite
                 return Dt;
 
             }
+            
+              
         }
 
 

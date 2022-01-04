@@ -28,7 +28,7 @@ namespace LamedNetLite
             Session["user"] = user;//זמנית
             nameScool.Text = (string)user.SchoolName.ToString();
             Teacher userte = (Teacher)Session["userst"];
-            Label2.Text = "  המורה "  + userte.TeacherName;
+            Label2.Text = "  המורה " + userte.TeacherName;
             inputName.Value = userte.TeacherName;
             inputEmail.Value = userte.UserName;
             inputPhone.Value = userte.Phone;
@@ -41,21 +41,21 @@ namespace LamedNetLite
             string dat = datt.Substring(0, datt.IndexOf(" "));
             addTeather.Value = dat;
             addTeather.Attributes.Add("readonly", "readonly");
-            statusTeacher.Value = (userte.StatusId.ToString()=="1" ? "פעיל" :"לא פעיל");
-            see.Attributes["Value"]= userte.StatusId.ToString();
+            statusTeacher.Value = (userte.StatusId.ToString() == "1" ? "פעיל" : "לא פעיל");
+            see.Attributes["Value"] = userte.StatusId.ToString();
             see.InnerText = (userte.StatusId.ToString() == "1" ? "פעיל" : "לא פעיל");
             hid.Attributes["Value"] = (userte.StatusId.ToString() == "1" ? "0" : "1");
             //hid.Attributes["Taxt"] = (userte.StatusId.ToString() == "1" ? "לא פעיל" : "פעיל");
             hid.InnerText = (userte.StatusId.ToString() == "1" ? "לא פעיל" : "פעיל");
             int typeint = (int)int.Parse(userte.LicenseTypesId.ToString());
             string[] arrtype = new string[2];
-            arrtype[0] =typeint.ToString();
+            arrtype[0] = typeint.ToString();
             arrtype[1] = TeacherData.getTypeLic(typeint);
             typeLics.InnerText = arrtype[1];
             typeLics.Attributes["Value"] = arrtype[0];
             string[] arr = TeacherData.getAllLicAndId();
             int flag = 0;
-            for(int i = 0;i<arr.Length;i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 if (arrtype[0] != arr[i] && flag == 0)
                 {
@@ -80,10 +80,10 @@ namespace LamedNetLite
             string[] arrareId = areId.Split(',');
             string[] arrareName = new string[arrareId.Length];
             string tampArr = "";
-            for (int i = 0; i<arrareId.Length;i++)
+            for (int i = 0; i < arrareId.Length; i++)
             {
                 arrareName[i] = TeacherData.nameAreId(int.Parse(arrareId[i]));
-                tampArr += arrareName[i] + ", " ;
+                tampArr += arrareName[i] + ", ";
             }
             areName.Value = tampArr.Substring(0, tampArr.Length - 2);
             areName.Attributes["data-value"] = areId;
@@ -92,7 +92,27 @@ namespace LamedNetLite
             Dt = TeacherData.getAllCity();
             repeaterCity.DataSource = Dt;// הגדרת מקור הנתונים של הרפיטר
             repeaterCity.DataBind();// קשירת הנתונים של הרפיטר
-            
+            Option1.InnerText = arrtype[1];
+            Option1.Attributes["Value"] = arrtype[0];
+            List<LicenseTypes> listGeneric = new List<LicenseTypes>(LicenseTypesData.getlistgeneric());
+            for(var i = 0; i<listGeneric.Count;i++)
+            {
+                if (listGeneric[i].LicenseTypeID.ToString() == typeint.ToString())
+                    listGeneric.RemoveAt(i);
+            }
+
+            listGeneric.ForEach((item) =>
+            {
+                var optiongen = new HtmlGenericControl("option") { InnerText = item.LicenseType.ToString() };
+                optiongen.Attributes["Value"] = item.LicenseTypeID.ToString();
+                optiongen.Attributes.Add("class", "form - control");
+                contentArea.Controls.Add(optiongen);
+            });
+            payCunt.Value = userte.PaymentsNum.ToString();
+
+
+
+
 
 
         }
@@ -103,14 +123,15 @@ namespace LamedNetLite
             userte.UserName = inputEmail.Value;
             userte.Phone = inputPhone.Value;
             userte.Password = inputPassword.Value;
+            userte.StudyAreaId = areName.Attributes["data-value"];
+            //userte.StatusId = int.Parse(statusTeacher.Value);
+            userte.StatusId = int.Parse(Request.Form["seleStatus"]);
+            userte.LicenseTypesId = int.Parse(Request.Form["typeL"]);
+            userte.PaymentsNum = int.Parse(payCunt.Value);
             userte.AddOrUpdate_Teather();
             Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "yesmess()", true);
 
         }
 
-        protected void repeaterType_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            
-        }
     }
 }

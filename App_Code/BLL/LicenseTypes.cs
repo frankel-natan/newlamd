@@ -3,11 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LamedNetLite.App_Code.BLL
+namespace LamedNetLite
 {
-    public class LicenseTypes
+    namespace BLL
     {
-        public int LicenseTypeID { get;set; }
-        public int LicenseType { get;set; }
+        public class LicenseTypes
+        {
+            public int LicenseTypeID { get; set; }
+            public string LicenseType { get; set; }
+
+            public LicenseTypes(int id, string type)
+            {
+                this.LicenseTypeID = id;
+                this.LicenseType = type;
+            }
+            public LicenseTypes(string type)
+            {
+                this.LicenseType = type;
+            }
+
+        }
     }
+    
 }
