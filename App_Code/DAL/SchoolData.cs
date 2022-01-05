@@ -65,7 +65,7 @@ namespace LamedNetLite
                 if (schoolId == -1)
                     s.ExecuteNonQuery("Insert into [schools] (SchoolName,Password,AdministratorUserName,Phone,DateAdded,PaymentsNum)values(N'" + SchoolName + "','" + Password + "','" + AdministratorUserName + "','" + Phone + "',"  + "GETDATE(),3)" + MonthlyPayment +" , " + Status);//מספר תשלומים מוגדר 3 ב"מ
                 else
-                    s.ExecuteNonQuery("update [schools] set " +  "SchoolName=N'" + SchoolName  + "', Password='" + Password + "', AdministratorUserName='" + AdministratorUserName + "', Phone='" + Phone + "', DateAdded='" + DateAdded + "',PaymentsNum="+ PaymentsNum + MonthlyPayment + " , " + Status + " where schoolId=" + schoolId);
+                    s.ExecuteNonQuery("update [schools] set " +  "SchoolName=N'" + SchoolName  + "', Password='" + Password + "', AdministratorUserName='" + AdministratorUserName + "', Phone='" + Phone + "', DateAdded='" + DateAdded + "',PaymentsNum="+ PaymentsNum + ",MonthlyPayment="+ MonthlyPayment + " ,statuseid= " + Status + " where schoolId=" + schoolId);
                 s.Conn.Close();
             }
             public static DataTable getAllData()
@@ -87,7 +87,8 @@ namespace LamedNetLite
                 SqlClass s = new SqlClass();
                 SqlDataReader Dr = s.ExecuteReader("Select * From schools where schoolId=" + id);
                 Dr.Read();
-                School tmp = new School((int)Dr["schoolId"], (string)Dr["SchoolName"], (string)Dr["Password"], (string)Dr["AdministratorUserName"], (string)Dr["Phone"], "" + Dr["DateAdded"], (int)Dr["PaymentsNum"], (float)Dr["MonthlyPayment"],(int)Dr["Status"]);
+                float x = float.Parse(Dr["MonthlyPayment"].ToString());
+                School tmp = new School((int)Dr["schoolId"], (string)Dr["SchoolName"], (string)Dr["Password"], (string)Dr["AdministratorUserName"], (string)Dr["Phone"], "" + Dr["DateAdded"], (int)Dr["PaymentsNum"],x,(int)Dr["Statuseid"]);
                 s.Conn.Close();
                 return tmp; 
             }
@@ -139,6 +140,13 @@ namespace LamedNetLite
                 }
                 s.Conn.Close();
                 return tmp;
+            }
+            public static DataTable getAllPayIdScool(int idScool)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from Payments inner join PaymentTypes on Payments.PaymentTypeId = PaymentTypes.TypeIdwhere Payments.PaymentTypeId = 2 and Payments.PayerId = " + idScool);
+                s.Conn.Close();
+                return Dt;
             }
         }
         

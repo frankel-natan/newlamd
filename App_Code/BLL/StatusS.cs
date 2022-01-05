@@ -1,7 +1,9 @@
 ﻿using LamedNetLite.DAL;
+using LamedNetLite.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -14,18 +16,16 @@ namespace LamedNetLite
             public int Id { get; set; }
             public string statusName { get; set; }
 
-            public StatusS (int id , string nameStatus)
+            public StatusS(int id, string namest)
             {
                 this.Id = id;
-                this.statusName = nameStatus;
+                this.statusName = namest;
             }
             public StatusS()
-            { }
-            public DataTable getAllData()
             {
-                return StatusSData.getAllData();
+
             }
-            public List<StatusS> getListStatus()
+            public static List<StatusS> getListStatus()
             {
                 return StatusSData.getListStatus();
             }

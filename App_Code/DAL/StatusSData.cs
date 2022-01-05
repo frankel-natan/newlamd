@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.IdentityModel.Protocols.WSTrust;
 using System.Linq;
 using System.Web;
 
@@ -28,19 +27,19 @@ namespace LamedNetLite
                 s.Conn.Close();
                 return Dt;
             }
+
             public static List<StatusS> getListStatus()
             {
                 SqlClass s = new SqlClass();
-                string sql = "select id,StatusName as name from Status";
-                string[] arr = new string[6];
+                string sql = "select id,[ StatusName] as name from Status";
                 SqlDataReader dr = s.ExecuteReader(sql);
-                s.Conn.Close();
+                
                 List<StatusS> tamp = new List<StatusS>();
                 while (dr.Read())
                 {
                     int idt = int.Parse(dr["Id"].ToString());
                     string namet = dr["name"].ToString();
-                    StatusS sttmp = new StatusS(idt, namet);
+                    StatusS sttmp = new StatusS(idt,namet);
                     tamp.Add(sttmp);
                 }
                 s.Conn.Close();
@@ -48,6 +47,8 @@ namespace LamedNetLite
             }
 
         }
+
+
     }
 
     

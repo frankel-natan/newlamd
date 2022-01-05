@@ -298,7 +298,7 @@
     <Compile Include="App_Code\BLL\School.cs" />
     <Compile Include="App_Code\BLL\SelectedDay.cs" />
     <Compile Include="App_Code\BLL\SelectedTeacher.cs" />
-    <Content Include="App_Code\BLL\StatusS.cs" />
+    <Compile Include="App_Code\BLL\StatusS.cs" />
     <Compile Include="App_Code\BLL\Student.cs" />
     <Compile Include="App_Code\BLL\Teacher.cs" />
     <Compile Include="App_Code\DAL\AdminData.cs" />

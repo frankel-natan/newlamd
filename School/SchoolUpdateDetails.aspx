@@ -51,11 +51,19 @@
             </div>
             <div class="form-group col-md-5">
                 <label for="inputStatus">מצב</label>
-                <select class="form-control" id="inputStatus" name="typeL">
+                <select class="form-control" id="inputStatus" name="statusList">
                     <option id="Option1" runat="server" class="form-control" selected></option>
-                    <asp:Panel ID="contentArea" runat="server">
+                    <asp:Panel ID="statusNot" runat="server">
                     </asp:Panel>
                 </select>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="addTeather">תאריך הצטרפות</label>
+                <input type="text" runat="server" class="form-control" id="addTeather">
+            </div>
+            <div class="form-group col-md-5">
+                <label for="countPay">מס' תשלומים</label>
+                <input type="text" runat="server" class="form-control" id="countPay">
             </div>
 
             <div class="col-md-10" style="text-align: center;">

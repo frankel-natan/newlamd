@@ -25,7 +25,7 @@ namespace LamedNetLite
             }
             else
             {
-                School s = new School(-1, inputName.Value, inputPassword.Value, inputEmail.Value, inputPhone.Value, "",-1);
+                School s = new School(-1, inputName.Value, inputPassword.Value, inputEmail.Value, inputPhone.Value, "",-1,100.0f,1);
                 s.AddOrUpdate_School();
                 s.schoolId=s.getMaxId();
                 Session["user"] = s;

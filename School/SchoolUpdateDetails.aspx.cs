@@ -32,30 +32,43 @@ namespace LamedNetLite
             var pay = user.MonthlyPayment;
             var addSchool = user.DateAdded;
 
-            List<LicenseTypes> listGeneric = new List<LicenseTypes>(LicenseTypesData.getlistgeneric());
+            List<StatusS> listGeneric = new List<StatusS>(StatusS.getListStatus());
             for (var i = 0; i < listGeneric.Count; i++)
             {
-                if (listGeneric[i].LicenseTypeID.ToString() == typeint.ToString())
+                if (listGeneric[i].Id.ToString() == statusSchool.ToString())
+                {
+                    Option1.InnerText = listGeneric[i].statusName;
+                    Option1.Attributes["Value"] = (listGeneric[i].Id).ToString();
                     listGeneric.RemoveAt(i);
+                }                    
             }
-
             listGeneric.ForEach((item) =>
             {
-                var optiongen = new HtmlGenericControl("option") { InnerText = item.LicenseType.ToString() };
-                optiongen.Attributes["Value"] = item.LicenseTypeID.ToString();
+                var optiongen = new HtmlGenericControl("option") { InnerText = item.statusName.ToString() };
+                optiongen.Attributes["Value"] = item.Id.ToString();
                 optiongen.Attributes.Add("class", "form - control");
-                contentArea.Controls.Add(optiongen);
+                statusNot.Controls.Add(optiongen);
             });
-
+            string attda = user.DateAdded;
+            string[] arr = attda.Split(' ');
+            addTeather.Value = arr[0];
+            addTeather.Attributes.Add("readonly", "readonly");
+            countPay.Value = user.PaymentsNum.ToString();
             Session["user"] = user;
+            int y = user.schoolId;
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+
             School user = (School)Session["user"];
+            int p = user.schoolId;
             user.SchoolName = inputName.Value;
             user.AdministratorUserName = inputEmail.Value;
             user.Phone = inputPhone.Value;
             user.Password = inputPassword.Value;
+            user.Status = int.Parse(Request.Form["statusList"]);
+            user.DateAdded = addTeather.Value;
+            user.MonthlyPayment = int.Parse(countPay.Value);          
             user.AddOrUpdate_School();
             Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "yesmess()", true);
         }

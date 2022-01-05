@@ -17,7 +17,7 @@ namespace LamedNetLite
         protected void Page_Load(object sender, EventArgs e)
         {
             School user = (School)Session["user"];//זמנית
-            user = SchoolData.getById(7);//זמנית
+            user = SchoolData.getById(1);//זמנית
             Session["user"] = user;//זמנית
             if (!IsPostBack)
             {

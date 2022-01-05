@@ -23,7 +23,6 @@ namespace LamedNetLite
             public float MonthlyPayment { get; set; }
             public int Status { get; set; }
 
-
             public School(int schoolId, string SchoolName, string Password, string AdministratorUserName, string Phone, string DateAdded,int PaymentsNum,float MonthlyPayment, int Status)
             {
                 this.schoolId = schoolId;
@@ -67,6 +66,10 @@ namespace LamedNetLite
             public DataTable GetWaitingTeachers()
             {
                 return SchoolData.GetWaitingTeachers(schoolId);
+            }
+            public DataTable getAllPayIdScool(int idScool)
+            {
+                return SchoolData.getAllPayIdScool(idScool);
             }
 
 
