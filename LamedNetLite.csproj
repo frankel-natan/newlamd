@@ -295,6 +295,7 @@
     <Compile Include="App_Code\BLL\Admin.cs" />
     <Compile Include="App_Code\BLL\DrLessons.cs" />
     <Compile Include="App_Code\BLL\LicenseTypes.cs" />
+    <Compile Include="App_Code\BLL\Paymente.cs" />
     <Compile Include="App_Code\BLL\School.cs" />
     <Compile Include="App_Code\BLL\SelectedDay.cs" />
     <Compile Include="App_Code\BLL\SelectedTeacher.cs" />
@@ -411,7 +412,7 @@
     <Compile Include="WebForm4.aspx.designer.cs">
       <DependentUpon>WebForm4.aspx</DependentUpon>
     </Compile>
-    <Content Include="App_Code\MailClass.cs" />
+    <Compile Include="App_Code\MailClass.cs" />
     <Content Include="App_Code\smsClass.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GetTeachersController.cs" />
