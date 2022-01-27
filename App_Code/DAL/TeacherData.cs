@@ -92,7 +92,7 @@ namespace LamedNetLite
                 if (TeacherId == -1)
                     s.ExecuteNonQuery("Insert into [Teachers] ( schoolId, TeacherName, ID, Phone, StudyAreaId, UserName, Password,DateAdded,LicenseTypesId,PaymentsNum,StatusId)values(" + schoolId + ",N'" + TeacherName + "','" + ID + "','" + Phone + "'," + StudyAreaId + ",'" + UserName + "','" + Password + "',GETDATE())," + LicenseTypesId + "," + PaymentsNum + "," + StatusId);
                 else
-                    s.ExecuteNonQuery("update [Teachers] set schoolId=" + schoolId + ",TeacherName=N'" + TeacherName + "', ID='" + ID + "', Phone='" + Phone + "', StudyAreaId='" + StudyAreaId + "', UserName='" + UserName + "', Password='" + Password + "',LicenseTypesId=" + LicenseTypesId + ",PaymentsNum=" + PaymentsNum + ",StatuseId=" + StatusId + "where TeacherId=" + TeacherId);
+                    s.ExecuteNonQuery("update [Teachers] set schoolId=" + schoolId + ",TeacherName=N'" + TeacherName + "', ID='" + ID + "', Phone='" + Phone + "', StudyAreaId='" + StudyAreaId + "', UserName='" + UserName + "', Password='" + Password + "',LicenseTypesId=" + LicenseTypesId + ",PaymentsNum=" + PaymentsNum + ",StatuseId=" + StatusId + " where TeacherId=" + TeacherId);
                 s.Conn.Close();
             }
             public static DataTable getAllData()
@@ -226,8 +226,15 @@ namespace LamedNetLite
                 return Dt;
 
             }
-            
-              
+            public static string nameAndIdTeacherByIdScool(int scoolId)
+            {
+                string sql = "select TeacherId as id , TeacherName as Tname from Teachers where schoolId = " + scoolId;
+                SqlClass s = new SqlClass();
+                string tamp = s.ExecuteScalar(sql).ToString();
+                return tamp;
+            }
+
+
         }
 
 

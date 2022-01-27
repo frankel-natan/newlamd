@@ -146,7 +146,7 @@ namespace LamedNetLite
         {
             Button bt = (Button)(sender);
             Session["TeacherIdst"] = ((Button)sender).Attributes["data-value"];
-            Session["userst"] = ((Button)sender).Attributes["data-name"];
+            Session["userc"] = ((Button)sender).Attributes["data-name"];
             //bt.PostBackUrl = "~/School/StudentsList.aspx";
             Response.Redirect("~/School/StudentsList.aspx");
         }
@@ -155,7 +155,7 @@ namespace LamedNetLite
         {
             LinkButton bt = (LinkButton)(sender);
             Session["TeacherIdst"] = ((LinkButton)sender).Attributes["data-value"];
-            Session["userst"] = ((LinkButton)sender).Attributes["data-name"];
+            Session["userc"] = ((LinkButton)sender).Attributes["data-name"];
             bt.PostBackUrl = "~/School/StudentsList.aspx";
             Response.Redirect("~/School/StudentsList.aspx");
         }
@@ -175,7 +175,8 @@ namespace LamedNetLite
             Teacher tampT = new Teacher();
             tampT = SchoolData.GetTeache(tampTid);
             Session["TeacherIdst"] = ((Button)sender).Attributes["data-value"];
-            Session["userst"] = tampT;
+            Session["userc"] = tampT;
+            Session["userst"] = tampT;//חדש
             Response.Redirect("~/School/updetTaecher.aspx");
         }
     }

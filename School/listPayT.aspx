@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/School/SchoolMaster.Master" AutoEventWireup="true" CodeBehind="listPayT.aspx.cs" Inherits="LamedNetLite.listPayT" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/School/SchoolMaster.Master" AutoEventWireup="true" CodeBehind="listPayT.aspx.cs" Inherits="LamedNetLite.listPayT"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head2" runat="server">
@@ -56,11 +56,14 @@
           <h4 class="modal-title" id="Header"></h4>
         </div>
         <div class="modal-body">
-          <p>This is a small modal.</p>
+          <p>מקום לתוכן המודל</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button id="listStu" type="button" class="btn btn-primary" data-dismiss="modal">רשימת התלמידים</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button>
+            <input id="listStu" type="button" value="לרשימת התלמידים" onserverclick="listStu_ServerClick"  data-value="בדיקה" class="btn btn-primary" data-dismiss="modal" runat="server" />
+            <input type="hidden" runat="server" id="hi" />
+<%--            <asp:Button ID="Button1" UseSubmitBehavior="false" OnClick="listStu_ServerClick" data-value="בדיקה" CssClass="btn btn-primary" data-dismiss="modal" runat="server" Text="רשימת התלמידים2"/>--%>
+
         </div>
       </div>
     </div>
@@ -88,17 +91,29 @@
             var tam2 = JSON.parse(tam3);
             console.log(tam3);
             $('#Header').text(tam2.name);
-            $('#listStu').attr('value', tam2.id);
+            //$('#main_listStu').attr('value', tam2.id);
+            $('#main_listStu').attr('data-value', tam2.id);
+            $('#main_Button1').attr('data-value', tam2.id);
+            $('#main_hi').attr('value', tam2.id);//לכפתור המוסתר
+
             $('#df').click();
+            //$('#main_Button1').attr('value', tam2.id);
             //console.log($(this));
             //$('#Header').text(this.attr("data-value"));
 
         }
+        //אופציה דרך קלאס
         //$(".a").click(function () {
         //    console.log($(this).attr("data-value"));
         //    $('#listStu').attr('value');
         //    $('#Header').text($(this).attr("data-value"));
         //    $('#df').click();
         //})
+
+        $('#listStu').click(function () {         
+            $(this).val()
+        })
+        
+
     </script>
 </asp:Content>

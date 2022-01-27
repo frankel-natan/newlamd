@@ -71,6 +71,7 @@ namespace LamedNetLite
             user.MonthlyPayment = int.Parse(countPay.Value);          
             user.AddOrUpdate_School();
             Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "yesmess()", true);
+            fillData();
         }
     }
 }

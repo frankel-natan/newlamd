@@ -60,7 +60,7 @@
     <div id="massegup">
         <div class="alert alertGreen pull-center" id="innerMess" style="display: none;"><strong>הפרטים עודכנו בהצלחה!</strong></div>
     </div>
-    עדכון פרטים למנהל בית הספר
+    עדכון פרטים מנהל בית הספר
 
     <asp:Label runat="server" ID="nameScool"></asp:Label>
 

@@ -16,6 +16,15 @@ namespace LamedNetLite
             {
                 return PaymenteData.gatAllPayTeaterByIdScool(id);
             }
+            public static void receivingPaymentTaecherToScool(int idTaecher, int sum)
+            {
+                PaymenteData.receivingPaymentTaecherToScool(idTaecher, sum);
+            }
+            public static void receivingPaymentScoolToAdmin(int idScool, int sum)
+            {
+                PaymenteData.receivingPaymentScoolToAdmin(idScool, sum);
+            }
+
         }
 
     }

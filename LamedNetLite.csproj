@@ -205,6 +205,7 @@
     <Content Include="Login\images\logo1.jpeg" />
     <Content Include="Login\js\SearchScript.js" />
     <Content Include="Login\SearchTeacher.aspx" />
+    <Content Include="pay\css\MyCss.css" />
     <Content Include="pay\payPage.aspx" />
     <Content Include="pay\PayTemplate.ascx" />
     <Content Include="Sb_admin\dataTables.bootstrap.min.js" />
@@ -222,6 +223,7 @@
     <Content Include="School\listPayT.aspx" />
     <Content Include="School\nananaMas.aspx" />
     <Content Include="School\payScool.aspx" />
+    <Content Include="School\receivingPaymentPage.aspx" />
     <Content Include="School\SchoolMain.aspx" />
     <Content Include="School\SchoolPay.aspx" />
     <Content Include="School\SchoolUpdateDetails.aspx" />
@@ -294,6 +296,7 @@
     <Compile Include="App_Code\ajaxxxxx.cs" />
     <Compile Include="App_Code\BLL\Admin.cs" />
     <Compile Include="App_Code\BLL\DrLessons.cs" />
+    <Compile Include="App_Code\BLL\idName.cs" />
     <Compile Include="App_Code\BLL\LicenseTypes.cs" />
     <Compile Include="App_Code\BLL\Paymente.cs" />
     <Compile Include="App_Code\BLL\School.cs" />
@@ -304,6 +307,7 @@
     <Compile Include="App_Code\BLL\Teacher.cs" />
     <Compile Include="App_Code\DAL\AdminData.cs" />
     <Compile Include="App_Code\DAL\DrLessonsData.cs" />
+    <Compile Include="App_Code\DAL\idNameData.cs" />
     <Compile Include="App_Code\DAL\LicenseTypesData.cs" />
     <Compile Include="App_Code\DAL\PaymenteData.cs" />
     <Compile Include="App_Code\DAL\SchoolData.cs" />
@@ -362,6 +366,13 @@
     </Compile>
     <Compile Include="School\payScool.aspx.designer.cs">
       <DependentUpon>payScool.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="School\receivingPaymentPage.aspx.cs">
+      <DependentUpon>receivingPaymentPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="School\receivingPaymentPage.aspx.designer.cs">
+      <DependentUpon>receivingPaymentPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="School\SchoolUpdateDetails.aspx.cs">
       <DependentUpon>SchoolUpdateDetails.aspx</DependentUpon>

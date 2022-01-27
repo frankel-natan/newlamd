@@ -102,8 +102,12 @@
                                 <a href="listPayT.aspx" id="payte"><i class="fa fa-edit fa-fw "></i>תשלומי מורים</a>
                             </li>
                             <li>
+                                <a href="receivingPaymentPage.aspx" id="receivingPayment"><i class="fa fa-edit fa-fw "></i>קבלת תשלום</a>
+                            </li>
+                            <li>
                                 <a href="../pay/payPage.aspx" id="paytepage"><i class="fa fa-edit fa-fw "></i>לדף תשלום מאובטח</a>
                             </li>
+                            
                         </ul>
                     </div>
                 </div>

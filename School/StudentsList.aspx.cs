@@ -17,8 +17,10 @@ namespace LamedNetLite
         {
             //Session["TeacherName"] = "רפי כהן";
             //Session["user"] = SchoolData.getById(7);//
-            //Session["TeacherId"] = 1;//                  זמני - למחוק    
-            if (Session["userst"] != null && Session["TeacherIdst"] != null)
+            //Session["TeacherId"] = 1;//                  זמני - למחוק   
+            Teacher te = new Teacher();
+            te.getById(int.Parse(Session["TeacherIdst"].ToString()));
+            if (Session["userc"] != null && Session["TeacherIdst"] != null)
             {
                 FillData();
             }

@@ -28,7 +28,7 @@ namespace LamedNetLite
             Session["user"] = user;//זמנית
             nameScool.Text = (string)user.SchoolName.ToString();
             Teacher userte = (Teacher)Session["userst"];
-            Label2.Text = "  המורה " + userte.TeacherName;
+            Label2.Text = "  למורה " + userte.TeacherName;
             inputName.Value = userte.TeacherName;
             inputEmail.Value = userte.UserName;
             inputPhone.Value = userte.Phone;
@@ -129,8 +129,9 @@ namespace LamedNetLite
             userte.LicenseTypesId = int.Parse(Request.Form["typeL"]);
             userte.PaymentsNum = int.Parse(payCunt.Value);
             userte.AddOrUpdate_Teather();
+            Session["userst"] = userte;
             Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "yesmess()", true);
-
+            page();
         }
 
     }
