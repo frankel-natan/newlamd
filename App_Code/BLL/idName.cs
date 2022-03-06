@@ -28,6 +28,10 @@ namespace LamedNetLite
             {
                 return idNameData.getlistgenericScools();
             }
+            public static List<idName> getlistgenericStatusTast()
+            {
+                return idNameData.getlistgenericStatusTast();
+            }
         }
        
     }

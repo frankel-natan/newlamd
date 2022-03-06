@@ -52,7 +52,9 @@ namespace LamedNetLite
             b.Attributes["data-value"] = (string)tamp.ToString();
             int sumCostTast = TeacherData.GetCostByIdTaecher(tamp);
             int sumToTelPay = TeacherData.GetPayByIdTaecher(2, tamp);
-            Label c = (Label)e.Item.FindControl("PayTast");
+            LinkButton c = (LinkButton)e.Item.FindControl("PayTast");
+            c.Attributes["data-value"] = (string)tamp.ToString();
+            c.CommandArgument = (string)tamp.ToString();
             int balance = sumToTelPay - sumCostTast;
             if (balance < 0)
             {
@@ -102,7 +104,8 @@ namespace LamedNetLite
             Button upte = (Button)e.Item.FindControl("updata");
             upte.Attributes["data-value"] = (string)tamp.ToString();
             upte.Attributes["data-name"] = tampname;
-
+            Button payIdTeacher = (Button)e.Item.FindControl("paybuuten");
+            payIdTeacher.Attributes["data-value"] = (string)tamp.ToString();
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
@@ -178,6 +181,29 @@ namespace LamedNetLite
             Session["userc"] = tampT;
             Session["userst"] = tampT;//חדש
             Response.Redirect("~/School/updetTaecher.aspx");
+        }
+
+        protected void paybuuten_Click(object sender, EventArgs e)
+        {
+            Button bt = (Button)(sender);
+            Session["TeacherIdst"] = ((Button)sender).Attributes["data-value"];
+            Session["userc"] = ((Button)sender).Attributes["data-name"];
+            Response.Redirect("~/School/receivingPaymentPage.aspx");
+
+        }
+
+        protected void PayTast_Click(object sender, EventArgs e)
+        {
+            LinkButton bt = (LinkButton)(sender);
+            int tampTid;
+            tampTid = int.Parse(bt.Attributes["data-value"]);
+            Teacher tampT = new Teacher();
+            tampT = SchoolData.GetTeache(tampTid);
+            Session["TeacherIdst"] = ((LinkButton)sender).Attributes["data-value"];
+            Session["userc"] = tampT;
+            int teacherSelect = int .Parse(bt.CommandArgument);
+            Session["userst"] = teacherSelect;//חדש
+            Response.Redirect("~/School/listPayT.aspx");
         }
     }
 }

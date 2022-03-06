@@ -29,6 +29,10 @@ namespace LamedNetLite
             {
                 return StatusSData.getListStatus();
             }
+            public static void upLicenseStatus(int idTast, int idStatus)
+            {
+                StatusSData.upLicenseStatus(idTast, idStatus);
+            }
         }
          
     }

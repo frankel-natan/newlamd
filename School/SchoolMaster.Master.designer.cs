@@ -42,15 +42,6 @@ namespace LamedNetLite
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// exit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton exit;
-
-        /// <summary>
         /// exitbutt control.
         /// </summary>
         /// <remarks>
@@ -60,6 +51,15 @@ namespace LamedNetLite
         protected global::System.Web.UI.WebControls.Button exitbutt;
 
         /// <summary>
+        /// exit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton exit;
+
+        /// <summary>
         /// appdete control.
         /// </summary>
         /// <remarks>
@@ -67,6 +67,15 @@ namespace LamedNetLite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor appdete;
+
+        /// <summary>
+        /// ListTastSchool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ListTastSchool;
 
         /// <summary>
         /// page_header control.

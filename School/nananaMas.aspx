@@ -47,7 +47,7 @@
                                     <th>כמות תלמידים</th>
                                     <th>כמות טסטים להזמנה</th>
                                     <th>תשלומים</th>
-                                    <th>נסיון</th>
+                                    <th>טלפון נייד</th>
                                     <th>נסיון 2</th>
                                 </tr>
                             </thead>
@@ -71,13 +71,21 @@
                                                             </h1>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <h2><%#Eval("Phone") %></h2>
-                                                            <h3>תאריך הרשמה </h3>
-                                                            <%#Eval("DateAdded") %>
-                                                            <h4 id="adddata" runat="server"></h4>
-                                                            <asp:Button runat="server" ID="listtehtserandstudent" OnClick="listtehtserandstudent_Click" Text="לרשימת התלמידים" type="button" class="btn btn-success" /></button>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <h2><%#Eval("Phone") %></h2>
+                                                                    <h3>תאריך הרשמה </h3>
+                                                                    <%#Eval("DateAdded") %>
+                                                                    <h4 id="adddata" runat="server"></h4>
+                                                                    <asp:Button runat="server" ID="listtehtserandstudent" OnClick="listtehtserandstudent_Click" Text="לרשימת התלמידים" type="button" class="btn btn-success" /></button>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <img src="images/cat2.jpg" class="img-circle" alt="Cinque Terre" width="200" height="200">
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
+                                                            <asp:Button class="btn btn-success" runat="server" ID="paybuuten" OnClick="paybuuten_Click" Text="הזנת תשלום"></asp:Button>
                                                             <asp:Button class="btn btn-primary" runat="server" ID="updata" OnClick="updata_Click" Text="לעדכון פרטים"></asp:Button>
                                                             <button type="button" class="btn btn-danger" data-dismiss="modal">סגור חלון</button>
                                                         </div>
@@ -93,7 +101,8 @@
                                                 <asp:LinkButton runat="server" ID="linkTast" OnClick="linkTast_Click"></asp:LinkButton>
                                             </td>
                                             <td>
-                                                <asp:Label runat="server" ID="PayTast"></asp:Label>
+                                                <asp:LinkButton runat="server" ID="PayTast" OnClick="PayTast_Click"></asp:LinkButton>
+
                                             </td>
                                             <%--onclick="selectTaeter($(this).attr('name'))"--%>
                                             <td>

@@ -23,7 +23,7 @@ namespace LamedNetLite
             }
             public static List<LicenseTypes> getlistgeneric()
             {
-                string sql = "select LicenseTypeID as id , LicenseType as type from LicenseTypes";
+                string sql = "select LicenseTypeID as id , LicenseType as type from LicenseTypes order by type";
                 SqlClass s = new SqlClass();
                 SqlDataReader Dr = s.ExecuteReader(sql);
                 List<LicenseTypes> tmp = new List<LicenseTypes>();

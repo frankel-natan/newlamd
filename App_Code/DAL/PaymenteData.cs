@@ -24,8 +24,18 @@ namespace LamedNetLite
             {
                 SqlClass s = new SqlClass();
                 string sql = "select Payments.PayerId, Payments.PaymentDate as datePay,Payments.[Sum],Teachers.TeacherName as nameTe , Teachers.TeacherId as idTeacher " +
-                    "from Payments  inner join Students on Payments.PayerId = Students.StudentId " +
-                    "inner join Teachers on Teachers.TeacherId = Students.TeacherId where Teachers.schoolId = "+ScoolId;
+                    "from Payments  inner join Teachers on Payments.PayerId = Teachers.TeacherId " +
+                    " where Teachers.schoolId = "+ScoolId;
+                DataTable dt = s.DataTable(sql);
+                s.Conn.Close();
+                return dt;
+            }
+            public static DataTable gatAllPayTeaterByIdScoolAndIdTaecher(int idScool, int idTeacher)
+            {
+                SqlClass s = new SqlClass();
+                string sql = "select Payments.PayerId, Payments.PaymentDate as datePay,Payments.[Sum],Teachers.TeacherName as nameTe , Teachers.TeacherId as idTeacher " +
+                    "from Payments  inner join Teachers on Payments.PayerId = Teachers.TeacherId " +
+                    " where Teachers.schoolId = " + idScool + " and Teachers.TeacherId = " + idTeacher;                              
                 DataTable dt = s.DataTable(sql);
                 s.Conn.Close();
                 return dt;

@@ -16,6 +16,10 @@ namespace LamedNetLite
             {
                 return PaymenteData.gatAllPayTeaterByIdScool(id);
             }
+            public static DataTable gatAllPayTeaterByIdScoolAndIdTaecher(int idScool , int idTeacher)
+            {
+                return PaymenteData.gatAllPayTeaterByIdScoolAndIdTaecher(idScool, idTeacher);
+            }
             public static void receivingPaymentTaecherToScool(int idTaecher, int sum)
             {
                 PaymenteData.receivingPaymentTaecherToScool(idTaecher, sum);

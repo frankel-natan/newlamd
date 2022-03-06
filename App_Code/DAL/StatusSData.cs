@@ -45,6 +45,13 @@ namespace LamedNetLite
                 s.Conn.Close();
                 return tamp;
             }
+            public static void upLicenseStatus(int idTast , int idStatus)
+            {
+                SqlClass s = new SqlClass();
+                string sql = "update TableTast set statusTast = " + idStatus + "where Id= "+ idTast;
+                s.ExecuteNonQuery(sql);
+            }
+
 
         }
 

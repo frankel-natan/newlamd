@@ -11,7 +11,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    רשימת תלמידים
+                    רשימת מורים
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -62,6 +62,7 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button>
             <input id="listStu" type="button" value="לרשימת התלמידים" onserverclick="listStu_ServerClick"  data-value="בדיקה" class="btn btn-primary" data-dismiss="modal" runat="server" />
             <input type="hidden" runat="server" id="hi" />
+            <asp:Button class="btn btn-success" runat="server" ID="paybuuten" OnClick="paybuuten_Click" Text="תשלום"></asp:Button>
 <%--            <asp:Button ID="Button1" UseSubmitBehavior="false" OnClick="listStu_ServerClick" data-value="בדיקה" CssClass="btn btn-primary" data-dismiss="modal" runat="server" Text="רשימת התלמידים2"/>--%>
 
         </div>
@@ -96,7 +97,11 @@
             $('#main_Button1').attr('data-value', tam2.id);
             $('#main_hi').attr('value', tam2.id);//לכפתור המוסתר
 
+            $('#main_paybuuten').attr('data-value', tam2.id);
+
             $('#df').click();
+
+            
             //$('#main_Button1').attr('value', tam2.id);
             //console.log($(this));
             //$('#Header').text(this.attr("data-value"));
@@ -111,6 +116,9 @@
         //})
 
         $('#listStu').click(function () {         
+            $(this).val()
+        })
+        $('#paybuuten').click(function () {
             $(this).val()
         })
         

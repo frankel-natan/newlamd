@@ -213,6 +213,8 @@
     <Content Include="School\aaaa.aspx" />
     <Content Include="School\ajaxxx.aspx" />
     <Content Include="School\css\MyCss.css" />
+    <Content Include="School\images\cat.jpg" />
+    <Content Include="School\images\cat2.jpg" />
     <Content Include="School\images\LamedP.jpg" />
     <Content Include="School\images\selectImege.svg" />
     <Content Include="School\js\dataTables.bootstrap.min %281%29.js" />
@@ -221,6 +223,7 @@
     <Content Include="School\js\jquery.dataTables.min.js" />
     <Content Include="School\listPay.aspx" />
     <Content Include="School\listPayT.aspx" />
+    <Content Include="School\listTast.aspx" />
     <Content Include="School\nananaMas.aspx" />
     <Content Include="School\payScool.aspx" />
     <Content Include="School\receivingPaymentPage.aspx" />
@@ -352,6 +355,13 @@
     </Compile>
     <Compile Include="School\listPayT.aspx.designer.cs">
       <DependentUpon>listPayT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="School\listTast.aspx.cs">
+      <DependentUpon>listTast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="School\listTast.aspx.designer.cs">
+      <DependentUpon>listTast.aspx</DependentUpon>
     </Compile>
     <Compile Include="School\nananaMas.aspx.cs">
       <DependentUpon>nananaMas.aspx</DependentUpon>

@@ -24,25 +24,28 @@
             var conceptName = $('#selecCity').find(":selected").text();//חילוץ הבחירה טקסט
             var b, a0, a1;
             a1 = $("#selecCity option:selected").val();//חילוץ ID חדש
-            if ($("#main_areName").attr("data-value") != "-1") {
+            if ($("#main_areName").attr("data-value") != "-1" && $("#main_areName").attr("data-value") != "") {
 
                 b = $("#main_areName").val() + ", " + conceptName;//שרשור הבחירה
                 a0 = $("#main_areName").attr("data-value");//חילוץ ID של קיים
                 $("#main_areName").attr("data-value", a0 + "," + a1);//השמה חדשה של ID ערים
+                $("#main_dataA").val($("#main_areName").attr("data-value"));
 
             }
             else {
                 b = conceptName;
                 $("#main_areName").attr("data-value", a1);//השמה חדשה של ID ערים
+                $("#main_dataA").val($("#main_areName").attr("data-value"));
             }
             $("#main_areName").val(b);//השמה חדשה
             $("#main_areName").attr("value", b);
-
+            $("#main_dataA").val($("#main_areName").attr("data-value"));
             alert($("#main_areName").attr("data-value")); //בדיקה          
         };
         function dellCity() {
             $("#main_areName").val("");
             $("#main_areName").attr("data-value", "-1");
+            $("#main_dataA").val("-1");
         }
 
 
@@ -127,6 +130,7 @@
         <div class="form-group col-md-5">
             <label for="areName">אזור/י פעילות</label>
             <input runat="server" class="form-control" id="areName" />
+            <input runat="server" type="hidden" id="dataA" />
             <a href="#" data-toggle="modal" data-target="#myModal">לשינוי לחץ כאן</a>
 
             <!-- Modal -->
@@ -138,7 +142,7 @@
                             <h4 class="modal-title">בחר עיר מהרשימה שברצונך להוסיף</h4>
                         </div>
                         <div class="modal-body" style="height: 70px">
-                            <div class="form-group col-md-5">
+                            <div class="form-group col-3">
                                 <select class="form-control" id="selecCity" name="sCity">
                                     <asp:Repeater runat="server" ID="repeaterCity">
                                         <ItemTemplate>

@@ -184,7 +184,7 @@ namespace LamedNetLite
             }
             public static DataTable GetAllTastByITeacher(int idTaecher)
             {
-                return getDt("select * from TableTast inner join TastStatus on TableTast.statusTast = TastStatus.Id inner join Teachers on Teachers.TeacherId = TableTast.TeacherId where Teachers.TeacherId = " + idTaecher);
+                return getDt("select TableTast.Id as idTast, * from TableTast inner join TastStatus on TableTast.statusTast = TastStatus.Id inner join Teachers on Teachers.TeacherId = TableTast.TeacherId where Teachers.TeacherId = " + idTaecher);
             }
             public static string getTypeLic(int typeLic)
             {
@@ -221,7 +221,7 @@ namespace LamedNetLite
             public static DataTable getAllCity()
             {
                 SqlClass s = new SqlClass();
-                DataTable Dt = s.DataTable("select StudyAreaId as id , StudyAreaName as namecity from StudyAreas");
+                DataTable Dt = s.DataTable("select StudyAreaId as id , StudyAreaName as namecity from StudyAreas order by namecity");
                 s.Conn.Close();
                 return Dt;
 

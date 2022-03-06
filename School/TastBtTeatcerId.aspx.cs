@@ -35,6 +35,19 @@ namespace LamedNetLite
             dt = TeacherData.GetAllTastByITeacher(userT);
             RptDataTable.DataSource = dt;// הגדרת מקור הנתונים של הרפיטר
             RptDataTable.DataBind();// קשירת הנתונים של הרפיטר
+            var optiongen1 = new HtmlGenericControl("option") { ID ="one" };
+            //optiongen1.InnerText = "nassion";
+            //optiongen1.Attributes["Value"] = "500";
+            optiongen1.Attributes.Add("class", "form - control");
+            contentTeachers.Controls.Add(optiongen1);
+            List <idName> listGeneric = new List<idName>(idName.getlistgenericStatusTast());
+            listGeneric.ForEach((item) =>
+            {
+                var optiongen = new HtmlGenericControl("option") { InnerText = item.name.ToString() };
+                optiongen.Attributes["Value"] = item.Id.ToString();
+                optiongen.Attributes.Add("class", "form - control");
+                contentTeachers.Controls.Add(optiongen);
+            });
         }
 
         protected void RptDataTable_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -49,6 +62,22 @@ namespace LamedNetLite
             string[] list2 = db2.Split(' ');
             da2.InnerText = list2[0] + " שעת הזמנה : " + list2[1] ;
             da2.Attributes["style"] = "color:blue;";
+            HtmlButton upd = (HtmlButton)e.Item.FindControl("upTast");
+            string idtast = (string)((DataRowView)e.Item.DataItem)["idTast"].ToString();
+            string nameTast = (string)((DataRowView)e.Item.DataItem)["statusTast"].ToString();
+            string nameStatus = (string)((DataRowView)e.Item.DataItem)["nameStatus"].ToString();
+            upd.Attributes["value"] = idtast;
+            upd.Attributes["data-value"] = "{'id':'" + idtast + "' ,'status':'" +nameTast + "' ,'namesta':'" + nameStatus + "' ,'date':'"+ list[0] + "'}";
+
+        }
+
+        protected void update_Click(object sender, EventArgs e)
+        {
+            Button b = (Button)(sender);
+            int y = int.Parse(Request.Form["idSelectTae"]);//חילוץ קוד סטטוס נבחר
+            //int x = int.Parse(b.Attributes["data-value"]);//ID טסט
+            int x = int.Parse(hi.Value);//ID טסט חילוץ מכפתור נסתר
+            StatusS.upLicenseStatus(x, y);
         }
     }
 }

@@ -148,6 +148,25 @@ namespace LamedNetLite
                 s.Conn.Close();
                 return Dt;
             }
+            public static DataTable getAllTastBySchoolId(int idSchool)
+            {
+                SqlClass s = new SqlClass();
+                string sql = "select TableTast.id as itTast, TableTast.TestOrderDate as dat, TableTast.statusTast as idStatus," +
+                    "TastStatus.nameStatus as nameStatus, Teachers.TeacherId as idTeacher, Teachers.TeacherName as nameTeacher," +
+                    " Teachers.Phone as phone, Teachers.ID as ID, Teachers.UserName as userTeacher, LicenseTypes.LicenseType as LicenseName" +
+                    " from TableTast" +
+                    " inner join TastStatus on TableTast.statusTast = TastStatus.Id " +
+                    " inner join Teachers on TableTast.TeacherId = Teachers.TeacherId " +
+                    " inner join schools on Teachers.schoolId = schools.schoolId " +
+                    " inner join LicenseTypes on Teachers.LicenseTypesId = LicenseTypes.LicenseTypeID" +
+                    " where schools.schoolId = " + idSchool.ToString() +" " +
+                    " group by TableTast.statusTast,TableTast.id, TableTast.TestOrderDate, TableTast.statusTast," +
+                    " TastStatus.nameStatus, Teachers.TeacherId , Teachers.TeacherName , " +    
+                    " Teachers.Phone , Teachers.ID, Teachers.UserName , LicenseTypes.LicenseType "+
+                    " order by idStatus ";
+                return getDt(sql);
+
+            }
         }
         
     }

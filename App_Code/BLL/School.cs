@@ -71,7 +71,10 @@ namespace LamedNetLite
             {
                 return SchoolData.getAllPayIdScool(idScool);
             }
-
+            public static DataTable getAllTastBySchoolId(int idSchool)
+            {
+                return SchoolData.getAllTastBySchoolId(idSchool);
+            }
 
         }
 

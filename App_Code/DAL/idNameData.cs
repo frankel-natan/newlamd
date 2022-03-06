@@ -41,6 +41,20 @@ namespace LamedNetLite
                 s.Conn.Close();
                 return tmp;
             }
+            public static List<idName> getlistgenericStatusTast()
+            {
+                string sql = "select id as id , nameStatus as Sname from TastStatus";
+                SqlClass s = new SqlClass();
+                SqlDataReader Dr = s.ExecuteReader(sql);
+                List<idName> tmp = new List<idName>();
+                while (Dr.Read())
+                {
+                    idName tmpl = new idName((int)Dr["id"], (string)Dr["Sname"].ToString());
+                    tmp.Add(tmpl);
+                }
+                s.Conn.Close();
+                return tmp;
+            }
 
         }
     }

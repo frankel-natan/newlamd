@@ -27,14 +27,23 @@ namespace LamedNetLite
             
         }
         public void page()
-        {          
+        { 
+            
             DataTable Dt = new DataTable();
             School userc = (School)Session["userc"];
             userc = SchoolData.getById(7);//זמנית
             Dt = TeacherData.getAllData(userc.schoolId);
 
             DataTable Dt2 = new DataTable();
-            Dt2 = Paymente.gatAllPayTeaterByIdScool(7);// זמנית
+            if (Session["userst"] == null)
+            {
+                Dt2 = Paymente.gatAllPayTeaterByIdScool(7);// זמנית
+            }
+            else
+            {
+                int x = int.Parse(Session["userst"].ToString());
+                Dt2 = Paymente.gatAllPayTeaterByIdScoolAndIdTaecher(7, x);//7 זמני לקחת מסשן ID בית ספר
+            }        
             RptDataTableTe.DataSource = Dt2;// הגדרת מקור הנתונים של הרפיטר
             RptDataTableTe.DataBind();// קשירת הנתונים של הרפיטר
             
@@ -74,10 +83,22 @@ namespace LamedNetLite
 
             string ids = bt.Attributes["value"];
             string aa = bt.Attributes["data-value"];
-            string aaa = hi.Value;
-            
+            string aaa = hi.Value;           
+        }
+        protected void paybuuten_Click(object sender, EventArgs e)
+        {
+            Button bt = (Button)(sender);
+            string x = bt.Attributes["data-value"]; //לבדוק למה לא מחזיר
+
+            Session["TeacherIdst"] =x;
+
+            string idHid = hi.Value;//חזרה מכפתור מוסתר
+
+            Session["TeacherIdst"] = idHid;
+            Session["userc"] = ((Button)sender).Attributes["data-name"];
+            Response.Redirect("~/School/receivingPaymentPage.aspx");
+
         }
 
-      
     }
 }

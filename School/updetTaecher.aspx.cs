@@ -77,15 +77,19 @@ namespace LamedNetLite
             }
 
             string areId = userte.StudyAreaId;
-            string[] arrareId = areId.Split(',');
-            string[] arrareName = new string[arrareId.Length];
-            string tampArr = "";
-            for (int i = 0; i < arrareId.Length; i++)
+            if(areId !="-1" && areId !="")
             {
-                arrareName[i] = TeacherData.nameAreId(int.Parse(arrareId[i]));
-                tampArr += arrareName[i] + ", ";
+                string[] arrareId = areId.Split(',');
+                string[] arrareName = new string[arrareId.Length];
+                string tampArr = "";
+                for (int i = 0; i < arrareId.Length; i++)
+                {
+                    arrareName[i] = TeacherData.nameAreId(int.Parse(arrareId[i]));
+                    tampArr += arrareName[i] + ", ";
+                }
+                areName.Value = tampArr.Substring(0, tampArr.Length - 2);
             }
-            areName.Value = tampArr.Substring(0, tampArr.Length - 2);
+            
             areName.Attributes["data-value"] = areId;
             areName.Attributes.Add("readonly", "readonly");
             DataTable Dt = new DataTable();
@@ -123,7 +127,7 @@ namespace LamedNetLite
             userte.UserName = inputEmail.Value;
             userte.Phone = inputPhone.Value;
             userte.Password = inputPassword.Value;
-            userte.StudyAreaId = areName.Attributes["data-value"];
+            userte.StudyAreaId = dataA.Value;
             //userte.StatusId = int.Parse(statusTeacher.Value);
             userte.StatusId = int.Parse(Request.Form["seleStatus"]);
             userte.LicenseTypesId = int.Parse(Request.Form["typeL"]);
