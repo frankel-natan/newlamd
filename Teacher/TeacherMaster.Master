@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <asp:ContentPlaceHolder ID="head1" runat="server">
     </asp:ContentPlaceHolder>
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>מערכת ניהול מורי נהיגה </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/rtl/bootstrap.min.css" rel="stylesheet">
@@ -33,8 +33,6 @@
 
     <!-- Custom Fonts -->
     <link href="css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <%--ממני--%>
-    <link href="css/style3.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,7 +44,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <div id="wrapper"  style="width:fit-content;">
+    <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -56,7 +54,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html">מערכת לניהול מורי נהיגה      </a>
             </div>
             <!-- /.navbar-header -->
 
@@ -200,6 +198,7 @@
                             <a href="#">
                                 <div>
                                     <i class="fa fa-comment fa-fw"></i>New Comment
+                                   
                                     <span class="pull-right text-muted small">4 minutes ago</span>
                                 </div>
                             </a>
@@ -209,6 +208,7 @@
                             <a href="#">
                                 <div>
                                     <i class="fa fa-twitter fa-fw"></i>3 New Followers
+                                   
                                     <span class="pull-right text-muted small">12 minutes ago</span>
                                 </div>
                             </a>
@@ -218,6 +218,7 @@
                             <a href="#">
                                 <div>
                                     <i class="fa fa-envelope fa-fw"></i>Message Sent
+                                   
                                     <span class="pull-right text-muted small">4 minutes ago</span>
                                 </div>
                             </a>
@@ -227,6 +228,7 @@
                             <a href="#">
                                 <div>
                                     <i class="fa fa-tasks fa-fw"></i>New Task
+                                   
                                     <span class="pull-right text-muted small">4 minutes ago</span>
                                 </div>
                             </a>
@@ -236,6 +238,7 @@
                             <a href="#">
                                 <div>
                                     <i class="fa fa-upload fa-fw"></i>Server Rebooted
+                                   
                                     <span class="pull-right text-muted small">4 minutes ago</span>
                                 </div>
                             </a>
@@ -288,25 +291,36 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="index.html"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                            <a class="active" href="main.aspx"><i class="fa fa-dashboard fa-fw"></i>יומן שיעורים</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Charts<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>תשלומים<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="flot.html">תשלום למנהל מערכת</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="morris.html">תשלום עבור תלמיד</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>היסטורית תשלומים<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="morris.html">היסטורית תשלומי תלמידים</a>
+                                        </li>
+                                        <li>
+                                            <a href="morris.html">היסטורית תשלומים למהל מערכת</a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i>Tables</a>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i>רשימת תלמידים</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i>Forms</a>
+                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i>רשימת המתנה</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>UI Elements<span class="fa arrow"></span></a>
@@ -378,20 +392,22 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper" style="padding:30px;" class="container" <%--class="container col-lg-12"--%>>
+        <div id="page-wrapper" <%--class="container col-lg-12"--%>>
             <div class="row">
-                <div class="col-md-10">
-                    <h1 class="page-header"><asp:ContentPlaceHolder runat="server" ID="header"></asp:ContentPlaceHolder></h1>
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        <asp:ContentPlaceHolder runat="server" ID="header"></asp:ContentPlaceHolder>
+                    </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-                <asp:ContentPlaceHolder ID="main" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="main" runat="server"></asp:ContentPlaceHolder>
             <!-- /.row -->
             <!-- /.row -->
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-       
+        <div></div>
 
     </div>
     <!-- /#wrapper -->

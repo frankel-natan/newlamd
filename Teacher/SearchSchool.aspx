@@ -139,7 +139,7 @@
 <body>
     <div class="jumbotron bg-cover text-white">
         <div class="container py-5 text-center">
-            <h1 style="color: orange" class="display-4 font-weight-bold">חיפוש מורה</h1>
+            <h1 style="color: orange" class="display-4 font-weight-bold">חיפוש בית ספר</h1>
             <p style="color: black" class="font-italic mb-0"></p>
 
         </div>
@@ -190,10 +190,10 @@
                                         </div>
                                         <div class="d-flex align-items-center ">
                                             <i class="fa fa-trash mb-1 text-danger">
-                                                <asp:Button  CssClass="btn btn-outline-primary" runat="server" ID="btnSub" Text="שלח בקשה להרשמה" /></i>
+                                                <asp:Button OnClick="btnSub_Click"  CssClass="btn btn-outline-primary" runat="server" ID="btnSub" Text="שלח בקשה להרשמה" /></i>
                                         </div>
                                     </div>
-
+                                 
                                 </ItemTemplate>
                             </asp:Repeater>
                             <div runat="server" id="NoResultDiv" class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">

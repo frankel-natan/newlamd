@@ -5,9 +5,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 using LamedNetLite.Data;
 using LamedNetLite.BLL;
 using LamedNetLite.DAL;
+using System.Data;
 
 namespace LamedNetLite
 {
@@ -15,9 +17,10 @@ namespace LamedNetLite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            FilDrD();
+            if(!IsPostBack)
+                FilData();
         }
-        protected void FilDrD()
+        protected void FilData()
         {
             //SqlDataReader Dr = new SqlClass().ExecuteReader2("StudyAreas");
             //while (Dr.Read())
@@ -26,9 +29,10 @@ namespace LamedNetLite
 
             //}
             //AreasList.InnerHtml += "<option value =\"ירושלים\" id =\"1\" />"; 
-
-
-
+            LicenseTypes.DataSource = TeacherData.GetLicenseTypes();
+            LicenseTypes.DataBind();
+            StudyAreas.DataSource= TeacherData.GetStudyAreas();
+            StudyAreas.DataBind();
         }
 
         protected void BtnSignUp_Click(object sender, EventArgs e)
@@ -39,12 +43,43 @@ namespace LamedNetLite
             }
             else
             {
-               // Teacher t = new Teacher(-1, int.Parse(inputSid.Value), inputName.Value, inputID.Value, inputPhone.Value, TeacherData.getStudyAreasId(seletdIt.Value), inputEmail.Value, inputPassword.Value, "",);
-               // t.AddOrUpdate_Teather();
-                Response.Redirect("TeacherMain.aspx");
+                string selectedSA = selectedStudyAreas.Value;
+                string selectedLT = selectedLicenseTypes.Value;
+                Teacher t = new Teacher(
+                    inputName.Value,
+                    inputID.Value,
+                    inputPhone.Value,
+                    selectedSA,
+                    inputEmail.Value,
+                    inputPassword.Value,
+                    int.Parse(selectedLT)
+                    );
+                Session["user"] = t;
+                // t.AddOrUpdate_Teather();
+                Response.Redirect("SearchSchool.aspx");
             }
                 
             
+        }
+
+        protected void LicenseTypes_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            HtmlGenericControl option = (HtmlGenericControl)e.Item.FindControl("option");
+            int LicenseTypeID = (int)((DataRowView)e.Item.DataItem)["LicenseTypeID"]; 
+            string LicenseType = (string)((DataRowView)e.Item.DataItem)["LicenseType"]; 
+            option.Attributes["text"] = LicenseTypeID.ToString();
+            option.Attributes["value"] = LicenseTypeID.ToString();
+            option.InnerText = LicenseType;
+        }
+
+        protected void StudyAreas_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            HtmlGenericControl option = (HtmlGenericControl)e.Item.FindControl("option");
+            int StudyAreaId = (int)((DataRowView)e.Item.DataItem)["StudyAreaId"];
+            string StudyAreaName = (string)((DataRowView)e.Item.DataItem)["StudyAreaName"];
+            option.Attributes["text"] = StudyAreaId.ToString();
+            option.Attributes["value"] = StudyAreaId.ToString();
+            option.InnerText = StudyAreaName;
         }
     }
 }

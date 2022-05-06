@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Teacher/TeacherMaster.Master" AutoEventWireup="true" CodeBehind="LessWaitingList.aspx.cs" Inherits="LamedNetLite.LessWaitingList" %>
 
 <asp:Content ContentPlaceHolderID="header" runat="server">
-    
     <label>שיעורים בהמתנה </label>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="head1" runat="server">
@@ -25,9 +24,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
-    <div class="row col-md-11">
-    <form id="form1" runat="server" >
-        
+    <form id="form1" runat="server">
 
         <label id="CheckAllLable" class="hidden">
             בחר הכל
@@ -53,20 +50,14 @@
         <br />
         <br />
 
-        <ul class="list-group col-lg-11">
+        <ul class="list-group ">
             <asp:Repeater runat="server" ID="RptList" OnItemDataBound="RptList_ItemDataBound">
                 <ItemTemplate>
-                    <li class="list-group-item container" style="height: 100%; width:100%; margin-bottom: 10px;">
-                        <div class="col-md-8">
-                            
-                                    
-                                                         
-                            
+                    <li class="list-group-item container" style="height: 100%;">
                         <input runat="server" id="checkboxLess" style="display: initial;" class="form-check-input me-1" type="checkbox" value="" aria-label="..." />
                         <%--                        שלמה ילין - שיעור רגיל   תאריך:17/3/2022    משך השיעור:40 דקות תחילת שיעור:12:20:00        --%>
                         <asp:Literal runat="server" ID="itemText"></asp:Literal>
-                            </div>
-                        <div class="col-md-4">
+                        <div>
                             <button runat="server" onserverclick="btnOk_ServerClick" id="btnOk" style="float: left" class="btn btn-success">אישור</button>
 
                             <button runat="server" onserverclick="btnDelete_ServerClick" id="btnDelete" style="float: left; background-color: red; border-color: red;" class="btn btn-success">מחיקה</button>
@@ -76,15 +67,11 @@
                 </ItemTemplate>
             </asp:Repeater>
         </ul>
-               
     </form>
-
-        </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="js" runat="server">
-    
     <script>
         $('#CheckAll').click(function (event) {//מופעל מתי שלוחצים על בחר הכל
             if (this.checked) {

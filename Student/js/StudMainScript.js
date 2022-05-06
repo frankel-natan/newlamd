@@ -111,10 +111,18 @@ document.addEventListener('DOMContentLoaded', function () {
         businessHours: true, // display business hours
         editable: true,
         selectable: true,
+
         locale: 'he',
-        direction: 'rtl',
-        slotMinTime: '01:00',
-        slotMaxTime: '24:00',
+        buttonIcons: false, // show the prev/next text
+        weekNumbers: true,
+        navLinks: true, // can click day/week names to navigate views
+        editable: true,
+        dayMaxEvents: true,
+
+        //locale: 'he',
+        //direction: 'rtl',
+        //slotMinTime: '01:00',
+        //slotMaxTime: '24:00',
         //events: StudentEvent,
         //[
         //{
@@ -179,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     calendar.render();
     calendar.today();
+    calendar.setOption('locale', 'he');
 
 });
 

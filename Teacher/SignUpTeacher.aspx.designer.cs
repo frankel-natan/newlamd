@@ -15,15 +15,6 @@ namespace LamedNetLite
     {
 
         /// <summary>
-        /// inputSid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText inputSid;
-
-        /// <summary>
         /// inputName control.
         /// </summary>
         /// <remarks>
@@ -51,33 +42,6 @@ namespace LamedNetLite
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl inputPhone;
 
         /// <summary>
-        /// seletdIt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText seletdIt;
-
-        /// <summary>
-        /// AreasList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AreasList;
-
-        /// <summary>
-        /// rptAreasList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptAreasList;
-
-        /// <summary>
         /// inputEmail control.
         /// </summary>
         /// <remarks>
@@ -87,6 +51,24 @@ namespace LamedNetLite
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl inputEmail;
 
         /// <summary>
+        /// StudyAreas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater StudyAreas;
+
+        /// <summary>
+        /// selectedStudyAreas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden selectedStudyAreas;
+
+        /// <summary>
         /// inputPassword control.
         /// </summary>
         /// <remarks>
@@ -94,6 +76,24 @@ namespace LamedNetLite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword inputPassword;
+
+        /// <summary>
+        /// LicenseTypes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater LicenseTypes;
+
+        /// <summary>
+        /// selectedLicenseTypes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden selectedLicenseTypes;
 
         /// <summary>
         /// ltrMessage control.

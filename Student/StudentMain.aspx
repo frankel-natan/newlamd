@@ -37,10 +37,10 @@
                                     </div>
                                 </ItemTemplate>
                             </asp:Repeater>
-                            
+
                         </div>
                         <div id="ddlLess" style="grid-column: 1 / 3; grid-row: 1;">
-                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -51,7 +51,7 @@
                 </form>
 
             </div>
-        </div> 
+        </div>
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -60,7 +60,7 @@
     <div class="container bg-success ml-3">
         <div id="calendar"></div>
     </div>
-    
+
     <br />
 
 

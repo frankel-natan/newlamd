@@ -264,10 +264,15 @@
     <Content Include="Teacher\css\style3.css" />
     <Content Include="Teacher\images\LamedP.jpg" />
     <Content Include="Teacher\js\SearchScript.js" />
+    <Content Include="Teacher\js\Tejs.js" />
     <Content Include="Teacher\LessWaitingList.aspx" />
+    <Content Include="Teacher\main.aspx" />
     <Content Include="Teacher\SearchSchool.aspx" />
     <Content Include="Teacher\SignUpTeacher.aspx" />
+    <Content Include="Teacher\StudentsWaitingList.aspx" />
     <Content Include="Teacher\TeacherMain.aspx" />
+    <Content Include="Teacher\TeacherUpdateDetails.aspx" />
+    <Content Include="Teacher\WaitingPageTeacher.aspx" />
     <Content Include="Videos\DrivingLessVideo.mp4" />
     <Content Include="WebForm4.aspx" />
     <None Include="Properties\Settings.settings">
@@ -320,6 +325,7 @@
     <Compile Include="App_Code\General.cs" />
     <Compile Include="Controllers\SearchSchoolController.cs" />
     <Compile Include="Controllers\SearchTeachersController.cs" />
+    <Compile Include="Controllers\taemainController.cs" />
     <Compile Include="Controllers\thchersController.cs" />
     <Compile Include="Login\SearchTeacher.aspx.cs">
       <DependentUpon>SearchTeacher.aspx</DependentUpon>
@@ -419,12 +425,40 @@
     <Compile Include="Student\WaitingPage.aspx.designer.cs">
       <DependentUpon>WaitingPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Teacher\main.aspx.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\main.aspx.designer.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Teacher\SearchSchool.aspx.cs">
       <DependentUpon>SearchSchool.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Teacher\SearchSchool.aspx.designer.cs">
       <DependentUpon>SearchSchool.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\StudentsWaitingList.aspx.cs">
+      <DependentUpon>StudentsWaitingList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\StudentsWaitingList.aspx.designer.cs">
+      <DependentUpon>StudentsWaitingList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\TeacherUpdateDetails.aspx.cs">
+      <DependentUpon>TeacherUpdateDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\TeacherUpdateDetails.aspx.designer.cs">
+      <DependentUpon>TeacherUpdateDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\WaitingPageTeacher.aspx.cs">
+      <DependentUpon>WaitingPageTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\WaitingPageTeacher.aspx.designer.cs">
+      <DependentUpon>WaitingPageTeacher.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm4.aspx.cs">
       <DependentUpon>WebForm4.aspx</DependentUpon>

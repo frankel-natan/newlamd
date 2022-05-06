@@ -14,6 +14,8 @@ namespace LamedNetLite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user"] == null)
+                Response.Redirect("SignUpTeacher.aspx");
             if(!IsPostBack)
             {
                 FillData();
@@ -56,6 +58,16 @@ namespace LamedNetLite
             btnSub.Attributes["name"] = SchoolId.ToString();
             Call.Text = "<a href=\"tel: "+Phone+ "\"><img src=\"../icons/call.png\"></img></a>";
         }
-            
+
+        protected void btnSub_Click(object sender, EventArgs e)
+        {
+            Button btnSub = (Button)sender;
+            string SchoolId=(string) btnSub.Attributes["name"];
+            Teacher user = (Teacher)Session["user"];
+            user.schoolId = int.Parse(SchoolId);
+            user.AddOrUpdate_Teather();
+            Session["user"] = user;
+
+        }
     }
 }

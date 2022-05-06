@@ -286,7 +286,7 @@ namespace LamedNetLite
                     "inner join LicenseTypes on " +
                     "Teachers.LicenseTypesId = LicenseTypes.LicenseTypeID"+
                     " where REPLACE(Teachers.TeacherName, ' ', '') =" +//הפונקציה מצמצמת רווחים
-                    "N'"+ TeacherName + "'" ;
+                    "N'"+ TeacherName + "%'" ;
                 return getDt(sql);
             }
 
