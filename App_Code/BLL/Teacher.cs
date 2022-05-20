@@ -82,7 +82,18 @@ namespace LamedNetLite
             {
                 return TeacherData.IsExist(UserName);
             }
-
+            public DataTable getAllLessonesByIdTeather (int taecherId)
+            {
+                return TeacherData.getAllLessonesByIdTeather(taecherId);
+            }
+            public DataTable getAllVacationsIdTeather(int taecherId)
+            {
+                return TeacherData.getAllVacationsIdTeather(taecherId);
+            }
+            public static void deleteVacationById(int VacationId)
+            {
+                TeacherData.deleteVacationById(VacationId);
+            }
 
         }
     }

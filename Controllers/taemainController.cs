@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using LamedNetLite.BLL;
 using Newtonsoft.Json;
+using LamedNetLite.DAL;
+using LamedNetLite.Data;
 
 namespace LamedNetLite.Controllers
 {
@@ -15,16 +17,14 @@ namespace LamedNetLite.Controllers
         //public IEnumerable<string> Get()
         public string Get()
         {
-            //return "{title:\"event18\",start:\"2022-06-12T19:20:00\",end:\"2022-06-12T20:00:00\",allDay:\"false\"}";
             return "{\"title\":\"event18\",\"start\":\"2022-06-12T19:20:00\",\"end\":\"2022-06-12T20:00:00\",\"allDay\":false,\"id\":1}";
-            //return new string[] { "\"title\":\"event18\",\"start\":\"2022-06-12T19:20:00\",\"end\":\"2022-06-12T20:00:00\",\"allDay\":\"false\""  };
         }
 
         // GET: api/taemain/5       
         public string Get(int id)
         {
-            int c = id * 5;
-            return c.ToString();
+            string tamp = JsonConvert.SerializeObject(TeacherData.getAllLessonesByIdTeather(id));
+            return tamp;
         }
 
         // POST: api/taemain

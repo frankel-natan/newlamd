@@ -32,25 +32,7 @@ namespace LamedNetLite
             // Student user = (Student)System.Web.HttpContext.Current.Session["user"];
             DataTable TypesDt = StudentData.getLesstypes(1);
             string str = "{";
-            //foreach (DataRow row in TypesDt.Rows)
-            //{
-            //    TimeSpan time = (TimeSpan)row["DurationOfTheLesson"];
-            //    int minut = (time.Hours * 60) + time.Minutes;
-            //    string lessLen = minut.ToString();
-            //    List<TimeSpan> LessList = StudentData.getLessList(1, 2,value.DateStr,lessLen);//לשנות לערכים רלוונטים
-            //    int i = 0;
-            //    str += "\"" + (string)row["TypeName"] + "\":{";
-            //    foreach (TimeSpan ts in LessList)
-            //    {
-            //        str += "\"" + i + "\":\"" + ts.ToString()+"\"";
-            //        str += ",";
-            //        i++;
-            //    }
-            //    str = str.Remove(str.Length - 1, 1);
-            //    str += "},";
-            //}
-            //str = str.Remove(str.Length - 1, 1);
-            //str += "}";
+
 
              str = "[";
             foreach (DataRow row in TypesDt.Rows)

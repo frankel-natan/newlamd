@@ -177,7 +177,7 @@
 
                     }
                     else {
-                        alert(data + "5555555");
+                        alert(data);
                         JSON.parse(data);
                         x = data += "ddd";
                         alert(data.responseJSON);

@@ -233,6 +233,26 @@ namespace LamedNetLite
                 string tamp = s.ExecuteScalar(sql).ToString();
                 return tamp;
             }
+            public static DataTable getAllLessonesByIdTeather(int teacherId)//מקבל אייידי של מורה
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from DrivingLessons inner join students on DrivingLessons.StudentsId = Students.StudentId where Students.TeacherId = " + teacherId);
+                s.Conn.Close();
+                return Dt;
+            }
+            public static DataTable getAllVacationsIdTeather(int teacherId)//מקבל אייידי של מורה
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from Vacations where TeacherId = " + teacherId);
+                s.Conn.Close();
+                return Dt;
+            }
+            public static void deleteVacationById(int id)//מחיקת חופשה של מורה לפי ID
+            {
+                SqlClass s = new SqlClass();
+                s.ExecuteNonQuery("DELETE FROM Vacations WHERE VacationId  = " + id);
+                s.Conn.Close();
+            }
 
 
         }

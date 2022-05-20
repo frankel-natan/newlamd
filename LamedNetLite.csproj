@@ -327,6 +327,7 @@
     <Compile Include="Controllers\SearchTeachersController.cs" />
     <Compile Include="Controllers\taemainController.cs" />
     <Compile Include="Controllers\thchersController.cs" />
+    <Compile Include="Controllers\VacationsController.cs" />
     <Compile Include="Login\SearchTeacher.aspx.cs">
       <DependentUpon>SearchTeacher.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
