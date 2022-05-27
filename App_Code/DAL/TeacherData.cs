@@ -253,6 +253,12 @@ namespace LamedNetLite
                 s.ExecuteNonQuery("DELETE FROM Vacations WHERE VacationId  = " + id);
                 s.Conn.Close();
             }
+            public static void deleteLessonById(int id)//מחיקת חופשה של מורה לפי ID
+            {
+                SqlClass s = new SqlClass();
+                s.ExecuteNonQuery("DELETE FROM DrivingLessons WHERE DrivingLessonsId  = " + id);
+                s.Conn.Close();
+            }
 
 
         }

@@ -28,9 +28,8 @@ namespace LamedNetLite.Controllers
         }
 
         // POST: api/taemain
-        public string Post([FromBody] string value)
+        public string Post([FromBody] Teacher value)
         {
-            
             return null;
         }
 
@@ -42,6 +41,7 @@ namespace LamedNetLite.Controllers
         // DELETE: api/taemain/5
         public void Delete(int id)
         {
+            Teacher.deleteLessonById(id);
         }
     }
 }

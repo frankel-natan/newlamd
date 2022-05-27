@@ -27,13 +27,15 @@ namespace LamedNetLite.Controllers
         }
 
         // POST: api/Vacations
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Vacations value)
         {
+            Vacations.AddOrUpdate_Vacation2(value);
         }
 
         // PUT: api/Vacations/5
         public void Put(int id, [FromBody]string value)
         {
+
         }
 
         // DELETE: api/v1/Vacations/5

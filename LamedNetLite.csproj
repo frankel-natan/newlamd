@@ -313,6 +313,7 @@
     <Compile Include="App_Code\BLL\StatusS.cs" />
     <Compile Include="App_Code\BLL\Student.cs" />
     <Compile Include="App_Code\BLL\Teacher.cs" />
+    <Compile Include="App_Code\BLL\Vacations.cs" />
     <Compile Include="App_Code\DAL\AdminData.cs" />
     <Compile Include="App_Code\DAL\DrLessonsData.cs" />
     <Compile Include="App_Code\DAL\idNameData.cs" />
@@ -322,6 +323,7 @@
     <Compile Include="App_Code\DAL\StatusSData.cs" />
     <Compile Include="App_Code\DAL\StudentData.cs" />
     <Compile Include="App_Code\DAL\TeacherData.cs" />
+    <Compile Include="App_Code\DAL\VacationsData.cs" />
     <Compile Include="App_Code\General.cs" />
     <Compile Include="Controllers\SearchSchoolController.cs" />
     <Compile Include="Controllers\SearchTeachersController.cs" />

@@ -24,12 +24,12 @@
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4>האם ברצונך להוסיף אירוע בתאריך: </h4><h4 class="modal-title" id="mtitel"></h4>
+                    <h4>האם ברצונך להוסיף חופשה בתאריך: </h4>
+                    <h4 class="modal-title" id="mtitel"></h4>
                 </div>
                 <div class="modal-body">
                     <h5>נא לבחור שעת התחלה וסיום מתוך הרשימה</h5>
@@ -45,6 +45,12 @@
                             לבחירת כל היום סמן כאן
                         </label>
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="selectMoreday">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            לבחירת מספר ימים סמן כאן
+                        </label>
+                    </div>
                     <div id="timeStart">
                         <label for="appt">נא לבחור שעה מתוך הרשימה</label>
                         <small>שעת התחלה</small>
@@ -57,17 +63,53 @@
                         <input type="time" id="appt2" name="appt" onblur="iWillCallWhenBlur(this.value)"
                             min="08:00" max="20:00" required>
                     </div>
+                    <div id="dateStartDiv">
+                        <label for="dateStart"></label>
+                        <small>יום התחלה</small>
+                        <input type="datetime-local" id="dateStart" name="dateStart" onblur="iWillCallWhenBlurStartDay(this.value)" />
+                    </div>
+                    <div id="dateEndDiv">
+                        <label for="dateEnd"></label>
+                        <small>יום סיום</small>
+                        <input type="datetime-local" id="dateEnd" name="dateEnd" onblur="iWillCallWhenBlurEndDay(this.value)" />
+                    </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" id="send" class="btn btn-success" data-dismiss="modal" disabled>אישור</button>
-
                     <button type="button" class="btn btn-danger" data-dismiss="modal">סגור</button>
                 </div>
             </div>
 
         </div>
     </div>
+
+
+    <button type="button" id="model2" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2" style="display: none">Open Modal</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">להלן האירועים שימחקו לאחר האישור</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="modl2data">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="closemodel" data-dismiss="modal">ביטול</button>
+                    <button type="button" class="btn btn-success" id="nodel2Del" data-dismiss="modal">אישור</button>
+                    <button type="button" class="btn btn-default" id="closemodel2" data-dismiss="modal">סגור</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="text-align: center; align-content: center;">כל הזכויות שמורות </div>
@@ -133,14 +175,27 @@
                         jsonarr = JSON.parse(data);
                         alert(data.responseJSON);
                         for (var i = 0; i < jsonarr.length; i++) {
-                            tampjs = {
-                                id: jsonarr[i]['VacationId'],
-                                title: 'חופשה',
-                                start: jsonarr[i]['BeginningOfVacation'].replace(' ', 'T'),
-                                end: jsonarr[i]['EndOfVacation'].replace(' ', 'T'),
-                                //allDay: false,
-                                color: 'green',
-                                type: 'Vacation'
+                            if (jsonarr[i]['BeginningOfVacation'].split("T")[1] == "00:00:00" && jsonarr[i]['EndOfVacation'].split("T")[1] === "23:59:00") {
+                                tampjs = {
+                                    id: jsonarr[i]['VacationId'],
+                                    title: 'חופשה',
+                                    start: jsonarr[i]['BeginningOfVacation'].split("T")[0],
+                                    //end: jsonarr[i]['EndOfVacation'].replace(' ', 'T'),
+                                    allDay: true,
+                                    color: 'green',
+                                    type: 'Vacation'
+                                }
+                            }
+                            else {
+                                tampjs = {
+                                    id: jsonarr[i]['VacationId'],
+                                    title: 'חופשה',
+                                    start: jsonarr[i]['BeginningOfVacation'].replace(' ', 'T'),
+                                    end: jsonarr[i]['EndOfVacation'].replace(' ', 'T'),
+                                    //allDay: false,
+                                    color: 'green',
+                                    type: 'Vacation'
+                                }
                             }
                             arrvent[arrvent.length] = tampjs;
                         }
@@ -159,6 +214,30 @@
                 beforeSend: function () { deletArr() },
                 success: function (result) {
                     ajLassons(username);
+                },
+                error: function (e) {
+                    console.log('error ' + e);
+                }
+            });
+        }
+        function ajVacDeleteList(idVacation) {//פונקציה שרק מוחקת ללא קריאה לעיצוב הדף מחדש
+            $.ajax({
+                url: "/api/v1/Vacations/" + idVacation,
+                type: 'DELETE',
+                beforeSend: function () { deletArr() },
+                success: function (result) {
+                },
+                error: function (e) {
+                    console.log('error ' + e);
+                }
+            });
+        }
+        function ajLessDeleteList(idLesson) {//פונקציה שרק מוחקת ללא קריאה לעיצוב הדף מחדש
+            $.ajax({
+                url: "/api/v1/taemain/" + idLesson,
+                type: 'DELETE',
+                beforeSend: function () { deletArr() },
+                success: function (result) {
                 },
                 error: function (e) {
                     console.log('error ' + e);
@@ -194,7 +273,7 @@
                     $("#motelday").click();
                     $("#mtitel").text(tampdate);
                     $("#mbady").text('בחר שעת התחלה מתוך הרשימה');
-                    $("#mbady").text('בחר שעת התחלה מתוך הרשימה');
+
 
                 },
                 eventClick: function (info) {
@@ -227,6 +306,9 @@
         function deletArr() {//מחיקת מערך
             arrvent = [];
         }
+        function deletArr2() {//מחיקת מערך
+            delitams = [];
+        }
         function reverse(s) {//היפוך מחרוזת
             return s.split("").reverse().join("");
         }
@@ -237,7 +319,13 @@
 
         $("#alldayselect").change(function () {//הסתרה או גילוי של תיבת בחירת שעה
             if ($(this).is(':checked')) {
-                $("#timeStart").hide(); // checked
+                $("#timeStart").hide(); // checked 
+                $("#timeEnd").hide();
+                $("#dateStartDiv").hide();
+                $("#dateEndDiv").hide();
+                $("#selectMoreday").prop('checked', false);
+                document.getElementById("dateStart").value = "";
+                document.getElementById("dateEnd").value = "";
                 document.getElementById("send").disabled = false;//הדלקה כפתור אישור
             }
             else {
@@ -245,22 +333,46 @@
                 document.getElementById("send").disabled = true;//כיבוי כפתור אישור
             }
         });
+        $("#selectMoreday").change(function () {//הסתרה או גילוי של תיבת בחירת שעה
+            if ($(this).is(':checked')) {
+                $("#dateStartDiv").show(); // checked
+                $("#dateEndDiv").show();
+                $("#timeStart").hide();
+                $("#timeEnd").hide();
+                $("#alldayselect").prop('checked', false);
+                document.getElementById("send").disabled = true;//הדלקה כפתור אישור
+                document.getElementById("appt").value = "";
+                document.getElementById("appt2").value = "";
+            }
+            else {
+                $("#dateStartDiv").hide();
+                $("#dateEndDiv").hide();
+                $("#timeStart").show();
+                $("#timeEnd").hide();
+                document.getElementById("dateStart").value = "";
+                document.getElementById("dateEnd").value = "";
+                document.getElementById("send").disabled = true;//כיבוי כפתור אישור
+            }
+        });
 
         $("#motelday").click(() => {//מחיקת תיבות הסימון אם סומנו
             $("#alldayselect").prop('checked', false);
             $("#deleteSelected").prop('checked', false);
+            $("#selectMoreday").prop('checked', false);
             $("#timeStart").show();
             $("#timeEnd").hide();
+            $("#dateStartDiv").hide();
+            $("#dateEndDiv").hide();
             document.getElementById("send").disabled = true;
+            document.getElementById("dateStart").value = "";
+            document.getElementById("dateEnd").value = "";
+            document.getElementById("appt").value = "";
+            document.getElementById("appt2").value = "";
 
         })
         function iWillCallWhenBlur(value) {
-            var timeStart = $("#appt").val().split(":");//$("#appt").val().split(":");
+            var timeStart = $("#appt").val().split(":");
             var timeEnd = value.split(":");
-            alert(timeStart[0]);
-            alert(timeEnd[0]);
-            alert(timeStart[1]);
-            alert(timeEnd[1]);
             if (timeStart[0] < timeEnd[0]) {
 
                 alert("גדול בשעות");
@@ -279,10 +391,6 @@
             $("#timeEnd").show();
             var timeEnd = $("#appt2").val().split(":");//$("#appt").val().split(":");
             var timeStart = value.split(":");
-            alert(timeStart[0]);
-            alert(timeEnd[0]);
-            alert(timeStart[1]);
-            alert(timeEnd[1]);
             if (timeStart[0] < timeEnd[0]) {
 
                 alert("גדול בשעות");
@@ -292,17 +400,160 @@
                 alert("גדול בדקות");
                 document.getElementById("send").disabled = false;
             }
-            else {
+            else if (!$("#appt").val()) {
+                $("#timeEnd").hide();
                 document.getElementById("send").disabled = true;
             }
         }//יציאה מחלון שעת סיום
-        $("#send").click(() => {//כפתור אישור
-            if ($("#alldayselect").is(':checked')) {
-                alert('yes');//להעביר הוראה לשרת
+        function iWillCallWhenBlurStartDay(value) {
+            if (!$("#dateEnd").val()) {
+                document.getElementById("send").disabled = true;
             }
             else {
-                alert($('#mtitel').text());
+                var arrSatrt = value.replace("T", " ");
+                var arrEnd = $("#dateEnd").val().replace("T", " ");
+                const srd = new Date(arrSatrt);//הכנסה לאובייקט תאריך
+                const end = new Date(arrEnd);//הכנסה לאובייקט תאריך
+                if (end > srd) {
+                    document.getElementById("send").disabled = false;
+                    alert(2);
+                }
+                else {
+                    document.getElementById("send").disabled = true;
+                }
             }
+
+        }//יציאה מחלון יום התחלה
+        function iWillCallWhenBlurEndDay(value) {
+            var arrEnd = value.replace("T", " ");
+            var arrSatrt = $("#dateStart").val().replace("T", " ");
+            const srd = new Date(arrSatrt);//הכנסה לאובייקט תאריך
+            const end = new Date(arrEnd);//הכנסה לאובייקט תאריך
+            //if (value) {
+            //    document.getElementById("send").disabled = false;
+            //    alert(1);
+            //}
+            if (end > srd) {
+                document.getElementById("send").disabled = false;
+                alert(2);
+            }
+            else {
+                document.getElementById("send").disabled = true;
+            }
+        }//יציאה מחלון יום סיום
+        var jsonveAjax;
+        var tampVe
+        var delitams = [];//מערך עבור אירועים העומדים להמחק
+        $("#send").click(() => {//כפתור אישור
+            if ($("#alldayselect").is(':checked')) {//סימון יום שלם
+                var slice = $('#mtitel').text().split("-");
+                var slice2 = slice[1] + "/" + slice[0] + "/" + slice[2];
+                alert(slice2);
+                tampVe = {
+                    'VacationId': -1,
+                    'TeacherId': username,
+                    'BeginningOfVacation': slice2 + " 00:00",
+                    'EndOfVacation': slice2 + " 23:59"
+                }
+            }
+            else if ($("#selectMoreday").is(':checked')) {
+                var arrSatrt = $("#dateStart").val().replace("T", " ");
+                var arrEnd = $("#dateEnd").val().replace("T", " ");
+                tampVe = {
+                    'VacationId': -1,
+                    'TeacherId': username,
+                    'BeginningOfVacation': arrSatrt,
+                    'EndOfVacation': arrEnd
+                }
+
+            }
+            else {
+                var slice = $('#mtitel').text().split("-");
+                var slice2 = slice[1] + "/" + slice[0] + "/" + slice[2];
+                tampVe = {
+                    'VacationId': -1,
+                    'TeacherId': username,
+                    'BeginningOfVacation': slice2 + " " + $("#appt").val(),
+                    'EndOfVacation': slice2 + " " + $("#appt2").val()
+                }
+            }
+            //Vacationsadd(tampVe);
+            if ($("#deleteSelected").is(':checked')) {//הסכמה לביטול השיעורים שנקבעו
+                alert($('#mtitel').text() + "לבטל אירועים");
+                var arrSatrt = $("#dateStart").val().replace("T", " ");
+                var arrEnd = $("#dateEnd").val().replace("T", " ");
+                const srd = new Date(arrSatrt);//הכנסה לאובייקט תאריך
+                const end = new Date(arrEnd);
+                for (var i = 0; i < arrvent.length; i++) {
+                    const delsrd = new Date(arrvent[i]['start']);//הכנסה לאובייקט תאריך
+                    const delend = new Date(arrvent[i]['end']);
+                    if ((delsrd >= srd && delsrd <= end) || (delend >= srd && delend <= end)) {
+                        delitams[delitams.length] = arrvent[i];
+                    }
+                }
+                $('#modl2data').append(' <div class="spinner-border text-danger" role="status"><span class="sr-only">Loading...</span></div>');
+
+                for (var i = 0; i < delitams.length; i++) {
+                    var w1 = " " + delitams[i]['start'];
+                    var q1 = " " + delitams[i]['end'];
+                    var w2 = w1.replaceAll("T", " ");
+                    var q2 = q1.replaceAll("T", " ");
+                    $('#modl2data').append('<div class="well">' + delitams[i]['title'] + '  ' + w2 + ' ' + q2 + '</div>');
+                }
+                if (delitams.length > 0)
+                    $("#model2").click();
+                //Vacationsadd(tampVe);
+            }//הכנסת האירועים העומדים להמחק
+            else {
+                alert("לא לבטל אירועים");
+                Vacationsadd(tampVe);
+            }
+
+        })
+        function Vacationsadd(tampVe) {
+            $.ajax({
+                url: "/api/v1/Vacations",
+                type: "POST",
+                dataType: "json",
+                data: tampVe,
+                beforeSend: function () {
+                    deletArr();
+                },
+                success: function (data) {
+                    if (data == 'invalid') {
+                        console.log('error');
+                    }
+                    else {
+                        ajLassons(username);
+                    }
+                },
+                error: function (e) {
+                    console.log('error ' + e);
+                }
+            });
+
+        }
+        $("#closemodel").click(() => {
+            delitams = [];//מחיקת מערך
+            $('#modl2data').empty();//מחיקת הערכים מHTML
+        })
+        $("#closemodel2").click(() => {
+            delitams = [];//מחיקת מערך
+            $('#modl2data').empty();//מחיקת הערכים מHTML
+        })
+        var listDeliteVacation = [];//מערך עבור חופשות למחיקה
+        var listDeliteLesson = [];//מערך עבור שיעורים למחיקה
+        $("#nodel2Del").click(() => {
+            for (var i = 0; i < delitams.length; i++) {
+                if (delitams[i]['title'] === 'חופשה') {
+                    ajVacDeleteList(delitams[i]['id']);
+                }
+                else {
+                    ajLessDeleteList(delitams[i]['id']);
+                }
+            }
+            Vacationsadd(tampVe);
+
         })
 
 

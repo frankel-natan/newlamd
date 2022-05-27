@@ -94,7 +94,10 @@ namespace LamedNetLite
             {
                 TeacherData.deleteVacationById(VacationId);
             }
-
+            public static void deleteLessonById(int LessonId)
+            {
+                TeacherData.deleteLessonById(LessonId);
+            }
         }
     }
     
