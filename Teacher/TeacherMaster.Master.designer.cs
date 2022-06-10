@@ -33,6 +33,24 @@ namespace LamedNetLite
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head2;
 
         /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
+        /// exitbutt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button exitbutt;
+
+        /// <summary>
         /// header control.
         /// </summary>
         /// <remarks>

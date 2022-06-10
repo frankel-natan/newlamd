@@ -18,8 +18,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="main" runat="server">
     <div id="calendar"></div>
 
-    <button type="button" id="motelday" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" style="display: none" data-backdrop="true">Modal with Overlay (true)</button>
-
+-
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
@@ -89,7 +88,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="myModal2" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog " >
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -97,7 +96,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">להלן האירועים שימחקו לאחר האישור</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body " style="height:250px; overflow:auto;">
                     <div id="modl2data">
                     </div>
                 </div>

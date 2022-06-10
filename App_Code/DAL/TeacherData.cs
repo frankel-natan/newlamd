@@ -236,7 +236,7 @@ namespace LamedNetLite
             public static DataTable getAllLessonesByIdTeather(int teacherId)//מקבל אייידי של מורה
             {
                 SqlClass s = new SqlClass();
-                DataTable Dt = s.DataTable("select * from DrivingLessons inner join students on DrivingLessons.StudentsId = Students.StudentId where Students.TeacherId = " + teacherId);
+                DataTable Dt = s.DataTable("select * from DrivingLessons inner join students on DrivingLessons.StudentsId = Students.StudentId where DrivingLessons.StatuseId !=1 and  DrivingLessons.StatuseId!=4 and Students.TeacherId = " + teacherId);
                 s.Conn.Close();
                 return Dt;
             }
@@ -258,6 +258,19 @@ namespace LamedNetLite
                 SqlClass s = new SqlClass();
                 s.ExecuteNonQuery("DELETE FROM DrivingLessons WHERE DrivingLessonsId  = " + id);
                 s.Conn.Close();
+            }
+            public static DataTable getAllStudentsByIdteacherAndCountLesonss(int idTacher)
+            {
+                string sql = "select *,(select count(DrivingLessons.StudentsId) from DrivingLessons where students.StudentId= "+
+                             " DrivingLessons.StudentsId and DrivingLessons.StatuseId = 1)as one"+
+                             " ,(select count(DrivingLessons.StudentsId) from DrivingLessons where students.StudentId = "+
+                             " DrivingLessons.StudentsId and DrivingLessons.StatuseId = 2) as tow,"+
+                             " (select count(DrivingLessons.StudentsId) from DrivingLessons where students.StudentId = "+
+                             " DrivingLessons.StudentsId and DrivingLessons.StatuseId = 3) as three,"+
+                             " (select count(DrivingLessons.StudentsId) from DrivingLessons where students.StudentId ="+
+                             " DrivingLessons.StudentsId and DrivingLessons.StatuseId = 4) as fore "+
+                             " from students inner join Status on Status.Id=Students.StatuseId where students.Teacherid = " + idTacher;
+                return getDt(sql);
             }
 
 

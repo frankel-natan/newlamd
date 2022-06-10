@@ -13,5 +13,10 @@ namespace LamedNetLite
         {
 
         }
+        protected void exit_Click(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            Response.Redirect("../Login/GeneralLogin.aspx");
+        }
     }
 }

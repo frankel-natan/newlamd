@@ -98,6 +98,10 @@ namespace LamedNetLite
             {
                 TeacherData.deleteLessonById(LessonId);
             }
+            public static DataTable getAllStudentsByIdteacherAndCountLesonss(int idTaecher)
+            {
+                return TeacherData.getAllStudentsByIdteacherAndCountLesonss(idTaecher);
+            }
         }
     }
     
