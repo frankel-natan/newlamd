@@ -330,8 +330,10 @@
     <Compile Include="App_Code\DAL\VacationsData.cs" />
     <Compile Include="App_Code\General.cs" />
     <Compile Include="Controllers\lassonstudentController.cs" />
+    <Compile Include="Controllers\LiceneTypeController.cs" />
     <Compile Include="Controllers\SearchSchoolController.cs" />
     <Compile Include="Controllers\SearchTeachersController.cs" />
+    <Compile Include="Controllers\selectStatusStudentController.cs" />
     <Compile Include="Controllers\taemainController.cs" />
     <Compile Include="Controllers\thchersController.cs" />
     <Compile Include="Controllers\VacationsController.cs" />

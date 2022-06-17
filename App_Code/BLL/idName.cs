@@ -32,6 +32,14 @@ namespace LamedNetLite
             {
                 return idNameData.getlistgenericStatusTast();
             }
+            public static List<idName> getlistgenericStatusStudent()
+            {
+                return idNameData.getlistgenericStatusStudent();
+            }
+            public static List<idName> getlistgenericLiceneTypeIdAndName()
+            {
+                return idNameData.getlistgenericLiceneTypeIdAndName();
+            }
         }
        
     }

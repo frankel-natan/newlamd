@@ -31,7 +31,7 @@ namespace LamedNetLite
             public static List<StatusS> getListStatus()
             {
                 SqlClass s = new SqlClass();
-                string sql = "select id,[ StatusName] as name from Status";
+                string sql = "select id, StatusName as name from Status";
                 SqlDataReader dr = s.ExecuteReader(sql);
                 
                 List<StatusS> tamp = new List<StatusS>();

@@ -41,6 +41,21 @@ namespace LamedNetLite
                 this.PaymentsNum = PaymentsNum;
                 this.StatusId = StatusId;
             }
+            public Teacher(Teacher x)
+            {
+                this.TeacherId = x.TeacherId;
+                this.schoolId = x.schoolId;
+                this.TeacherName = x.TeacherName;
+                this.ID = x.ID;
+                this.Phone = x.Phone;
+                this.StudyAreaId = x.StudyAreaId;
+                this.UserName = x.UserName;
+                this.Password = x.Password;
+                this.DateAdded = x.DateAdded;
+                this.LicenseTypesId = x.LicenseTypesId;
+                this.PaymentsNum = x.PaymentsNum;
+                this.StatusId = x.StatusId;
+            }
             public Teacher()
             { }
             public Teacher(string TeacherName, string ID, string Phone, string StudyAreaId, string UserName, string Password, int LicenseTypesId)
@@ -101,6 +116,10 @@ namespace LamedNetLite
             public static DataTable getAllStudentsByIdteacherAndCountLesonss(int idTaecher)
             {
                 return TeacherData.getAllStudentsByIdteacherAndCountLesonss(idTaecher);
+            }
+            public static void updteStudentTeacher(Student x)
+            {
+                TeacherData.updteStudentTeacher(x);
             }
         }
     }

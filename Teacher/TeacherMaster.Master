@@ -78,7 +78,7 @@
                         </ul>
 
                     </li>
-                    <asp:Button runat="server" ID="exitbutt" OnClick="exit_Click" CssClass="text-left btn exit " Text="יציאה" ></asp:Button>
+                    <asp:Button runat="server" ID="exitbutt" OnClick="exit_Click" CssClass="text-left btn exit " Text="יציאה"></asp:Button>
 
                 </ul>
                 <!-- /.navbar-top-links -->
@@ -146,6 +146,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
+                            <div id="massegup">
+                                <div class="alert alertGreen pull-center" id="innerMess" style="display: none;"><strong>הפרטים עודכנו בהצלחה!</strong></div>
+                            </div>
                             <asp:ContentPlaceHolder runat="server" ID="header"></asp:ContentPlaceHolder>
                         </h1>
                     </div>
@@ -180,7 +183,19 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js"></script>
-
+        <script>
+            function noMess() {
+                $(document).ready(
+                    $("#innerMess").fadeOut()
+                );
+            }
+            function yesmess() {
+                $(document).ready(
+                    $("#innerMess").fadeIn(),
+                    setTimeout(noMess, 5000)
+                );
+            }
+        </script>
         <asp:ContentPlaceHolder ID="js" runat="server"></asp:ContentPlaceHolder>
     </form>
 </body>

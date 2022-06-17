@@ -55,7 +55,34 @@ namespace LamedNetLite
                 s.Conn.Close();
                 return tmp;
             }
-
+            public static List<idName> getlistgenericStatusStudent()
+            {
+                string sql = "select StatuseId as id , StatuseName as Sname from StudentStatuse";
+                SqlClass s = new SqlClass();
+                SqlDataReader Dr = s.ExecuteReader(sql);
+                List<idName> tmp = new List<idName>();
+                while (Dr.Read())
+                {
+                    idName tmpl = new idName((int)Dr["id"], (string)Dr["Sname"].ToString());
+                    tmp.Add(tmpl);
+                }
+                s.Conn.Close();
+                return tmp;
+            }
+                public static List<idName> getlistgenericLiceneTypeIdAndName()
+            {
+                string sql = "select LicenseTypeID as id , LicenseType as Sname from LicenseTypes";
+                SqlClass s = new SqlClass();
+                SqlDataReader Dr = s.ExecuteReader(sql);
+                List<idName> tmp = new List<idName>();
+                while (Dr.Read())
+                {
+                    idName tmpl = new idName((int)Dr["id"], (string)Dr["Sname"].ToString());
+                    tmp.Add(tmpl);
+                }
+                s.Conn.Close();
+                return tmp;
+            }
         }
     }
     

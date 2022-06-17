@@ -19,6 +19,7 @@
     <div id="calendar"></div>
 
 -
+     <button type="button" id="motelday" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display: none">Open Modal</button>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
@@ -245,7 +246,6 @@
         }
         var username = '<%= Session["TeacherId"] %>';//שליפה מסשן
         ajLassons(username);//מערך שיעורים והפעלת פונקצייה יומן
-
         function creatCalnder() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -315,7 +315,6 @@
             var x = date.split("-").reverse().join("");
             return x.substring(0, 2) + "-" + x.substring(2, 4) + "-" + x.substring(4);
         }
-
         $("#alldayselect").change(function () {//הסתרה או גילוי של תיבת בחירת שעה
             if ($(this).is(':checked')) {
                 $("#timeStart").hide(); // checked 
@@ -353,7 +352,6 @@
                 document.getElementById("send").disabled = true;//כיבוי כפתור אישור
             }
         });
-
         $("#motelday").click(() => {//מחיקת תיבות הסימון אם סומנו
             $("#alldayselect").prop('checked', false);
             $("#deleteSelected").prop('checked', false);
@@ -439,7 +437,7 @@
             else {
                 document.getElementById("send").disabled = true;
             }
-        }//יציאה מחלון יום סיום
+        }//יציאה מחלון יום סיוםnodel2Del
         var jsonveAjax;
         var tampVe
         var delitams = [];//מערך עבור אירועים העומדים להמחק
@@ -499,8 +497,13 @@
                     var q2 = q1.replaceAll("T", " ");
                     $('#modl2data').append('<div class="well">' + delitams[i]['title'] + '  ' + w2 + ' ' + q2 + '</div>');
                 }
-                if (delitams.length > 0)
+                if (delitams.length > 0) {
                     $("#model2").click();
+                }
+                else {
+                    Vacationsadd(tampVe);
+                }
+                    
                 //Vacationsadd(tampVe);
             }//הכנסת האירועים העומדים להמחק
             else {
@@ -524,6 +527,7 @@
                     }
                     else {
                         ajLassons(username);
+                        yesmess();
                     }
                 },
                 error: function (e) {

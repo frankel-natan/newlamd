@@ -19,21 +19,21 @@ namespace LamedNetLite.Controllers
 
         // GET: api/lassonstudent/5
         public string Get(int id)
-        
         {
             string tamp = JsonConvert.SerializeObject(Teacher.getAllStudentsByIdteacherAndCountLesonss(id));
             return tamp;
         }
 
         // POST: api/lassonstudent
-        public void Post([FromBody]string value)
+        public void Post([FromBody] Student value)//עדכון כל פרטי התלמיד
         {
+            Teacher.updteStudentTeacher(value);
         }
 
         // PUT: api/v1/lassonstudent/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Student value)
         {
-            int a = id + 10;
+            
         }
 
         // DELETE: api/lassonstudent/5

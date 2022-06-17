@@ -40,6 +40,8 @@ namespace LamedNetLite
                 this.DateAdded = DateAdded;
                 this.ProfilePicName = ProfilePicName;
            }
+            public Student()
+            { }
             public DataTable getLessTypes()
             {
                 return StudentData.getLesstypes(this.TeacherId);

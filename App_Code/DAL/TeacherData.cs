@@ -269,10 +269,27 @@ namespace LamedNetLite
                              " DrivingLessons.StudentsId and DrivingLessons.StatuseId = 3) as three,"+
                              " (select count(DrivingLessons.StudentsId) from DrivingLessons where students.StudentId ="+
                              " DrivingLessons.StudentsId and DrivingLessons.StatuseId = 4) as fore "+
-                             " from students inner join Status on Status.Id=Students.StatuseId where students.Teacherid = " + idTacher;
+                             " from students inner join StudentStatuse on StudentStatuse.StatuseId=Students.StatuseId where students.Teacherid = " + idTacher;
+              
                 return getDt(sql);
             }
-
+            public static void updteStudentTeacher(Student x)
+            {
+                SqlClass s = new SqlClass();
+                s.ExecuteNonQuery("update Students set " +
+                    "TeacherId=" + x.TeacherId + ", StatuseId=" +
+                    x.StatuseId + ", StudentName=N'" + x.StudentName +
+                    "', ID='" +
+                    x.ID + "', Phone='" + x.Phone +
+                    "', userName='" + x.UserName + "',Password='" +
+                    x.Password + "'" +
+                    ",GatheringPlace=N'" + x.GatheringPlace +
+                     "',PricePerLesson=" + x.PricePerLesson +
+                      ",LicenseTypeID=" + x.LicenseTypeID +
+                      ",DateAdded='"+ x.DateAdded +
+                      "' where StudentId=" + x.StudentId);
+                s.Conn.Close();
+            }
 
         }
 
