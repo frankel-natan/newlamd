@@ -18,7 +18,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="main" runat="server">
     <div id="calendar"></div>
 
--
+    -
      <button type="button" id="motelday" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display: none">Open Modal</button>
 
     <!-- Modal -->
@@ -89,7 +89,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="myModal2" role="dialog">
-        <div class="modal-dialog " >
+        <div class="modal-dialog ">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -97,7 +97,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">להלן האירועים שימחקו לאחר האישור</h4>
                 </div>
-                <div class="modal-body " style="height:250px; overflow:auto;">
+                <div class="modal-body " style="height: 250px; overflow: auto;">
                     <div id="modl2data">
                     </div>
                 </div>
@@ -272,8 +272,6 @@
                     $("#motelday").click();
                     $("#mtitel").text(tampdate);
                     $("#mbady").text('בחר שעת התחלה מתוך הרשימה');
-
-
                 },
                 eventClick: function (info) {
                     if (confirm('האם ברצונך למחוק את ' + info.event.title + ' מתאריך ' + info.event.start)) {
@@ -413,7 +411,6 @@
                 const end = new Date(arrEnd);//הכנסה לאובייקט תאריך
                 if (end > srd) {
                     document.getElementById("send").disabled = false;
-                    alert(2);
                 }
                 else {
                     document.getElementById("send").disabled = true;
@@ -426,13 +423,8 @@
             var arrSatrt = $("#dateStart").val().replace("T", " ");
             const srd = new Date(arrSatrt);//הכנסה לאובייקט תאריך
             const end = new Date(arrEnd);//הכנסה לאובייקט תאריך
-            //if (value) {
-            //    document.getElementById("send").disabled = false;
-            //    alert(1);
-            //}
             if (end > srd) {
                 document.getElementById("send").disabled = false;
-                alert(2);
             }
             else {
                 document.getElementById("send").disabled = true;
@@ -445,7 +437,6 @@
             if ($("#alldayselect").is(':checked')) {//סימון יום שלם
                 var slice = $('#mtitel').text().split("-");
                 var slice2 = slice[1] + "/" + slice[0] + "/" + slice[2];
-                alert(slice2);
                 tampVe = {
                     'VacationId': -1,
                     'TeacherId': username,
@@ -477,6 +468,7 @@
             //Vacationsadd(tampVe);
             if ($("#deleteSelected").is(':checked')) {//הסכמה לביטול השיעורים שנקבעו
                 alert($('#mtitel').text() + "לבטל אירועים");
+                document.getElementById("modl2data").value = ""
                 var arrSatrt = $("#dateStart").val().replace("T", " ");
                 var arrEnd = $("#dateEnd").val().replace("T", " ");
                 const srd = new Date(arrSatrt);//הכנסה לאובייקט תאריך
@@ -487,15 +479,26 @@
                     if ((delsrd >= srd && delsrd <= end) || (delend >= srd && delend <= end)) {
                         delitams[delitams.length] = arrvent[i];
                     }
+                    if ($("#alldayselect").is(':checked')) {//סימון יום שלם
+                        var slice = $('#mtitel').text().split("-");
+                        var slice2 = slice[2] + "-" + slice[1] + "-" + slice[0]+" "+"00:00:00";
+                        const srdallday = new Date(slice2);
+                        if (srdallday >= delsrd && srdallday <= delend) {
+                            delitams[delitams.length] = arrvent[i];
+                        }
+                    }
                 }
                 $('#modl2data').append(' <div class="spinner-border text-danger" role="status"><span class="sr-only">Loading...</span></div>');
 
                 for (var i = 0; i < delitams.length; i++) {
-                    var w1 = " " + delitams[i]['start'];
-                    var q1 = " " + delitams[i]['end'];
+                    var w1 = "" + delitams[i]['start'];
+                    var q1 = "" + delitams[i]['end'];
                     var w2 = w1.replaceAll("T", " ");
                     var q2 = q1.replaceAll("T", " ");
-                    $('#modl2data').append('<div class="well">' + delitams[i]['title'] + '  ' + w2 + ' ' + q2 + '</div>');
+                    if (q2.indexOf(" ")>0)
+                        $('#modl2data').append('<div class="well">' + delitams[i]['title'] + '  זמן התחלה  ' + w2 + '  סיום  ' + q2 + '</div>');
+                    else
+                        $('#modl2data').append('<div class="well">' + delitams[i]['title'] + '  זמן התחלה  ' + w2 + '</div>');
                 }
                 if (delitams.length > 0) {
                     $("#model2").click();
@@ -503,7 +506,7 @@
                 else {
                     Vacationsadd(tampVe);
                 }
-                    
+
                 //Vacationsadd(tampVe);
             }//הכנסת האירועים העומדים להמחק
             else {
@@ -556,7 +559,6 @@
                 }
             }
             Vacationsadd(tampVe);
-
         })
 
 

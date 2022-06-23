@@ -24,7 +24,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
-    <form id="form1" runat="server">
+    
 
         <label id="CheckAllLable" class="hidden">
             בחר הכל
@@ -63,11 +63,9 @@
                             <button runat="server" onserverclick="btnDelete_ServerClick" id="btnDelete" style="float: left; background-color: red; border-color: red;" class="btn btn-success">מחיקה</button>
                         </div>
                     </li>
-
                 </ItemTemplate>
             </asp:Repeater>
         </ul>
-    </form>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>

@@ -8,7 +8,7 @@
     רשימת תלמידים
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="main" runat="server">
-    <div id="tabel">
+    <div id="tabel" style="width:80%">
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog" style="text-align: center;">
@@ -137,7 +137,9 @@
             });
         }
         function page() {
-            lists(1);//לשנות ולקחת מסשן
+            var username = '<%= Session["TeacherId"] %>';//שליפה מסשן
+            lists(username);//לשנות ולקחת מסשן
+
         }
         page();
         function func(ew) {
