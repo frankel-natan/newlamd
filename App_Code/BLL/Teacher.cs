@@ -121,6 +121,10 @@ namespace LamedNetLite
             {
                 TeacherData.updteStudentTeacher(x);
             }
+            public static DataTable getLessonsWatinngBtIdTaecher(int TaecherId)
+            {
+                return TeacherData.getLessonsWatinngBtIdTaecher(TaecherId);
+            }
         }
     }
     

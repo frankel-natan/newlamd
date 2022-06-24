@@ -290,6 +290,14 @@ namespace LamedNetLite
                       "' where StudentId=" + x.StudentId);
                 s.Conn.Close();
             }
+            public static DataTable getLessonsWatinngBtIdTaecher(int TaecherId)
+            {
+                string sql = "select * from DrivingLessons " +
+                    "inner join LessonStatuses on LessonStatuses.StatusesId = DrivingLessons.StatuseId " +
+                    "inner join Students on Students.StudentId = DrivingLessons.StudentsId " +
+                    "where DrivingLessons.StatuseId = 1 and Students.TeacherId = " + TaecherId;
+                return getDt(sql);
+            }
 
         }
 

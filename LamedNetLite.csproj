@@ -268,6 +268,7 @@
     <Content Include="Teacher\js\Tejs.js" />
     <Content Include="Teacher\LessWaitingList.aspx" />
     <Content Include="Teacher\ListStudent.aspx" />
+    <Content Include="Teacher\ListWaitingLess.aspx" />
     <Content Include="Teacher\ListWaitingQueue.aspx" />
     <Content Include="Teacher\main.aspx" />
     <Content Include="Teacher\payTeachr.aspx" />
@@ -329,6 +330,7 @@
     <Compile Include="App_Code\DAL\TeacherData.cs" />
     <Compile Include="App_Code\DAL\VacationsData.cs" />
     <Compile Include="App_Code\General.cs" />
+    <Compile Include="Controllers\getLessonsWatinngController.cs" />
     <Compile Include="Controllers\lassonstudentController.cs" />
     <Compile Include="Controllers\LiceneTypeController.cs" />
     <Compile Include="Controllers\SearchSchoolController.cs" />
@@ -441,6 +443,13 @@
     </Compile>
     <Compile Include="Teacher\ListStudent.aspx.designer.cs">
       <DependentUpon>ListStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\ListWaitingLess.aspx.cs">
+      <DependentUpon>ListWaitingLess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\ListWaitingLess.aspx.designer.cs">
+      <DependentUpon>ListWaitingLess.aspx</DependentUpon>
     </Compile>
     <Compile Include="Teacher\ListWaitingQueue.aspx.cs">
       <DependentUpon>ListWaitingQueue.aspx</DependentUpon>
