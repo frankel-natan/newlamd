@@ -30,13 +30,15 @@ namespace LamedNetLite.Controllers
         }
 
         // PUT: api/getLessonsWatinng/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id)
         {
+            Teacher.updteLesson(id);        
         }
 
         // DELETE: api/getLessonsWatinng/5
         public void Delete(int id)
         {
+            Teacher.deliteLesson(id);
         }
     }
 }

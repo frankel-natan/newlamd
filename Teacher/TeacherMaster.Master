@@ -104,7 +104,7 @@
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>תשלומים<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="payTeachr.aspx">תשלום למנהל מערכת</a>
+                                        <a href="payTeacherToAdmin.aspx">תשלום למנהל מערכת</a>
                                     </li>
                                     <li>
                                         <a href="morris.html">קבלת תשלום</a>
@@ -133,7 +133,10 @@
                                 <a href="ListStudent.aspx"><i class="fa fa-table fa-fw"></i>רשימת תלמידים</a>
                             </li>
                             <li>
-                                <a href="ListWaitingQueue.aspx"><i class="fa fa-edit fa-fw"></i>רשימת המתנה</a>
+                                <a href="ListWaitingQueue.aspx"><i class="fa fa-edit fa-fw"></i>רשימת תלמידים בהמתנה</a>
+                            </li>
+                            <li>
+                                <a href="ListWaitingLess.aspx"><i class="fa fa-edit fa-fw"></i>רשימת שיעורים בהמתנה</a>
                             </li>
                         </ul>
                     </div>

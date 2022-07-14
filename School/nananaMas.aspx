@@ -48,7 +48,6 @@
                                     <th>כמות טסטים להזמנה</th>
                                     <th>תשלומים</th>
                                     <th>טלפון נייד</th>
-                                    <th>נסיון 2</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -108,9 +107,9 @@
                                             <td>
                                                 <asp:LinkButton runat="server" ID="nsion" OnClick="nsion_Click"></asp:LinkButton>
                                             </td>
-                                            <td>
+                                            <%--<td>
                                                 <asp:LinkButton runat="server" ID="nsio2" OnClick="nsio2_Click">:-)</asp:LinkButton>
-                                            </td>
+                                            </td>--%>
                                         </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>

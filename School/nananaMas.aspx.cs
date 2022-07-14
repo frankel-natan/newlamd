@@ -80,10 +80,10 @@ namespace LamedNetLite
             string[] startSe = idstring.Split('@');
             int idtechertoschool = int.Parse(startSe[1]);
             aaa.CommandArgument = idtechertoschool.ToString();
-            LinkButton bbb = (LinkButton)e.Item.FindControl("nsio2");
-            //bbb.PostBackUrl= "~/WebForm4.aspx";
-            bbb.Text = sum.ToString();
-            bbb.CommandArgument = idtechertoschool.ToString();
+            //LinkButton bbb = (LinkButton)e.Item.FindControl("nsio2");
+
+            //bbb.Text = sum.ToString();
+            //bbb.CommandArgument = idtechertoschool.ToString();
             HtmlButton limodel = (HtmlButton)e.Item.FindControl("openModelTeacher");
             int i = e.Item.ItemIndex;
             limodel.Attributes["data-target"] = "#main_RptDataTable_exampleModal_" + i.ToString();

@@ -86,6 +86,8 @@
         var c;
         var stringta;
         var tamp = '';
+        jsstudent = [];
+        jsstudentAJAX = [];
         function lists(x) {
             $.ajax({
                 url: "/api/v1/lassonstudent/" + x,
@@ -101,18 +103,11 @@
                         alert(data);
                         a = JSON.parse(data);
                         for (var i = 0; i < a.length; i++) {
-                            tamp += '<div class="alert alert-success alert-dismissible fade in">' +
-                                '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' +
-                                a[i]['StudentName'] +
-                                '</strong>  &nbsp מספר השיעורים שביצע : &nbsp&nbsp ' + a[i]['one'] +
-                                '</div > ';
-                        }
-                        for (var i = 0; i < a.length; i++) {
                             tamp += '<div class="panel-group">' +
                                 '<div class="panel panel-success">' +
                                 '<div class="panel-heading">' +
                                 '<h4 class="panel-title">' +
-                                '<a data-toggle="collapse" style="text-decoration: none;" href="#collapse' + [i] + '">' + a[i]['StudentName'] + '&nbsp כתובת : &nbsp  ' + a[i]['GatheringPlace'] + '&nbspטלפון: &nbsp' + a[i]['Phone'] + '&nbsp&nbspמצב:&nbsp' + a[i]['StatuseName'] + '</a>' +
+                                '<a data-toggle="collapse" style="text-decoration: none;" href="#collapse' + [i] + '"><strong>' + a[i]['StudentName'] + '</strong>&nbsp כתובת : &nbsp  ' + a[i]['GatheringPlace'] + '&nbspטלפון: &nbsp' + a[i]['Phone'] + '&nbsp&nbspמצב:&nbsp' + a[i]['StatuseName'] + '</a>' +
                                 '</h4>' +
                                 '</div>' +
                                 '<div id="collapse' + [i] + '" class="panel-collapse collapse">' +
@@ -139,7 +134,6 @@
         function page() {
             var username = '<%= Session["TeacherId"] %>';//שליפה מסשן
             lists(username);//לשנות ולקחת מסשן
-
         }
         page();
         function func(ew) {
@@ -173,8 +167,6 @@
             selectStatusAjax(a[ew.value]['StatuseId']);
             selectLicensAjax(a[ew.value]['LicenseTypeID']);
         }
-        jsstudent = [];
-        jsstudentAJAX = [];
         function updetStudent(bw) {
             for (let name of a) {
                 if (name.StudentId == bw.id) {

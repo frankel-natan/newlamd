@@ -270,7 +270,6 @@ namespace LamedNetLite
                              " (select count(DrivingLessons.StudentsId) from DrivingLessons where students.StudentId ="+
                              " DrivingLessons.StudentsId and DrivingLessons.StatuseId = 4) as fore "+
                              " from students inner join StudentStatuse on StudentStatuse.StatuseId=Students.StatuseId where students.Teacherid = " + idTacher;
-              
                 return getDt(sql);
             }
             public static void updteStudentTeacher(Student x)
@@ -298,9 +297,83 @@ namespace LamedNetLite
                     "where DrivingLessons.StatuseId = 1 and Students.TeacherId = " + TaecherId;
                 return getDt(sql);
             }
-
+            public static void updteLesson(int LessonID)
+            {
+                SqlClass s = new SqlClass();
+                s.ExecuteNonQuery("UPDATE DrivingLessons SET StatuseId = 2 " +
+                "WHERE DrivingLessonsId = "+LessonID);
+                s.Conn.Close();
+            }
+            public static void deliteLesson(int LessonID)
+            {
+                SqlClass s = new SqlClass();
+                s.ExecuteNonQuery("DELETE FROM DrivingLessons WHERE DrivingLessonsId = " + LessonID);
+                s.Conn.Close();
+            }
+            public static DataTable GetallstudentWitinge(int idT)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from Students "+
+                "inner join StudentStatuse on Students.StatuseId = StudentStatuse.StatuseId " +
+                "inner join LicenseTypes on Students.LicenseTypeID = LicenseTypes.LicenseTypeID "+
+                "where Students.StatuseId=1 and Students.TeacherId = " + idT);
+                s.Conn.Close();
+                return Dt;
+            }
+            public static void deliteStudent(int StudentID)
+            {
+                SqlClass s = new SqlClass();
+                s.ExecuteNonQuery("DELETE FROM Students WHERE StudentId  = " + StudentID);
+                s.Conn.Close();
+            }
+            public static void updteStudent(int StudentID)
+            {
+                SqlClass s = new SqlClass();
+                s.ExecuteNonQuery("UPDATE Students SET StatuseId = 2 WHERE StudentId = " + StudentID);
+                s.Conn.Close();
+            }
+            public static DataTable GetallPaystudentByIdTeacher(int idT)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from Students " +
+                                "inner join Payments on Payments.PayerId = Students.StudentId " +
+                                "inner join PaymentTypes on PaymentTypes.TypeId = Payments.PaymentTypeId " +
+                                "where Payments.PaymentTypeId = 1 and Students.TeacherId = " + idT );
+                s.Conn.Close();
+                return Dt;
+            }
+            public static DataTable GetallPayTeacertByIdTeacher(int idT)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from Payments inner join PaymentTypes on "+
+                                            "PaymentTypes.TypeId = Payments.PaymentTypeId "+
+                                            "inner join Teachers on Teachers.TeacherId = Payments.PayerId "+
+                                            "where Payments.PaymentTypeId = 2 and Teachers.TeacherId = " + idT + " ORDER BY Payments.PaymentDate DESC ");
+                s.Conn.Close();
+                return Dt;
+            }
+            public static DataTable GetallTastByIdTeacher(int idT)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from TableTast " +
+                                            "inner join TastStatus on TableTast.statusTast = TastStatus.Id " +
+                                            "where TableTast.TeacherId =  " + idT + " " + 
+                                            "ORDER BY TableTast.TestRequestDate DESC ");
+                s.Conn.Close();
+                return Dt;
+            }
+            public static DataTable patAllPayTeacherToAdminBtIdteacher(int idT)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select* from Payments " +
+                                            "inner join PaymentTypes on Payments.PaymentTypeId = PaymentTypes.TypeId " +
+                                            "inner join Teachers on Payments.PayerId = Teachers.TeacherId "+
+                                            "inner join schools on schools.schoolId = Teachers.schoolId "+
+                                            "where Payments.PaymentTypeId = 1002  and Teachers.TeacherId =  " + idT + " " +
+                                            "ORDER BY Payments.PaymentDate DESC ");
+                s.Conn.Close();
+                return Dt;
+            }
         }
-
-
     }
 }

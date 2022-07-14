@@ -17,10 +17,7 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="main" runat="server">
     <div id="calendar"></div>
-
-    -
-     <button type="button" id="motelday" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display: none">Open Modal</button>
-
+    <button type="button" id="motelday" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display: none">Open Modal</button>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -83,14 +80,11 @@
 
         </div>
     </div>
-
-
     <button type="button" id="model2" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2" style="display: none">Open Modal</button>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal2" role="dialog">
         <div class="modal-dialog ">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -465,7 +459,6 @@
                     'EndOfVacation': slice2 + " " + $("#appt2").val()
                 }
             }
-            //Vacationsadd(tampVe);
             if ($("#deleteSelected").is(':checked')) {//הסכמה לביטול השיעורים שנקבעו
                 alert($('#mtitel').text() + "לבטל אירועים");
                 document.getElementById("modl2data").value = ""
@@ -481,7 +474,7 @@
                     }
                     if ($("#alldayselect").is(':checked')) {//סימון יום שלם
                         var slice = $('#mtitel').text().split("-");
-                        var slice2 = slice[2] + "-" + slice[1] + "-" + slice[0]+" "+"00:00:00";
+                        var slice2 = slice[2] + "-" + slice[1] + "-" + slice[0] + " " + "00:00:00";
                         const srdallday = new Date(slice2);
                         if (srdallday >= delsrd && srdallday <= delend) {
                             delitams[delitams.length] = arrvent[i];
@@ -495,7 +488,7 @@
                     var q1 = "" + delitams[i]['end'];
                     var w2 = w1.replaceAll("T", " ");
                     var q2 = q1.replaceAll("T", " ");
-                    if (q2.indexOf(" ")>0)
+                    if (q2.indexOf(" ") > 0)
                         $('#modl2data').append('<div class="well">' + delitams[i]['title'] + '  זמן התחלה  ' + w2 + '  סיום  ' + q2 + '</div>');
                     else
                         $('#modl2data').append('<div class="well">' + delitams[i]['title'] + '  זמן התחלה  ' + w2 + '</div>');
@@ -512,6 +505,7 @@
             else {
                 alert("לא לבטל אירועים");
                 Vacationsadd(tampVe);
+                yesmess();
             }
 
         })
@@ -559,6 +553,7 @@
                 }
             }
             Vacationsadd(tampVe);
+            yesmess();
         })
 
 

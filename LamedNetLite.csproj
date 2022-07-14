@@ -260,9 +260,13 @@
     <Content Include="Student\testinfo.aspx" />
     <Content Include="Student\testinfo2.aspx" />
     <Content Include="Student\WaitingPage.aspx" />
+    <Content Include="Teacher\css\payStyle.css" />
     <Content Include="Teacher\css\style.css" />
     <Content Include="Teacher\css\style2.css" />
     <Content Include="Teacher\css\style3.css" />
+    <Content Include="Teacher\historyPayAdmin.aspx" />
+    <Content Include="Teacher\historyPayStudent.aspx" />
+    <Content Include="Teacher\historyPayTteacher.aspx" />
     <Content Include="Teacher\images\LamedP.jpg" />
     <Content Include="Teacher\js\SearchScript.js" />
     <Content Include="Teacher\js\Tejs.js" />
@@ -271,6 +275,7 @@
     <Content Include="Teacher\ListWaitingLess.aspx" />
     <Content Include="Teacher\ListWaitingQueue.aspx" />
     <Content Include="Teacher\main.aspx" />
+    <Content Include="Teacher\payTeacherToAdmin.aspx" />
     <Content Include="Teacher\payTeachr.aspx" />
     <Content Include="Teacher\SearchSchool.aspx" />
     <Content Include="Teacher\SignUpTeacher.aspx" />
@@ -330,9 +335,14 @@
     <Compile Include="App_Code\DAL\TeacherData.cs" />
     <Compile Include="App_Code\DAL\VacationsData.cs" />
     <Compile Include="App_Code\General.cs" />
+    <Compile Include="Controllers\GetallPayTeacertByIdTeacherController.cs" />
+    <Compile Include="Controllers\GetallTastByIdTeacherController.cs" />
     <Compile Include="Controllers\getLessonsWatinngController.cs" />
     <Compile Include="Controllers\lassonstudentController.cs" />
     <Compile Include="Controllers\LiceneTypeController.cs" />
+    <Compile Include="Controllers\ListWaitinigQueueController.cs" />
+    <Compile Include="Controllers\patAllPayTeacherToAdminBtIdteacherController.cs" />
+    <Compile Include="Controllers\payStudentController.cs" />
     <Compile Include="Controllers\SearchSchoolController.cs" />
     <Compile Include="Controllers\SearchTeachersController.cs" />
     <Compile Include="Controllers\selectStatusStudentController.cs" />
@@ -437,6 +447,27 @@
     <Compile Include="Student\WaitingPage.aspx.designer.cs">
       <DependentUpon>WaitingPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Teacher\historyPayAdmin.aspx.cs">
+      <DependentUpon>historyPayAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\historyPayAdmin.aspx.designer.cs">
+      <DependentUpon>historyPayAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\historyPayStudent.aspx.cs">
+      <DependentUpon>historyPayStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\historyPayStudent.aspx.designer.cs">
+      <DependentUpon>historyPayStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\historyPayTteacher.aspx.cs">
+      <DependentUpon>historyPayTteacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\historyPayTteacher.aspx.designer.cs">
+      <DependentUpon>historyPayTteacher.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Teacher\ListStudent.aspx.cs">
       <DependentUpon>ListStudent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -464,6 +495,13 @@
     </Compile>
     <Compile Include="Teacher\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\payTeacherToAdmin.aspx.cs">
+      <DependentUpon>payTeacherToAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\payTeacherToAdmin.aspx.designer.cs">
+      <DependentUpon>payTeacherToAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Teacher\payTeachr.aspx.cs">
       <DependentUpon>payTeachr.aspx</DependentUpon>
