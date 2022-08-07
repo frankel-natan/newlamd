@@ -95,6 +95,15 @@ namespace LamedNetLite
                     s.ExecuteNonQuery("update [Teachers] set schoolId=" + schoolId + ",TeacherName=N'" + TeacherName + "', ID='" + ID + "', Phone='" + Phone + "', StudyAreaId='" + StudyAreaId + "', UserName='" + UserName + "', Password='" + Password + "',LicenseTypesId=" + LicenseTypesId + ",PaymentsNum=" + PaymentsNum + ",StatuseId=" + StatusId + " where TeacherId=" + TeacherId);
                 s.Conn.Close();
             }
+            public static void AddOrUpdate_Teather2(Teacher x)
+            {
+                SqlClass s = new SqlClass();
+                if (x.TeacherId == -1)
+                    s.ExecuteNonQuery("Insert into [Teachers] ( schoolId, TeacherName, ID, Phone, StudyAreaId, UserName, Password,DateAdded,LicenseTypesId,PaymentsNum,StatusId)values(" + x.schoolId + ",N'" + x.TeacherName + "','" + x.ID + "','" + x.Phone + "'," + x.StudyAreaId + ",'" + x.UserName + "','" + x.Password + "',GETDATE())," + x.LicenseTypesId + "," + x.PaymentsNum + "," + x.StatusId);
+                else
+                    s.ExecuteNonQuery("update [Teachers] set schoolId=" + x.schoolId + ",TeacherName=N'" +x.TeacherName + "', ID='" + x.ID + "', Phone='" + x.Phone + "', StudyAreaId='" + x.StudyAreaId + "', UserName='" + x.UserName + "', Password='" + x.Password + "',LicenseTypesId=" + x.LicenseTypesId + ",PaymentsNum=" + x.PaymentsNum + ",StatuseId=" + x.StatusId + " where TeacherId=" + x.TeacherId);
+                s.Conn.Close();
+            }
             public static DataTable getAllData()
             {
                 SqlClass s = new SqlClass();
@@ -374,6 +383,29 @@ namespace LamedNetLite
                 s.Conn.Close();
                 return Dt;
             }
+            public static void payStudentToTeachr(int idStu,float sum)
+            {
+                SqlClass s = new SqlClass();
+                s.ExecuteNonQuery("INSERT INTO Payments (PaymentTypeId,PayerId,PaymentDate,Sum,PaymentsNum) VALUES(1, " + idStu + ", GETDATE(), " + sum + ", 1)");
+                s.Conn.Close();
+            }
+            public static void enterTest(int idT,string testD)
+            {
+                SqlClass s = new SqlClass();
+                string [] arr = testD.Split('-');
+                string newd = arr[2] + '/' + arr[1] + '/' + arr[0];
+                s.ExecuteNonQuery("INSERT INTO TableTast VALUES(" + idT + ",'"+ testD+"' , 1,(CONVERT(varchar,YEAR(GETDATE()))+'-' + CONVERT(varchar,MONTH(GETDATE()))+'-'+CONVERT(varchar,DAY(GETDATE()))), 100)");
+                s.Conn.Close();
+            }
+            public static DataTable getTeacherById(int idT)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from Teachers where Teachers.TeacherId = " + idT);
+                s.Conn.Close();
+                return Dt;
+
+            }
+           
         }
     }
 }

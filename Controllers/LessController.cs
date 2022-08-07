@@ -21,7 +21,8 @@ namespace LamedNetLite
         // GET: api/v1/Less/5
         public string Get(int id)
         {
-            return "value";
+            string tamp = JsonConvert.SerializeObject(Student.getAllTaypLesonnes(id));
+            return tamp;
         }
 
         // POST: api/v1/Less
@@ -63,8 +64,10 @@ namespace LamedNetLite
         }//[{"typy":"שיעור רגיל","lessArr":[08:00:00,08:40:00,09:20:00,10:00:00,10:40:00,11:20:00,12:00:00,12:40:00,13:20:00,14:00:00,14:40:00,15:20:00,16:00:00,16:40:00,17:20:00,18:00:00,18:40:00,19:20:00]}_{"typy":"שיעור כפול","lessArr":[08:00:00,08:40:00,09:20:00,10:00:00,10:40:00,11:20:00,12:00:00,12:40:00,13:20:00,14:00:00,14:40:00,15:20:00,16:00:00,16:40:00,17:20:00,18:00:00,18:40:00,19:20:00]}]
 
         // PUT: api/v1/Less/5
-        public void Put(int id, [FromBody]string value)
+        public string Put(int id, [FromBody]string value)
         {
+            string tamp = JsonConvert.SerializeObject(Student.getAllLesonnesDay(id,value));
+            return tamp;
         }
 
         // DELETE: api/v1/Less/5

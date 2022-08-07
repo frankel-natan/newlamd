@@ -27,6 +27,7 @@ namespace LamedNetLite.Controllers
         // POST: api/patAllPayTeacherToAdminBtIdteacher
         public void Post([FromBody]string value)
         {
+
         }
 
         // PUT: api/patAllPayTeacherToAdminBtIdteacher/5

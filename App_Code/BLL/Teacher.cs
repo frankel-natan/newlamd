@@ -81,6 +81,10 @@ namespace LamedNetLite
             {
                 TeacherData.AddOrUpdate_Teather(TeacherId, schoolId, TeacherName, ID, Phone, StudyAreaId, UserName, Password, LicenseTypesId, PaymentsNum, StatusId);
             }
+            public static void AddOrUpdate_Teather2(Teacher x)
+            {
+                TeacherData.AddOrUpdate_Teather2(x);
+            }
             public DataTable getAllData()
             {
                 return TeacherData.getAllData();
@@ -161,6 +165,19 @@ namespace LamedNetLite
             {
                 return TeacherData.patAllPayTeacherToAdminBtIdteacher(idT);
             }
+            public static void payStudentToTeachr(int idStu, float sum)
+            {
+                TeacherData.payStudentToTeachr(idStu, sum);
+            }
+            public static void enterTest(int idT, string testD)
+            {
+                TeacherData.enterTest(idT, testD);
+            }
+            public static DataTable getTeacherById(int idT)
+            {
+                return TeacherData.getTeacherById(idT);
+            }
+            
         }
    }
     

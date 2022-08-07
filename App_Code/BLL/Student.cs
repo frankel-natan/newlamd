@@ -71,6 +71,18 @@ namespace LamedNetLite
             {
                 return StudentData.IsExist(UserName);
             }
+            public static DataTable getAllLesonnesDay(int idT, string daystring)
+            {
+                return StudentData.getAllLesonnesDay(idT, daystring);
+            }
+            public static DataTable getAllTaypLesonnes(int idT)
+            {
+                return StudentData.getAllTaypLesonnes(idT);
+            }
+            public static DataTable getDayVacations(int idT, string day)
+            {
+                return StudentData.getDayVacations(idT, day);
+            }
         }
         
     }

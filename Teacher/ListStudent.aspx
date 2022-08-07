@@ -100,7 +100,6 @@
                         console.log('error');
                     }
                     else {
-                        alert(data);
                         a = JSON.parse(data);
                         for (var i = 0; i < a.length; i++) {
                             tamp += '<div class="panel-group">' +
@@ -174,7 +173,7 @@
                 }
             }
             jsstudent.GatheringPlace = (Place.value ? Place.value : Place.placeholder);//$("#Place").val();
-            jsstudent.StatuseId = document.querySelector('#sel1').value;//($('#sel1 option:selected').val ? $('#sel1 option:selected').val : 55);//תיבת בחירה
+            jsstudent.StatuseId = (document.querySelector('#sel1').value);//($('#sel1 option:selected').val ? $('#sel1 option:selected').val : 55);//תיבת בחירה
             jsstudent.StudentName = (nameFamaly.value ? nameFamaly.value : nameFamaly.placeholder);
             jsstudent.ID = (idnumber.value ? idnumber.value : idnumber.placeholder);
             jsstudent.Phone = (phone.value ? phone.value : phone.placeholder);
@@ -208,7 +207,6 @@
                 dataType: "json",
                 data: jsstudentAJAX,
                 beforeSend: function () {
-                    alert(jsstudent.StudentId);
                 },
                 success: function (data) {
                     if (data == 'invalid') {
@@ -228,9 +226,7 @@
         }
         function asi() {
             var v = Place.value;
-            alert(v);
             var bla = (Place.value ? Place.value : Place.placeholder);
-            alert(bla);
         }
         function clairValue(idinput) {
             for (let itam of idinput) {

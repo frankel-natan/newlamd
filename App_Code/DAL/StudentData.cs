@@ -447,6 +447,31 @@ namespace LamedNetLite
                 s.Conn.Close();
                 return null;
             }
+            public static DataTable getAllLesonnesDay(int idT, string daystring)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from DrivingLessons " +
+                                            "inner join Students on Students.StudentId = DrivingLessons.StudentsId " +
+                                            "where Students.TeacherId = " + idT + " and DrivingLessons.DateLesson = '" + daystring + "'");
+                s.Conn.Close();
+                return Dt;
+            }
+            public static DataTable getAllTaypLesonnes(int idT)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select TypeName, DATEPART(minute,DurationOfTheLesson) + (DATEPART(HH,DurationOfTheLesson)*60) AS minute from LessonsTypes "+
+                                           "where TeacherId = " +idT);
+                s.Conn.Close();
+                return Dt;
+            }
+            public static DataTable getDayVacations(int idT, string day)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from Vacations where TeacherId =" + idT + " and BeginningOfVacation >='" + day
+                    + " 00:01' and EndOfVacation <='"+day+" 23:59'");
+                s.Conn.Close();
+                return Dt;
+            }
         }
     }
     

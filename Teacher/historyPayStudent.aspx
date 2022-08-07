@@ -20,19 +20,39 @@
             </div>
         </div>
     </div>
-    <table class="table table-striped" style="width: 80%; border: inset;">
-        <thead>
-            <tr>
-                <th scope="col">מספר תשלום</th>
-                <th scope="col">שם</th>
-                <th scope="col">תאריך </th>
-                <th scope="col">סכום</th>
-                <th scope="col">יתרה</th>
-            </tr>
-        </thead>
-        <tbody id="tabel">
-        </tbody>
-    </table>
+    <div class="row">
+        <table class="table table-striped col-md-8" style="border: inset;">
+            <thead>
+                <tr>
+                    <th scope="col">מספר תשלום</th>
+                    <th scope="col">שם</th>
+                    <th scope="col">תאריך </th>
+                    <th scope="col">סכום</th>
+                    <th scope="col">יתרה</th>
+                </tr>
+            </thead>
+            <tbody id="tabel">
+            </tbody>
+        </table>
+        <div class="col-md-2" id="forstudent" style="display:none">
+            <div class="panel panel-danger">
+                <div class="panel-heading">שיעורים ממתינים</div>
+                <div class="panel-body" id="tow"></div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading">שיעורים שבוצעו</div>
+                <div class="panel-body" id="three"></div>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">שיעורים ממתינים לאישור</div>
+                <div class="panel-body" id="fore"></div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">סה"כ חיוב</div>
+                <div class="panel-body" id="sump"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog" style="text-align: center;">
@@ -299,6 +319,7 @@
             var count = 0;
             if ((document.querySelector('#selectStudent').value) == -1) {
                 page(username);
+                document.getElementById('forstudent').style.display = 'none'
             }
             else {
                 for (var itam of a) {
@@ -319,6 +340,7 @@
                 }
                 htmldinamic += '</ul>';
                 document.getElementById('tabel').innerHTML = htmldinamic;
+                listWatining(username, document.querySelector('#selectStudent').value);
             }
         }
         function addColun(x) {
@@ -328,6 +350,49 @@
                 a[i].pay = cuont;
             }
             craList(a);
+        }
+        function listWatining(x, y) {
+            $.ajax({
+                url: "/api/v1/lassonstudent/" + x,
+                type: "GET",
+                dataType: "JSON",
+                beforeSend: function () {
+                    c = [];
+
+                },
+                success: function (data) {
+                    if (data == 'invalid') {
+                        console.log('error');
+                    }
+                    else {
+                        c = JSON.parse(data);
+                        remostu(y);
+                    }
+                },
+                error: function (e) {
+                    console.log('error ' + e);
+                }
+            });
+        }
+        var c = [];
+        function remostu(y) {
+            if (y == -1) {
+                document.getElementById('forstudent').style.display = 'none'; 
+            }
+            else {
+                var d = [];
+                for (var i = 0; i < c.length; i++) {
+                    if (c[i]['StudentId'] == y)
+                        d.push(c[i]);
+                }
+                c = d;
+                $('#tow').text(c[0]['tow']);
+                $('#three').text(c[0]['three']);
+                $('#fore').text(c[0]['fore']);
+                $('#sump').text(c[0]['PricePerLesson'] * c[0]['three']);
+                $('#forstudent').removeClass('hidden');
+                document.getElementById('forstudent').style.display = 'block';
+            }
         }
     </script>
 </asp:Content>

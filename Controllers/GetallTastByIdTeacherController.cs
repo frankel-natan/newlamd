@@ -1,4 +1,5 @@
-﻿using LamedNetLite.BLL;
+﻿using LamedNetLite.App_Code.BLL;
+using LamedNetLite.BLL;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -25,13 +26,15 @@ namespace LamedNetLite.Controllers
         }
 
         // POST: api/GetallTastByIdTeacher
-        public void Post([FromBody]string value)
+        public void Post([FromBody]tast value)
         {
+            Teacher.enterTest(value.TeacherId, value.TestRequestDate);
         }
 
         // PUT: api/GetallTastByIdTeacher/5
         public void Put(int id, [FromBody]string value)
         {
+            
         }
 
         // DELETE: api/GetallTastByIdTeacher/5

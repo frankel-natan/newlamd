@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <script src="js/jquery/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+    <script src="../Calendar/lib/locales/he.js"></script>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="page_header" runat="server" ID="header">
     <button style="display: none" id="btn1" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -53,11 +53,29 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="myModalmew" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4>האם ברצונך להוסיף חופשה בתאריך: </h4>
+                    <h4 class="modal-title" id="mtitel"></h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="send" class="btn btn-success" data-dismiss="modal" disabled>אישור</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">סגור</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
 <asp:Content ContentPlaceHolderID="main" ID="calendarView" runat="server">
-    <div class="container bg-success ml-3">
+    <div class="container">
         <div id="calendar"></div>
     </div>
 
@@ -72,8 +90,15 @@
     <asp:Literal runat="server" ID="ltrsrc"></asp:Literal>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js'></script>
-
+    <div style="text-align: center; align-content: center;">כל הזכויות שמורות </div>
+    <script src="../Calendar/lib/main.js"></script>
+    <script src="../Calendar/lib/locales/he.js"></script>
+    <link href="../Calendar/lib/main.css" rel="stylesheet" />
+    <script src="eventsHandler.ashx"></script>
     <!-- the moment-to-fullcalendar connector. must go AFTER the moment lib -->
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.5.0/main.global.min.js'></script>
     <script src="js/StudMainScript.js"></script>
+    <script>
+        var idT = '<%=Session["TeacherId"] %>';//שליפה מסשן
+    </script>
 </asp:Content>

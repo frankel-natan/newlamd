@@ -275,8 +275,11 @@
     <Content Include="Teacher\ListWaitingLess.aspx" />
     <Content Include="Teacher\ListWaitingQueue.aspx" />
     <Content Include="Teacher\main.aspx" />
+    <Content Include="Teacher\OrderTest.aspx" />
+    <Content Include="Teacher\payStudent.aspx" />
+    <Content Include="Teacher\payteacertoschool.aspx" />
     <Content Include="Teacher\payTeacherToAdmin.aspx" />
-    <Content Include="Teacher\payTeachr.aspx" />
+    <Content Include="Teacher\propile.aspx" />
     <Content Include="Teacher\SearchSchool.aspx" />
     <Content Include="Teacher\SignUpTeacher.aspx" />
     <Content Include="Teacher\StudentsWaitingList.aspx" />
@@ -322,6 +325,7 @@
     <Compile Include="App_Code\BLL\SelectedTeacher.cs" />
     <Compile Include="App_Code\BLL\StatusS.cs" />
     <Compile Include="App_Code\BLL\Student.cs" />
+    <Compile Include="App_Code\BLL\tast.cs" />
     <Compile Include="App_Code\BLL\Teacher.cs" />
     <Compile Include="App_Code\BLL\Vacations.cs" />
     <Compile Include="App_Code\DAL\AdminData.cs" />
@@ -496,6 +500,27 @@
     <Compile Include="Teacher\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Teacher\OrderTest.aspx.cs">
+      <DependentUpon>OrderTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\OrderTest.aspx.designer.cs">
+      <DependentUpon>OrderTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\payStudent.aspx.cs">
+      <DependentUpon>payStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\payStudent.aspx.designer.cs">
+      <DependentUpon>payStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\payteacertoschool.aspx.cs">
+      <DependentUpon>payteacertoschool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\payteacertoschool.aspx.designer.cs">
+      <DependentUpon>payteacertoschool.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Teacher\payTeacherToAdmin.aspx.cs">
       <DependentUpon>payTeacherToAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -503,12 +528,12 @@
     <Compile Include="Teacher\payTeacherToAdmin.aspx.designer.cs">
       <DependentUpon>payTeacherToAdmin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Teacher\payTeachr.aspx.cs">
-      <DependentUpon>payTeachr.aspx</DependentUpon>
+    <Compile Include="Teacher\propile.aspx.cs">
+      <DependentUpon>propile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Teacher\payTeachr.aspx.designer.cs">
-      <DependentUpon>payTeachr.aspx</DependentUpon>
+    <Compile Include="Teacher\propile.aspx.designer.cs">
+      <DependentUpon>propile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Teacher\SearchSchool.aspx.cs">
       <DependentUpon>SearchSchool.aspx</DependentUpon>

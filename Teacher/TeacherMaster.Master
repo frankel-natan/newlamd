@@ -55,7 +55,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">מערכת לניהול מורי נהיגה      </a>
+                    <a class="navbar-brand" href="main.aspx">מערכת לניהול מורי נהיגה      </a>
                 </div>
                 <!-- /.navbar-header -->
 
@@ -66,14 +66,12 @@
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i>הפרופיל שלי</a>
+                                <a href="propile.aspx"><i class="fa fa-user fa-fw"></i>הפרופיל שלי</a>
                             </li>
-                            <li>
-                                <a href="#"><i class="fa fa-gear fa-fw"></i>הגדרות</a>
-                            </li>
+                            
                             <li class="divider"></li>
                             <li>
-                                <a href="login.html"><i class="fa fa-sign-out fa-fw"></i>יציאה</a>
+                                <a href="../Login/GeneralLogin.aspx"><i class="fa fa-sign-out fa-fw"></i>יציאה</a>
                             </li>
                         </ul>
 
@@ -107,10 +105,10 @@
                                         <a href="payTeacherToAdmin.aspx">תשלום למנהל מערכת</a>
                                     </li>
                                     <li>
-                                        <a href="morris.html">קבלת תשלום</a>
+                                        <a href="payStudent.aspx">קבלת תשלום</a>
                                     </li>
                                     <li>
-                                        <a href="morris.html">תשלום לבית ספר</a>
+                                        <a href="payTeacherToAdmin.aspx">תשלום לבית ספר</a>
                                     </li>
                                     <li>
                                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>היסטורית תשלומים<span class="fa arrow"></span></a>
@@ -137,6 +135,9 @@
                             </li>
                             <li>
                                 <a href="ListWaitingLess.aspx"><i class="fa fa-edit fa-fw"></i>רשימת שיעורים בהמתנה</a>
+                            </li>
+                            <li>
+                                <a href="OrderTest.aspx"><i class="fa fa-edit fa-fw"></i>רשימת/הזמנת טסטים</a>
                             </li>
                         </ul>
                     </div>

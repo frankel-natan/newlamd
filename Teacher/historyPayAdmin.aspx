@@ -11,19 +11,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6" >
-                <%--   <h2>טבלת תשלומים</h2>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>תאריך</th>
-                            <th>סכום</th>
-                            <th>יתרה</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabeld">
-                    </tbody>
-                </table>
-            </div>--%>
                 <div class="panel panel-primary">
                     <div class="panel-heading"><h4>טבלת תשלומים</h4></div>
                     <table class="table table-hover">

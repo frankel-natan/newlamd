@@ -9,8 +9,13 @@ using System.Web.Http;
 
 namespace LamedNetLite.Controllers
 {
+
     public class payStudentController : ApiController
     {
+        public class idsum{
+            public int id { get; set; }
+            public int sum { get; set; }
+        }
         // GET: api/v1/payStudent
         public IEnumerable<string> Get()
         {
@@ -25,13 +30,15 @@ namespace LamedNetLite.Controllers
         }
 
         // POST: api/payStudent
-        public void Post([FromBody]string value)
+        public void Post([FromBody]idsum value)
         {
+            Teacher.payStudentToTeachr(value.id, value.sum);
         }
 
         // PUT: api/payStudent/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Tuple<int,int> value)
         {
+            var t = 5;
         }
 
         // DELETE: api/payStudent/5

@@ -16,6 +16,7 @@ namespace LamedNetLite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["TeacherId"] = 1;//למחוק ולקחת מסשן
             if (!IsPostBack)
                 FillData();
             

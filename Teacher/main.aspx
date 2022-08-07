@@ -129,9 +129,7 @@
                         console.log('error');
                     }
                     else {
-                        alert(data);
                         jsonarr = JSON.parse(data);
-                        alert(data.responseJSON);
                         for (var i = 0; i < jsonarr.length; i++) {
                             var indexT = jsonarr[i]['DateLesson'].indexOf("T");
                             var da = jsonarr[i]['DateLesson'].substring(0, indexT);
@@ -165,9 +163,7 @@
                         console.log('error');
                     }
                     else {
-                        alert(data);
                         jsonarr = JSON.parse(data);
-                        alert(data.responseJSON);
                         for (var i = 0; i < jsonarr.length; i++) {
                             if (jsonarr[i]['BeginningOfVacation'].split("T")[1] == "00:00:00" && jsonarr[i]['EndOfVacation'].split("T")[1] === "23:59:00") {
                                 tampjs = {
@@ -283,9 +279,7 @@
 
                     else {
                         alert('Event: ' + info.event.title);
-                        alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
                         alert('View: ' + info.view.type);
-                        alert('Event: ' + info.event.id);
 
                         // change the border color just for fun
                         //info.el.Style.color= "red";
@@ -364,15 +358,15 @@
             var timeEnd = value.split(":");
             if (timeStart[0] < timeEnd[0]) {
 
-                alert("גדול בשעות");
+                //alert("גדול בשעות");
                 document.getElementById("send").disabled = false;
             }
             else if (timeStart[0] == timeEnd[0] && timeStart[1] < timeEnd[1]) {
-                alert("גדול בדקות");
+                //alert("גדול בדקות");
                 document.getElementById("send").disabled = false;
             }
             else {
-                alert("שגיאה");
+                //alert("שגיאה");
                 document.getElementById("send").disabled = true;
             }
         }//יציאה מחלון שעת התחלה
@@ -382,11 +376,11 @@
             var timeStart = value.split(":");
             if (timeStart[0] < timeEnd[0]) {
 
-                alert("גדול בשעות");
+                //alert("גדול בשעות");
                 document.getElementById("send").disabled = false;
             }
             else if (timeStart[0] == timeEnd[0] && timeStart[1] < timeEnd[1]) {
-                alert("גדול בדקות");
+                //alert("גדול בדקות");
                 document.getElementById("send").disabled = false;
             }
             else if (!$("#appt").val()) {

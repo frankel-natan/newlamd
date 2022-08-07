@@ -21,7 +21,9 @@ namespace LamedNetLite.Controllers
         // GET: api/v1/GetTeachers/5
         public string Get(int id)
         {
-            return "value";
+            string tamp = JsonConvert.SerializeObject(Teacher.getTeacherById(id));
+            return tamp;
+                
         }
 
         // POST: api/v1/GetTeachers
@@ -36,8 +38,10 @@ namespace LamedNetLite.Controllers
         }
 
         // PUT: api/v1/GetTeachers/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Teacher value)
         {
+
+            Teacher.AddOrUpdate_Teather2(value);
         }
 
         // DELETE: api/v1/GetTeachers/5
