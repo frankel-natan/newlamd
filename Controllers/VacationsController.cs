@@ -35,7 +35,6 @@ namespace LamedNetLite.Controllers
         // PUT: api/Vacations/5
         public string Put(int id, [FromBody]string value)
         {
-            
             string tamp = JsonConvert.SerializeObject(Student.getDayVacations(id,value));
             return tamp;
         }

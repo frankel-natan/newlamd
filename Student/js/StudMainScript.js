@@ -83,8 +83,11 @@ function DateClickEvent(info) {
     var test2;
     var c5;
     var c6;
-
-    document.addEventListener('DOMContentLoaded', function () {
+var seday;
+var mini;
+var arrvent;
+function calnder() {
+    //document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             headerToolbar: {
@@ -107,17 +110,18 @@ function DateClickEvent(info) {
             slotMaxTime: '24:00',
             slotDuration: '00:20:00',
             selectable: true,
+            events: arrvent,
             dateClick: function (info) {
+                seday = info.dateStr;
                 selcDay(info, idT);
             }
-
         });
-
         calendar.render();
         calendar.today();
         calendar.setOption('locale', 'he');
 
-    });
+    //});
+}
 
     $('input[type=radio]').each(function () {//מאפשר לבחור רק אפשרות אחת ברדיו באטן
         var array = $(this).attr('name').split('$');
@@ -203,6 +207,7 @@ function selcDay(info, idT) {
             data: day,
             beforeSend: function () {
                 alert(day);
+                c5, c6 = [];
             },
             success: function (data) {
                 if (data == 'invalid') {
@@ -250,7 +255,7 @@ function typelesonnes(idT,day) {
         });
     }
 function minmnute(x,day) {
-    var mini = x[0]['minute'];
+    mini = x[0]['minute'];
     for (let i of x)
         mini = (i.minute < mini ? mini : mini);
     alert(mini + "////" + day);
@@ -276,52 +281,82 @@ function dinamucLess(minute, day) {
             //alert(d)
             flag = false;
             flag = (c6.length > 0 || listvacctiones.length > 0 ? false : true)
-            for (let i of c6) {
-                var a = i.BeginningTime.split(':');
-                const be = new Date(d);
-                be.setHours(a[0]);
-                be.setMinutes(a[1]);
-                be.setSeconds(0);
-                a = i.EndTime.split(':');
-                //alert(a + "---" + i.EndTime);
-                const en = new Date(d);
-                en.setHours(a[0]);
-                en.setMinutes(a[1]);
-                en.setSeconds(0);
-                alert(listvacctiones.length + "pppp" + c6.length+d +"tttttt"+be +"[[" + en);
-                //alert(be + "---" + en);
-                if (!(d >= be && d < en)) {
-                    flag = true;
-                }
-            }
-            if (flag || c6.length<=0) {
-                for (var j of listvacctiones) {
-                    const stvaction = new Date(j['BeginningOfVacation']);
-                    const envaction = new Date(j['EndOfVacation']);
-                    alert(stvaction + "))))))))))))))))");
-                    alert(envaction + "))))))))))))))))");
-                    if (!(d > stvaction && d < envaction)) {
+            if (c6.length > 0) {
+                for (let i of c6) {
+                    var a = i.BeginningTime.split(':');
+                    const be = new Date(d);
+                    be.setHours(a[0]);
+                    be.setMinutes(a[1]);
+                    be.setSeconds(0);
+                    a = i.EndTime.split(':');
+                    //alert(a + "---" + i.EndTime);
+                    const en = new Date(d);
+                    en.setHours(a[0]);
+                    en.setMinutes(a[1]);
+                    en.setSeconds(0);
+                    //alert(be + "---" + en);
+                    const d2 = new Date(d);
+                    d2.setMinutes(d2.getMinutes() + minute);
+                    if (!(d >= be && d < en) && !(d2 > be && d2<en)) {
                         flag = true;
+                    }
+                    else {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    for (var j of listvacctiones) {
+                        const stvaction = new Date(j['BeginningOfVacation']);
+                        const envaction = new Date(j['EndOfVacation']);
+
+                        if (!(d > stvaction && d < envaction) && !(d2 > stvaction && d2 < envaction)) {
+                            flag = true;
+                            alert('test1');
+                        }
+                        else {
+                            break;
+                        }
                     }
                 }
             }
-            alert(flag );
-            if (flag || (c6.length == 0 && listvacctiones.length == 0)) {
+            else {
+                for (var j of listvacctiones) {
+                    const stvaction = new Date(j['BeginningOfVacation']);
+                    const envaction = new Date(j['EndOfVacation']);
+                    const d2 = new Date(d);
+                    d2.setMinutes(d2.getMinutes() + minute);
+                    if (!(d >= stvaction && d < envaction) && !(d2 > stvaction && d2 < envaction)) {
+                        flag = true;
+                    }
+                    else {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+            var flag2 = (c6.length == 0 && listvacctiones == 0 ? true : false);
+            if (flag || flag2) {
                 var tamp1 = d.getMinutes() + "";
                 var tamp2 = d.getHours() + "";
                 arrLessonse[arrLessonse.length] = tamp2.padStart(2, '0') + ":" + tamp1.padEnd(2, '0');
             }
         d.setMinutes(d.getMinutes() + minute);
         }
-    alert(arrLessonse)
-
-    
-    
-    //arrLessonse = arrtamp;
+    alert(arrLessonse);
+    var arrspilt = seday.split("-");
+    var paragraph = document.getElementById("days");
+    var text = document.createTextNode(arrspilt[2] + "/" + arrspilt[1] + "/" + arrspilt[0]);
+    $("#days").empty();
+    paragraph.appendChild(text);
+    RedioDinamic(lestype2);
+    selectlistlic(arrLessonse);
+    $("#" + mini).prop("checked", true);
         showModal();
 }
 function showModal() {
     $('#myModalmew').modal('show');
+    document.getElementById("send").disabled = true;
 }
 var listvacctiones=[];
 function vacctiones(idT,day,mini) {
@@ -352,3 +387,193 @@ function vacctiones(idT,day,mini) {
         }
     });
 }
+function selectlistlic(x) {//יצירת תיבת השיעורים
+    $("#licdinamic").empty();
+    for (var i of x)
+        addOneTOListLic(i);
+}
+function addOneTOListLic(y) {//הכנסת שיעור בודד לרשימה
+    var select = document.getElementById('licdinamic');
+    var opt = document.createElement('option');
+    opt.value = seday+" "+ y;
+    opt.innerHTML = y;
+    select.appendChild(opt);
+}
+
+function RedioDinamic(x) {//יצירת רדיו באטן
+    $("#rediodinamic").empty();
+    for (var i of x) {
+        $('#rediodinamic').append(`<div><label ><input type="radio" id="${i.minute}"  name="contact" value="${i.minute}" onchange="typele(this)">&nbsp;${i.TypeName}&nbsp;</label></div>`);
+    } 
+}
+
+function typele(x) {
+    document.getElementById(x.id).checked = true;
+    changListLes(seday, mini, x.value);
+    document.getElementById(x.id).checked = true;
+}
+function changListLes(day, minute, langlesson) {
+    var flag = false;
+    arrLessonse = [];
+    var starth = 8;
+    var startm = 0;
+    const d = new Date(day);
+    d.setHours(starth);
+    d.setMinutes(startm);
+    d.setSeconds(0);
+    const endd = new Date(day);
+    endd.setHours(23);
+    endd.setMinutes(59);
+    endd.setSeconds(0);
+    const d3 = new Date(d);
+    while (d < endd && d3 <= endd) {
+        flag = false;
+        flag = (c6.length > 0 || listvacctiones.length > 0 ? false : true)
+        if (c6.length > 0) {
+            for (let i of c6) {
+                var a = i.BeginningTime.split(':');
+                const be = new Date(d);
+                be.setHours(a[0]);
+                be.setMinutes(a[1]);
+                be.setSeconds(0);
+                a = i.EndTime.split(':');
+                //alert(a + "---" + i.EndTime);
+                const en = new Date(d);
+                en.setHours(a[0]);
+                en.setMinutes(a[1]);
+                en.setSeconds(0);
+                //alert(be + "---" + en);
+                const d2 = new Date(d);
+                d2.setMinutes(d2.getMinutes() + minute);
+                if (!(d >= be && d < en) && !(d2 >= be && d2 < en) && !(d3 >= be && d3 < en)) {
+                    flag = true;
+                }
+                else {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                for (var j of listvacctiones) {
+                    const stvaction = new Date(j['BeginningOfVacation']);
+                    const envaction = new Date(j['EndOfVacation']);
+
+                    if (!(d > stvaction && d < envaction) && !(d2 >= stvaction && d2 < envaction) && !(d3 >= stvaction && d3 < envaction)) {
+                        flag = true;
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }
+        }
+        else {
+            for (var j of listvacctiones) {
+                const stvaction = new Date(j['BeginningOfVacation']);
+                const envaction = new Date(j['EndOfVacation']);
+                const d2 = new Date(d);
+                d2.setMinutes(d2.getMinutes() + minute);
+                if (!(d >= stvaction && d < envaction) && !(d2 >= stvaction && d2 < envaction) && !(d3 >= stvaction && d3 < envaction)) {
+                    flag = true;
+                }
+                else {
+                    flag = false;
+                    break;
+                }
+            }
+        }
+        var flag2 = (c6.length == 0 && listvacctiones == 0 ? true : false);
+        if (flag || flag2) {
+            var tamp1 = d.getMinutes() + "";
+            var tamp2 = d.getHours() + "";
+            arrLessonse[arrLessonse.length] = tamp2.padStart(2, '0') + ":" + tamp1.padEnd(2, '0');
+        }
+        d3.setHours(d.getHours());
+        d3.setMinutes(d.getMinutes());
+        var h = Number(d3.getMinutes()) + Number(langlesson);
+        var h1 = Math.floor(h / 60);
+        var m1 = (Number(d3.getMinutes()) + Number(langlesson)) % 60;
+        //alert("h ="+h+" h1= " + h1 + " m1= " + m1);
+        //d3.setMinutes(m1);
+        //d3.setHours(Number(d3.getHours()) + h1);
+        d3.setMinutes(d3.getMinutes() + Number(langlesson));
+        d.setMinutes(d.getMinutes() + minute);
+
+    }
+    selectlistlic(arrLessonse);
+    document.getElementById("send").disabled = true;
+    showModal();
+}
+document.getElementById("licdinamic").onchange = function () {
+    document.getElementById("send").disabled = false;
+}
+
+var StudentAntTeacher;
+function getStudentAntTeacher(ids) {
+    $.ajax({
+        url: "/api/v1/studentAntTeacher/" + ids,
+        type: "GET",
+        dataType: "JSON",
+        data: day,
+        beforeSend: function () {
+            StudentAntTeacher = [];
+        },
+        success: function (data) {
+            if (data == 'invalid') {
+                console.log('error');
+            }
+            else {
+                //StudentAntTeacher = JSON.parse(JSON.parse(data));
+                StudentAntTeacher = JSON.parse(data);
+                idT = StudentAntTeacher[0].TeacherId1;
+                document.getElementById("nametitel").innerHTML = "ברוך שובך " + StudentAntTeacher[0].StudentName;
+                document.getElementById("nametitel").style.color = "red";
+            }
+        },
+        error: function (e) {
+            console.log('error ' + e);
+        }
+    });    
+}
+var arrlessonajax;
+function page(id) {
+    $.ajax({
+        url: "/api/v1/studentLessond/" + id,
+        type: "GET",
+        dataType: "JSON",
+        data: day,
+        beforeSend: function () {
+            arrvent = [];
+            arrlessonajax = [];
+        },
+        success: function (data) {
+            if (data == 'invalid') {
+                console.log('error');
+            }
+            else {
+                arrlessonajax = JSON.parse(data);
+                var tampjs;
+                for (var i of arrlessonajax) {
+                    var arrt = i.DateLesson.split('T');
+                    tampjs = {
+                        id: i.DrivingLessonsId,
+                        title: i.StatusesName,
+                        start: arrt[0] + "T" +i.BeginningTime,
+                        end: arrt[0] + "T" + i.EndTime,
+                        //allDay: false,
+                        color: 'green',
+                        type: 'Vacation'
+                    }
+                    arrvent.push(tampjs);
+                }
+                calnder();
+                getStudentAntTeacher(id);
+            }
+        },
+        error: function (e) {
+            console.log('error ' + e);
+        }
+    });  
+   
+}
+

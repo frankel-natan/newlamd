@@ -83,6 +83,14 @@ namespace LamedNetLite
             {
                 return StudentData.getDayVacations(idT, day);
             }
+            public static DataTable getstudentandTeacher(int idS)
+            {
+                return StudentData.getstudentandTeacher(idS);
+            }
+            public static DataTable getstudentLessons(int ids)
+            {
+                return StudentData.getstudentLessons(ids);
+            }
         }
         
     }

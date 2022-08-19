@@ -468,7 +468,24 @@ namespace LamedNetLite
             {
                 SqlClass s = new SqlClass();
                 DataTable Dt = s.DataTable("select * from Vacations where TeacherId =" + idT + " and BeginningOfVacation >='" + day
-                    + " 00:01' and EndOfVacation <='"+day+" 23:59'");
+                    + " 00:00' and EndOfVacation <='"+day+" 23:59'");
+                s.Conn.Close();
+                return Dt;
+            }
+            public static DataTable getstudentandTeacher(int idS)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from Students inner join Teachers on Students.TeacherId = Teachers.TeacherId where Students.StudentId = " + idS);
+                s.Conn.Close();
+                return Dt;
+            }
+            public static DataTable getstudentLessons(int idS)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from Students " +
+                                            "inner join DrivingLessons on Students.studentId = DrivingLessons.StudentsId "+
+                                            "inner join LessonStatuses on LessonStatuses.StatusesId = DrivingLessons.StatuseId " +
+                                            "where Students.studentId = " + idS);
                 s.Conn.Close();
                 return Dt;
             }
