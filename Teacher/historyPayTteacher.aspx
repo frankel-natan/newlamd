@@ -10,7 +10,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="main" runat="server">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <%--<div class="col-md-6">
                 <h2>טבלת תשלומים </h2>
                 <table class="table table-bordered" style="background-color: white;  border: ridge;">
                     <thead>
@@ -23,10 +23,36 @@
                     <tbody id="tabel">
                     </tbody>
                 </table>
-            </div>
+            </div>--%>
+
             <div class="col-md-6">
-                <h2>טבלת טסטים </h2>
-                <table class="table table-bordered" style="background-color: white; border: ridge;">
+                <div class="panel panel-yellow" style="box-shadow: 10px 10px rgb(140 140 140);">
+                    <div class="panel-heading" style="text-align: center;">
+                        <h4>טבלת תשלומים </h4>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered" style="background-color: white;  border: ridge;">
+                    <thead>
+                        <tr>
+                            <th>מועד תשלום</th>
+                            <th>סכום</th>
+                            <th>חוב/זכות</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabel">
+                    </tbody>
+                </table>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="col-md-6">
+                <div class="panel panel-green" style="box-shadow: 10px 10px rgb(140 140 140);">
+                    <div class="panel-heading" style="text-align: center;">
+                       <h4>טבלת טסטים </h4>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered" style="background-color: white;  border: ridge;">
                     <thead>
                         <tr>
                             <th>מועד טסט</th>
@@ -38,7 +64,12 @@
                     <tbody id="tabel2">
                     </tbody>
                 </table>
+                    </div>
+                </div>
             </div>
+
+
+            
         </div>
     </div>
 

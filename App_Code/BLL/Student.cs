@@ -91,6 +91,10 @@ namespace LamedNetLite
             {
                 return StudentData.getstudentLessons(ids);
             }
+            public static DataTable getstudentPay(int idS)
+            {
+                return StudentData.getstudentPay(idS);
+            }
         }
         
     }

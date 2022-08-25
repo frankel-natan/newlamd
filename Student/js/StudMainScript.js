@@ -86,6 +86,7 @@ function DateClickEvent(info) {
 var seday;
 var mini;
 var arrvent;
+var langeLassons;
 function calnder() {
     //document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
@@ -113,7 +114,12 @@ function calnder() {
             events: arrvent,
             dateClick: function (info) {
                 seday = info.dateStr;
-                selcDay(info, idT);
+                const aq = new Date(info.dateStr);
+                const aw = new Date();
+                if (aq > aw)
+                    selcDay(info, idT);
+                else
+                    alert("אין אפשרות להזמין שיעור לתאריך שעבר");
             }
         });
         calendar.render();
@@ -191,12 +197,12 @@ function calnder() {
         });
     });
 function selcDay(info, idT) {
-    alert('1Clicked on: ' + info.dateStr);
-    alert('2Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-    alert('3Current view: ' + info.view.type);
+    //alert('1Clicked on: ' + info.dateStr);
+    //alert('2Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+    //alert('3Current view: ' + info.view.type);
         // change the day's background color just for fun
-    info.dayEl.style.backgroundColor = 'red';
-    alert(idT);
+    //info.dayEl.style.backgroundColor = 'red';
+    //alert(idT);
     var day = info.dateStr;
     day = '"' + day + '"';
         $.ajax({
@@ -206,7 +212,6 @@ function selcDay(info, idT) {
             dataType: "text",
             data: day,
             beforeSend: function () {
-                alert(day);
                 c5, c6 = [];
             },
             success: function (data) {
@@ -214,7 +219,6 @@ function selcDay(info, idT) {
                     console.log('error');
                 }
                 else {
-                    alert(data);
                     c5 = JSON.parse(data);
                     c6 = JSON.parse(c5);
                     typelesonnes(idT, day);
@@ -243,7 +247,6 @@ function typelesonnes(idT,day) {
                     console.log('error');
                 }
                 else {
-                    alert(data);
                     lestype1 = JSON.parse(data);
                     lestype2 = JSON.parse(lestype1);
                     minmnute(lestype2,day);
@@ -258,7 +261,6 @@ function minmnute(x,day) {
     mini = x[0]['minute'];
     for (let i of x)
         mini = (i.minute < mini ? mini : mini);
-    alert(mini + "////" + day);
     vacctiones(idT, day, mini);
 }
 var arrLessonse = [];
@@ -267,7 +269,6 @@ function dinamucLess(minute, day) {
     arrLessonse = [];
         var starth = 8;
         var startm = 0;
-        alert("****" + day);
         const d = new Date(day);
         d.setHours(starth);
         d.setMinutes(startm);
@@ -309,10 +310,8 @@ function dinamucLess(minute, day) {
                     for (var j of listvacctiones) {
                         const stvaction = new Date(j['BeginningOfVacation']);
                         const envaction = new Date(j['EndOfVacation']);
-
                         if (!(d > stvaction && d < envaction) && !(d2 > stvaction && d2 < envaction)) {
                             flag = true;
-                            alert('test1');
                         }
                         else {
                             break;
@@ -343,11 +342,11 @@ function dinamucLess(minute, day) {
             }
         d.setMinutes(d.getMinutes() + minute);
         }
-    alert(arrLessonse);
+    $("#days").empty();
     var arrspilt = seday.split("-");
     var paragraph = document.getElementById("days");
     var text = document.createTextNode(arrspilt[2] + "/" + arrspilt[1] + "/" + arrspilt[0]);
-    $("#days").empty();
+    document.getElementById('days').innerHTML = '';
     paragraph.appendChild(text);
     RedioDinamic(lestype2);
     selectlistlic(arrLessonse);
@@ -360,8 +359,6 @@ function showModal() {
 }
 var listvacctiones=[];
 function vacctiones(idT,day,mini) {
-    //day = '"' + day + '"';
-    alert(day + '@@');
     $.ajax({
         url: "/api/v1/Vacations/" + idT,
         type: "PUT",
@@ -370,14 +367,12 @@ function vacctiones(idT,day,mini) {
         data: day,
         beforeSend: function () {
             listvacctiones = [];
-            alert(idT + "====" + day);
         },
         success: function (data) {
             if (data == 'invalid') {
                 console.log('error');
             }
             else {
-                alert(data);
                 listvacctiones = JSON.parse(JSON.parse(data));
                 dinamucLess(mini, day);
             }
@@ -437,12 +432,10 @@ function changListLes(day, minute, langlesson) {
                 be.setMinutes(a[1]);
                 be.setSeconds(0);
                 a = i.EndTime.split(':');
-                //alert(a + "---" + i.EndTime);
                 const en = new Date(d);
                 en.setHours(a[0]);
                 en.setMinutes(a[1]);
                 en.setSeconds(0);
-                //alert(be + "---" + en);
                 const d2 = new Date(d);
                 d2.setMinutes(d2.getMinutes() + minute);
                 if (!(d >= be && d < en) && !(d2 >= be && d2 < en) && !(d3 >= be && d3 < en)) {
@@ -493,9 +486,6 @@ function changListLes(day, minute, langlesson) {
         var h = Number(d3.getMinutes()) + Number(langlesson);
         var h1 = Math.floor(h / 60);
         var m1 = (Number(d3.getMinutes()) + Number(langlesson)) % 60;
-        //alert("h ="+h+" h1= " + h1 + " m1= " + m1);
-        //d3.setMinutes(m1);
-        //d3.setHours(Number(d3.getHours()) + h1);
         d3.setMinutes(d3.getMinutes() + Number(langlesson));
         d.setMinutes(d.getMinutes() + minute);
 
@@ -576,4 +566,32 @@ function page(id) {
     });  
    
 }
-
+$("#send").click(() => {
+    var dayTime = $("#licdinamic").val();
+    var lange = $("input[type='radio'][name='contact']:checked").val();
+    var arrtandday = dayTime.split(' ');
+    var send = {
+        'srrd': arrtandday[0], 'srrt': arrtandday[1], 'srrla': lange
+    };
+    $.ajax({
+        url: "/api/v1/lassonstudent/" + idS,
+        type: "PUT",
+        //contentType: "application/json; charset=utf-8",
+        dataType: "JSON",
+        data: send,
+        beforeSend: function () {
+        },
+        success: function (data) {
+            if (data == 'invalid') {
+                console.log('error');
+            }
+            else {
+                alert('עודכן');
+                page(idS);
+            }
+        },
+        error: function (e) {
+            console.log('error ' + e);
+        }
+    });
+})

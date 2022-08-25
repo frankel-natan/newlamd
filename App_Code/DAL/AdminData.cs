@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -30,6 +31,23 @@ namespace LamedNetLite
             {
                 SqlClass s = new SqlClass();
                 object obg = s.ExecuteScalar("select top 1 PriceForSchool from Admin");
+                s.Conn.Close();
+                return Convert.ToInt32(obg);
+            }
+            public static object getinformation(string type)
+            {
+                string [] arrkey = { "manual", "automatic", "manualtotelminute", "automatictotelminute" };
+                string select="";
+                foreach(string i in arrkey)
+                {
+                    if(type == i)
+                    {
+                        select = i;
+                        break;
+                    }
+                }
+                SqlClass s = new SqlClass();
+                object obg = s.ExecuteScalar("select "+ select + " from confinge");
                 s.Conn.Close();
                 return Convert.ToInt32(obg);
             }

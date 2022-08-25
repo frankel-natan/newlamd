@@ -485,10 +485,19 @@ namespace LamedNetLite
                 DataTable Dt = s.DataTable("select * from Students " +
                                             "inner join DrivingLessons on Students.studentId = DrivingLessons.StudentsId "+
                                             "inner join LessonStatuses on LessonStatuses.StatusesId = DrivingLessons.StatuseId " +
-                                            "where Students.studentId = " + idS);
+                                            "where Students.studentId = " + idS+ " ORDER BY DrivingLessons.DateLesson DESC ,DrivingLessons.BeginningTime DESC");
                 s.Conn.Close();
                 return Dt;
             }
+            public static DataTable getstudentPay(int idS)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from Payments inner join PaymentTypes on Payments.PaymentTypeId = PaymentTypes.TypeId "+
+                                           "where PaymentTypes.TypeId = 1 and Payments.PayerId = "+ idS + " order by Payments.PaymentDate DESC");
+                s.Conn.Close();
+                return Dt;
+            }
+
         }
     }
     

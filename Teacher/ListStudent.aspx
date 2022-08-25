@@ -147,7 +147,7 @@
             $("#phone").attr('placeholder', a[ew.value]['Phone']);
             $("#email").attr('placeholder', a[ew.value]['userName']);
             $("#price").attr('placeholder', a[ew.value]['PricePerLesson']);
-            var maximom = (a[ew.value]['LicenseTypeID'] == 1 ? 30 : 20);
+            var maximom = (a[ew.value]['LicenseTypeID'] == 1 ? 25 : 20);
             var grfText = Math.round((a[ew.value]['three'] * 100) / maximom) + "%";//הוחלט ש20 זה כמות השיעורים
             $('#grf').css('width', grfText);
             $('#grf').text(grfText);

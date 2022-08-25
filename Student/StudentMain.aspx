@@ -5,6 +5,8 @@
     <script src="js/jquery/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="../Calendar/lib/locales/he.js"></script>
+    <%--<script src="../flot-maser/lib/locales/he.js"></script>--%>
+
 </asp:Content>
 <asp:Content ContentPlaceHolderID="page_header" runat="server" ID="header">
     
@@ -65,7 +67,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="send" class="btn btn-success" data-dismiss="modal" disabled>אישור</button>
+                    <button type="button" id="send" class="btn btn-success" data-dismiss="modal" disabled>הזמן שיעור</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">סגור</button>
                 </div>
             </div>

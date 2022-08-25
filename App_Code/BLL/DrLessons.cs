@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using LamedNetLite.DAL;
+using LamedNetLite.Data;
 
 namespace LamedNetLite
 {
@@ -26,6 +27,7 @@ namespace LamedNetLite
                 this.StatuseId = StatuseId;
                 this.EndTime = EndTime;
             }
+            
             public DrLessons(string selectedLess, SelectedDay sd,int StudentId)
             {            //שיעור רגיל-40-08:00:00
                 this.DrivingLessonsId = -1;
@@ -47,6 +49,10 @@ namespace LamedNetLite
             public void AddLesson()
             {
                 DrLessonsData.AddLesson(this);
+            }
+            public static void AddLesson(DrLessons x)
+            {
+                DrLessonsData.AddLesson(x);
             }
         }
     }

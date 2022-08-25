@@ -9,6 +9,12 @@ using System.Web.Http;
 
 namespace LamedNetLite.Controllers
 {
+    public class str
+    {
+        public string srrd { get; set; }
+        public string srrt { get; set; }
+        public string srrla { get; set; }
+    }
     public class lassonstudentController : ApiController
     {
         // GET: api/v1/lassonstudent
@@ -31,9 +37,17 @@ namespace LamedNetLite.Controllers
         }
 
         // PUT: api/v1/lassonstudent/5
-        public void Put(int id, [FromBody]Student value)
+        public void Put(int id, [FromBody] str value)
+        
         {
-            
+            string hourStr = value.srrt.Split(':')[0];
+            string minutStr = value.srrt.Split(':')[1];
+            int lang = int.Parse(value.srrla);
+            TimeSpan s = new TimeSpan(int.Parse(hourStr), int.Parse(minutStr), 0);
+            TimeSpan e = new TimeSpan(0, lang, 0);
+            var adds = s.Add(e);
+            DrLessons tamp = new DrLessons(value.srrd,s,id, 1, adds);
+            DrLessons.AddLesson(tamp);
         }
 
         // DELETE: api/lassonstudent/5

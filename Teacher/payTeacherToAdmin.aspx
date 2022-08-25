@@ -10,7 +10,6 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="main" runat="server">
 <div class="tips">
-
 </div>
 <div class="container">
   <div class="col1">

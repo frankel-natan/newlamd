@@ -190,6 +190,42 @@
     <Content Include="Calendar\lib\main.js" />
     <Content Include="Calendar\lib\main.min.css" />
     <Content Include="Calendar\lib\main.min.js" />
+    <Content Include="flot-master\examples\background.png" />
+    <Content Include="flot-master\examples\examples.css" />
+    <Content Include="flot-master\examples\index.html" />
+    <Content Include="flot-master\lib\globalize.culture.en-US.js" />
+    <Content Include="flot-master\lib\globalize.js" />
+    <Content Include="flot-master\lib\jquery.event.drag.js" />
+    <Content Include="flot-master\lib\jquery.mousewheel.js" />
+    <Content Include="flot-master\source\jquery.canvaswrapper.js" />
+    <Content Include="flot-master\source\jquery.colorhelpers.js" />
+    <Content Include="flot-master\source\jquery.flot.axislabels.js" />
+    <Content Include="flot-master\source\jquery.flot.browser.js" />
+    <Content Include="flot-master\source\jquery.flot.categories.js" />
+    <Content Include="flot-master\source\jquery.flot.composeImages.js" />
+    <Content Include="flot-master\source\jquery.flot.crosshair.js" />
+    <Content Include="flot-master\source\jquery.flot.drawSeries.js" />
+    <Content Include="flot-master\source\jquery.flot.errorbars.js" />
+    <Content Include="flot-master\source\jquery.flot.fillbetween.js" />
+    <Content Include="flot-master\source\jquery.flot.flatdata.js" />
+    <Content Include="flot-master\source\jquery.flot.hover.js" />
+    <Content Include="flot-master\source\jquery.flot.image.js" />
+    <Content Include="flot-master\source\jquery.flot.js" />
+    <Content Include="flot-master\source\jquery.flot.legend.js" />
+    <Content Include="flot-master\source\jquery.flot.logaxis.js" />
+    <Content Include="flot-master\source\jquery.flot.navigate.js" />
+    <Content Include="flot-master\source\jquery.flot.pie.js" />
+    <Content Include="flot-master\source\jquery.flot.resize.js" />
+    <Content Include="flot-master\source\jquery.flot.saturated.js" />
+    <Content Include="flot-master\source\jquery.flot.selection.js" />
+    <Content Include="flot-master\source\jquery.flot.stack.js" />
+    <Content Include="flot-master\source\jquery.flot.symbol.js" />
+    <Content Include="flot-master\source\jquery.flot.threshold.js" />
+    <Content Include="flot-master\source\jquery.flot.time.js" />
+    <Content Include="flot-master\source\jquery.flot.touch.js" />
+    <Content Include="flot-master\source\jquery.flot.touchNavigate.js" />
+    <Content Include="flot-master\source\jquery.flot.uiConstants.js" />
+    <Content Include="flot-master\source\jquery.js" />
     <Content Include="Global.asax" />
     <Content Include="icons\call.png" />
     <Content Include="JQ\jquery.dataTables.min.js" />
@@ -245,6 +281,7 @@
     <Content Include="Student\css\test\templatemo-gray.css" />
     <Content Include="Student\css\test\templatemo-green.css" />
     <Content Include="Student\css\test\templatemo-orange.css" />
+    <Content Include="Student\graf.aspx" />
     <Content Include="Student\images\cat.jpg" />
     <Content Include="Student\images\LamedP.jpg" />
     <Content Include="Student\images\test\.jpg" />
@@ -253,10 +290,14 @@
     <Content Include="Student\images\test\tm-bg-slide-3.jpg" />
     <Content Include="Student\images\test\tm-easy-profile.jpg" />
     <Content Include="Student\js\StudMainScript.js" />
+    <Content Include="Student\ListLessons.aspx" />
+    <Content Include="Student\payToTeacher.aspx" />
+    <Content Include="Student\propileStudent.aspx" />
     <Content Include="Student\SignUpStudent.aspx" />
     <Content Include="Student\StudentInformation.aspx" />
     <Content Include="Student\StudentMain.aspx" />
     <Content Include="Student\StudentPay.aspx" />
+    <Content Include="Student\tabelPay.aspx" />
     <Content Include="Student\testinfo.aspx" />
     <Content Include="Student\testinfo2.aspx" />
     <Content Include="Student\WaitingPage.aspx" />
@@ -288,6 +329,8 @@
     <Content Include="Teacher\WaitingPageTeacher.aspx" />
     <Content Include="Videos\DrivingLessVideo.mp4" />
     <Content Include="WebForm4.aspx" />
+    <Content Include="flot-master.zip" />
+    <Content Include="flot-master\flot-master.zip" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -342,6 +385,8 @@
     <Compile Include="Controllers\GetallPayTeacertByIdTeacherController.cs" />
     <Compile Include="Controllers\GetallTastByIdTeacherController.cs" />
     <Compile Include="Controllers\getLessonsWatinngController.cs" />
+    <Compile Include="Controllers\getstudentPayController.cs" />
+    <Compile Include="Controllers\informationController.cs" />
     <Compile Include="Controllers\lassonstudentController.cs" />
     <Compile Include="Controllers\LiceneTypeController.cs" />
     <Compile Include="Controllers\ListWaitinigQueueController.cs" />
@@ -445,6 +490,41 @@
     </Compile>
     <Compile Include="School\updetTaecher.aspx.designer.cs">
       <DependentUpon>updetTaecher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\graf.aspx.cs">
+      <DependentUpon>graf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\graf.aspx.designer.cs">
+      <DependentUpon>graf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\ListLessons.aspx.cs">
+      <DependentUpon>ListLessons.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\ListLessons.aspx.designer.cs">
+      <DependentUpon>ListLessons.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\payToTeacher.aspx.cs">
+      <DependentUpon>payToTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\payToTeacher.aspx.designer.cs">
+      <DependentUpon>payToTeacher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\propileStudent.aspx.cs">
+      <DependentUpon>propileStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\propileStudent.aspx.designer.cs">
+      <DependentUpon>propileStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\tabelPay.aspx.cs">
+      <DependentUpon>tabelPay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\tabelPay.aspx.designer.cs">
+      <DependentUpon>tabelPay.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student\WaitingPage.aspx.cs">
       <DependentUpon>WaitingPage.aspx</DependentUpon>

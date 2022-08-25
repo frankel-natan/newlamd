@@ -27,7 +27,10 @@ namespace LamedNetLite
             {
                 return AdminData.validation(UserName, Password);
             }
-
+            public static object getinformation(string type)
+            {
+                return AdminData.getinformation(type);
+            }
         }
     }
     
