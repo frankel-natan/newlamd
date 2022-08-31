@@ -73,6 +73,7 @@
                 </div>
 
                 <div class="modal-footer">
+                    <button type="button" id="lice" class="btn btn-primary">רישום שיעור</button>
                     <button type="button" id="send" class="btn btn-success" data-dismiss="modal" disabled>אישור</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">סגור</button>
                 </div>
@@ -104,6 +105,61 @@
         </div>
     </div>
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="licmodel" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: yellow">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div id="days"></div>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="studentselct">בחר תלמיד מתוך הרשימה:</label>
+                        <select id="studentselct" class="form-control" style="width: 50%; text-align: center;"></select>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div id="rediodinamic" style="display: none"></div>
+                    <div class="modal-title" id="mtitels" style="display: none">
+                        <div class="form-group">
+                            <label for="sel1">בחר שיעור מתוך הרשימה:</label>
+                            <select id="licdinamic" class="form-control" style="width: 50%; text-align: center;"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="sendli" class="btn btn-success" data-dismiss="modal" disabled>הזמן שיעור</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">סגור</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Modal -->
+        <div class="modal fade" id="upModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:red">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">התראה!!!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="updc">מספר השיעורים הממתנים לעדכון </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="hrfun()">לעדכון</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" >סגור</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="text-align: center; align-content: center;">כל הזכויות שמורות </div>
@@ -115,7 +171,9 @@
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="js" runat="server">
     <script>
+        var day;
         var jsonarr;
+        var jsonarr2;
         var arrvent = [];
         function ajLassons(x) {
             $.ajax({
@@ -130,6 +188,7 @@
                     }
                     else {
                         jsonarr = JSON.parse(data);
+                        jsonarr2 = jsonarr;
                         for (var i = 0; i < jsonarr.length; i++) {
                             var indexT = jsonarr[i]['DateLesson'].indexOf("T");
                             var da = jsonarr[i]['DateLesson'].substring(0, indexT);
@@ -258,9 +317,11 @@
                 events: arrvent,//אירועים ביומן
                 dateClick: function (info) {
                     var tampdate = revesrseDare(info.dateStr);//שליפת תאריך
-                    alert('Date: ' + tampdate);
+                    day = info.dateStr;
+                    //day = '"' + day + '"';
                     $("#motelday").click();
-                    $("#mtitel").text(tampdate);
+                    $("#mtitel").text(tampdate.replaceAll("-", "/"));
+                    $("#days").text(tampdate.replaceAll("-", "/"));
                     $("#mbady").text('בחר שעת התחלה מתוך הרשימה');
                 },
                 eventClick: function (info) {
@@ -287,6 +348,7 @@
                 }
             });
             calendar.render();
+            lisrup();
         }
         function deletArr() {//מחיקת מערך
             arrvent = [];
@@ -423,8 +485,9 @@
         var delitams = [];//מערך עבור אירועים העומדים להמחק
         $("#send").click(() => {//כפתור אישור
             if ($("#alldayselect").is(':checked')) {//סימון יום שלם
-                var slice = $('#mtitel').text().split("-");
+                var slice = $('#mtitel').text().split("/");
                 var slice2 = slice[1] + "/" + slice[0] + "/" + slice[2];
+                alert(slice2 + "sss" + slice);
                 tampVe = {
                     'VacationId': -1,
                     'TeacherId': username,
@@ -435,6 +498,7 @@
             else if ($("#selectMoreday").is(':checked')) {
                 var arrSatrt = $("#dateStart").val().replace("T", " ");
                 var arrEnd = $("#dateEnd").val().replace("T", " ");
+                alert(arrSatrt + "MMM");
                 tampVe = {
                     'VacationId': -1,
                     'TeacherId': username,
@@ -549,8 +613,451 @@
             Vacationsadd(tampVe);
             yesmess();
         })
+        var liststurdents = [];
+        $("#lice").click(() => {
+            cratelists(username);
+            $("#myModal").modal("hide");
+            $("#licmodel").modal('show');
+
+        })
+        var lists = [];
+        function cratelists(x) {
+            $.ajax({
+                url: "/api/v1/lassonstudent/" + x,
+                type: "GET",
+                dataType: "JSON",
+                beforeSend: function () {
+                    lists = [];
+                },
+                success: function (data) {
+                    if (data == 'invalid') {
+                        console.log('error');
+                    }
+                    else {
+                        lists = JSON.parse(data);
+                        selectlistlic(lists);
+
+                    }
+                },
+                error: function (e) {
+                    console.log('error ' + e);
+                }
+            });
+        }
+
+        function selectlistlic(x) {//יצירת תיבת השיעורים
+            $("#studentselct").empty();
+            var select = document.getElementById('studentselct');
+            var opt = document.createElement('option');
+            opt.value = -1;
+            opt.innerHTML = "--בחר תלמיד--";
+            select.appendChild(opt);
+            for (var i of x)
+                if (i.StatuseId1 == 2)
+                    addOneTOListLic(i);
+        }
+        function addOneTOListLic(y) {//הכנסת שיעור בודד לרשימה
+            var select = document.getElementById('studentselct');
+            var opt = document.createElement('option');
+            opt.value = y.StudentId;
+            opt.innerHTML = y.StudentName;
+            select.appendChild(opt);
+        }
+        var select = document.querySelector('#studentselct'),
+            input = document.querySelector('input[type="button"]');
+        select.addEventListener('change', function () {
+            if (arrLessonse.length == 0) {
+                typelesonnes(username);
+            }
+
+            $("#rediodinamic").show();
+            $("#licdinamic").show();
+            if ($('#studentselct').find(":selected").text() && $('#licdinamic').find(":selected").text() && $('#licdinamic').find(":selected").val() != -1 && $('#studentselct').find(":selected").val() != -1) {
+
+                document.getElementById("sendli").disabled = false;
+
+            }
+            else {
+                document.getElementById("sendli").disabled = true;
+            }
+        });
+        var select2 = document.querySelector('#licdinamic'),
+            input = document.querySelector('input[type="button"]');
+        select2.addEventListener('change', function () {
+
+            $("#rediodinamic").show();
+            $("#licdinamic").show();
+            if ($('#studentselct').find(":selected").text() && $('#licdinamic').find(":selected").text() && $('#licdinamic').find(":selected").val() != -1 && $('#studentselct').find(":selected").val() != -1) {
+                document.getElementById("sendli").disabled = false;
+            }
+            else {
+                document.getElementById("sendli").disabled = true;
+            }
+        });
 
 
+        var lestype1;
+        var lestype2;
+        function typelesonnes(idT, day) {
+            $.ajax({
+                url: "/api/v1/Less/" + idT,
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                //data: day,
+                beforeSend: function () {
+                    lestype1 = [];
+                    lestype2 = [];
+                },
+                success: function (data) {
+                    if (data == 'invalid') {
+                        console.log('error');
+                    }
+                    else {
+                        lestype1 = JSON.parse(data);
+                        lestype2 = JSON.parse(lestype1);
+                        minmnute(lestype2);
+
+                    }
+                },
+                error: function (e) {
+                    console.log('error ' + e);
+                }
+            });
+        }
+        var mini;
+        function minmnute(x) {
+            mini = x[0]['minute'];
+            for (let i of x)
+                mini = (i.minute < mini ? mini : mini);
+            RedioDinamic(lestype2);
+            //vacctiones(username, day, mini);
+        }
+        function RedioDinamic(x) {//יצירת רדיו באטן
+            $("#rediodinamic").empty();
+            for (var i of x) {
+                $('#rediodinamic').append(`<div><label ><input type="radio" id="${i.minute}"  name="contact" value="${i.minute}" onchange="typele(this)">&nbsp;${i.TypeName}&nbsp;</label></div>`);
+            }
+            document.getElementById(mini).checked = true;
+            selcDay(day, username);
+        }
+
+
+        var listvacctiones = [];
+        function vacctiones(idT, day, mini) {
+            day = '"' + day + '"';
+            $.ajax({
+                url: "/api/v1/Vacations/" + idT,
+                type: "PUT",
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                data: day,
+                beforeSend: function () {
+                    listvacctiones = [];
+                },
+                success: function (data) {
+                    if (data == 'invalid') {
+                        console.log('error');
+                    }
+                    else {
+                        listvacctiones = JSON.parse(JSON.parse(data));
+                        dinamucLess(mini, day);
+                    }
+                },
+                error: function (e) {
+                    console.log('error ' + e);
+                }
+            });
+        }
+        var c6, c5;
+        function selcDay(day, idT) {
+            day = '"' + day + '"';
+            $.ajax({
+                url: "/api/v1/Less/" + idT,
+                type: "PUT",
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                data: day,
+                beforeSend: function () {
+                    c5, c6 = [];
+                },
+                success: function (data) {
+                    if (data == 'invalid') {
+                        console.log('error');
+                    }
+                    else {
+                        c5 = JSON.parse(data);
+                        c6 = JSON.parse(c5);
+                        vacctiones(username, day, mini)
+                        //typelesonnes(idT, day);
+                    }
+                },
+                error: function (e) {
+                    console.log('error ' + e);
+                }
+            });
+        }
+        function selectlistlic2(x) {//יצירת תיבת השיעורים
+            $("#licdinamic").empty();
+            var select = document.getElementById('licdinamic');
+            var opt = document.createElement('option');
+            opt.value = -1;
+            opt.innerHTML = "--בחר שעה--";
+            select.appendChild(opt);
+            for (var i of x) {
+                addOneTOListLic2(i);
+            }
+            $("#mtitels").show();
+
+        }
+        function addOneTOListLic2(y) {//הכנסת שיעור בודד לרשימה
+            var select = document.getElementById('licdinamic');
+            var opt = document.createElement('option');
+            opt.value = day + " " + y;
+            opt.innerHTML = y;
+            select.appendChild(opt);
+        }
+
+
+        function typele(x) {
+            document.getElementById(x.id).checked = true;
+            changListLes(day, mini, x.value);
+            document.getElementById(x.id).checked = true;
+        }
+        var arrLessonse = [];
+        function dinamucLess(minute, day) {
+            var flag = false;
+            arrLessonse = [];
+            var starth = 8;
+            var startm = 0;
+            const d = new Date(day);
+            d.setHours(starth);
+            d.setMinutes(startm);
+            d.setSeconds(0);
+            const endd = new Date(day);
+            endd.setHours(23);
+            endd.setMinutes(59);
+            endd.setMinutes(59);
+            endd.setSeconds(0);
+            while (d < endd) {
+                flag = false;
+                flag = (c6.length > 0 || listvacctiones.length > 0 ? false : true)
+                if (c6.length > 0) {
+                    for (let i of c6) {
+                        var a = i.BeginningTime.split(':');
+                        const be = new Date(d);
+                        be.setHours(a[0]);
+                        be.setMinutes(a[1]);
+                        be.setSeconds(0);
+                        a = i.EndTime.split(':');
+                        //alert(a + "---" + i.EndTime);
+                        const en = new Date(d);
+                        en.setHours(a[0]);
+                        en.setMinutes(a[1]);
+                        en.setSeconds(0);
+                        //alert(be + "---" + en);
+                        const d2 = new Date(d);
+                        d2.setMinutes(d2.getMinutes() + minute);
+                        if (!(d >= be && d < en) && !(d2 > be && d2 < en)) {
+                            flag = true;
+                        }
+                        else {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if (flag) {
+                        for (var j of listvacctiones) {
+                            const stvaction = new Date(j['BeginningOfVacation']);
+                            const envaction = new Date(j['EndOfVacation']);
+                            if (!(d > stvaction && d < envaction) && !(d2 > stvaction && d2 < envaction)) {
+                                flag = true;
+                            }
+                            else {
+                                break;
+                            }
+                        }
+                    }
+                }
+                else {
+                    for (var j of listvacctiones) {
+                        const stvaction = new Date(j['BeginningOfVacation']);
+                        const envaction = new Date(j['EndOfVacation']);
+                        const d2 = new Date(d);
+                        d2.setMinutes(d2.getMinutes() + minute);
+                        if (!(d >= stvaction && d < envaction) && !(d2 > stvaction && d2 < envaction)) {
+                            flag = true;
+                        }
+                        else {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+                var flag2 = (c6.length == 0 && listvacctiones == 0 ? true : false);
+                if (flag || flag2) {
+                    var tamp1 = d.getMinutes() + "";
+                    var tamp2 = d.getHours() + "";
+                    arrLessonse[arrLessonse.length] = tamp2.padStart(2, '0') + ":" + tamp1.padEnd(2, '0');
+                }
+                d.setMinutes(d.getMinutes() + minute);
+            }
+            $("#licdinamic").empty();
+            var arrspilt = day.split("-");
+            var paragraph = document.getElementById("licdinamic");
+            var text = document.createTextNode(arrspilt[2] + "/" + arrspilt[1] + "/" + arrspilt[0]);
+            document.getElementById('licdinamic').innerHTML = '';
+            paragraph.appendChild(text);
+            //RedioDinamic(lestype2);
+            selectlistlic2(arrLessonse);
+            //$("#" + mini).prop("checked", true);
+        }
+
+        function changListLes(day, minute, langlesson) {
+            var flag = false;
+            arrLessonse = [];
+            var starth = 8;
+            var startm = 0;
+            const d = new Date(day);
+            d.setHours(starth);
+            d.setMinutes(startm);
+            d.setSeconds(0);
+            const endd = new Date(day);
+            endd.setHours(23);
+            endd.setMinutes(59);
+            endd.setSeconds(0);
+            const d3 = new Date(d);
+            while (d < endd && d3 <= endd) {
+                flag = false;
+                flag = (c6.length > 0 || listvacctiones.length > 0 ? false : true)
+                if (c6.length > 0) {
+                    for (let i of c6) {
+                        var a = i.BeginningTime.split(':');
+                        const be = new Date(d);
+                        be.setHours(a[0]);
+                        be.setMinutes(a[1]);
+                        be.setSeconds(0);
+                        a = i.EndTime.split(':');
+                        const en = new Date(d);
+                        en.setHours(a[0]);
+                        en.setMinutes(a[1]);
+                        en.setSeconds(0);
+                        const d2 = new Date(d);
+                        d2.setMinutes(d2.getMinutes() + minute);
+                        if (!(d >= be && d < en) && !(d2 >= be && d2 < en) && !(d3 >= be && d3 < en)) {
+                            flag = true;
+                        }
+                        else {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if (flag) {
+                        for (var j of listvacctiones) {
+                            const stvaction = new Date(j['BeginningOfVacation']);
+                            const envaction = new Date(j['EndOfVacation']);
+
+                            if (!(d > stvaction && d < envaction) && !(d2 >= stvaction && d2 < envaction) && !(d3 >= stvaction && d3 < envaction)) {
+                                flag = true;
+                            }
+                            else {
+                                break;
+                            }
+                        }
+                    }
+                }
+                else {
+                    for (var j of listvacctiones) {
+                        const stvaction = new Date(j['BeginningOfVacation']);
+                        const envaction = new Date(j['EndOfVacation']);
+                        const d2 = new Date(d);
+                        d2.setMinutes(d2.getMinutes() + minute);
+                        if (!(d >= stvaction && d < envaction) && !(d2 >= stvaction && d2 < envaction) && !(d3 >= stvaction && d3 < envaction)) {
+                            flag = true;
+                        }
+                        else {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+                var flag2 = (c6.length == 0 && listvacctiones == 0 ? true : false);
+                if (flag || flag2) {
+                    var tamp1 = d.getMinutes() + "";
+                    var tamp2 = d.getHours() + "";
+                    arrLessonse[arrLessonse.length] = tamp2.padStart(2, '0') + ":" + tamp1.padEnd(2, '0');
+                }
+                d3.setHours(d.getHours());
+                d3.setMinutes(d.getMinutes());
+                var h = Number(d3.getMinutes()) + Number(langlesson);
+                var h1 = Math.floor(h / 60);
+                var m1 = (Number(d3.getMinutes()) + Number(langlesson)) % 60;
+                d3.setMinutes(d3.getMinutes() + Number(langlesson));
+                d.setMinutes(d.getMinutes() + minute);
+
+            }
+            selectlistlic2(arrLessonse);
+            //document.getElementById("sendli").disabled = true;
+            //$('#aioConceptName').find(":selected").val();
+        }
+        function func3() {
+            var idS = $('#studentselct').val();
+            var dayTime = $("#licdinamic").val();
+            var lange = $("input[type='radio'][name='contact']:checked").val();
+            var arrtandday = dayTime.split(' ');
+            var send = {
+                'srrd': arrtandday[0], 'srrt': arrtandday[1], 'srrla': lange
+            };
+            $.ajax({
+                url: "/api/v1/addlesoonTeacher/" + idS,
+                type: "PUT",
+                //contentType: "application/json; charset=utf-8",
+                dataType: "JSON",
+                data: send,
+                beforeSend: function () {
+                    deletArr();
+                },
+                success: function (data) {
+                    if (data == 'invalid') {
+                        console.log('error');
+                    }
+                    else {
+                        yesmess();
+                        $("#rediodinamic").hide();
+                        $("#licdinamic").hide();
+                        $("#licdinamic").empty();
+                        arrLessonse = [];
+                        ajLassons(username);//מערך שיעורים והפעלת פונקצייה יומן
+                    }
+                },
+                error: function (e) {
+                    console.log('error ' + e);
+                }
+            });
+
+        }
+        $("#sendli").click(() => {
+
+            func3();
+        });
+        var upcont;
+        function lisrup() {
+            upcont = 0;
+            for (var i of jsonarr2) {
+                var d = new Date();
+                var d2 = new Date(i.DateLesson.split("T")[0] + " " + i.EndTime);
+                if (d < d2 && i.StatuseId == 2)
+                    upcont++;
+            }
+            if (upcont > 0) {
+                document.getElementById('updc').innerHTML = "מספר השיעורים הממתינים לעדכון " + upcont
+                $("#upModal").modal('show');
+            }
+            // document.getElementById('ta').innerHTML = stringtable;
+        }
+        function hrfun() {
+            window.location.href = 'overDay.aspx';
+        }
 
     </script>
 </asp:Content>

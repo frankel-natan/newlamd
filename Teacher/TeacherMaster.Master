@@ -137,6 +137,9 @@
                                 <a href="ListWaitingLess.aspx"><i class="fa fa-edit fa-fw"></i>רשימת שיעורים בהמתנה</a>
                             </li>
                             <li>
+                                <a href="overDay.aspx"><i class="fa fa-edit fa-fw"></i>עדכון סטטוס לשיעור שעבר זמנו</a>
+                            </li>
+                            <li>
                                 <a href="OrderTest.aspx"><i class="fa fa-edit fa-fw"></i>רשימת/הזמנת טסטים</a>
                             </li>
                         </ul>

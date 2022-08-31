@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace LamedNetLite
 {
-   namespace BLL
+    namespace BLL
     {
         public class Teacher
         {
@@ -177,8 +177,15 @@ namespace LamedNetLite
             {
                 return TeacherData.getTeacherById(idT);
             }
-            
+            public static DataTable getStudentByIdTeacher(int idT)
+            {
+                return TeacherData.getStudentByIdTeacher(idT);
+            }
+            public static void updOverDay(int idD, int status)
+            {
+                TeacherData.updOverDay(idD, status);
+            }
         }
-   }
-    
+
+    }
 }

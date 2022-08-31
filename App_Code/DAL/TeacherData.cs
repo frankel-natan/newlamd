@@ -403,9 +403,22 @@ namespace LamedNetLite
                 DataTable Dt = s.DataTable("select * from Teachers where Teachers.TeacherId = " + idT);
                 s.Conn.Close();
                 return Dt;
-
             }
-           
+            public static DataTable getStudentByIdTeacher(int idT)
+            {
+                SqlClass s = new SqlClass();
+                DataTable Dt = s.DataTable("select * from Students "+
+                                           "inner join StudentStatuse on Students.StatuseId = StudentStatuse.StatuseId "+
+                                           "where StudentStatuse.StatuseId = 2 and Students.TeacherId = " + idT);
+                s.Conn.Close();
+                return Dt;
+            }
+            public static void updOverDay(int idD, int status)
+            {
+                SqlClass s = new SqlClass();
+                s.ExecuteNonQuery("UPDATE DrivingLessons SET StatuseId = " + status + " WHERE DrivingLessonsId = " + idD);
+                s.Conn.Close();
+            }
         }
     }
 }

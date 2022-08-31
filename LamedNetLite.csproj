@@ -317,6 +317,7 @@
     <Content Include="Teacher\ListWaitingQueue.aspx" />
     <Content Include="Teacher\main.aspx" />
     <Content Include="Teacher\OrderTest.aspx" />
+    <Content Include="Teacher\overDay.aspx" />
     <Content Include="Teacher\payStudent.aspx" />
     <Content Include="Teacher\payteacertoschool.aspx" />
     <Content Include="Teacher\payTeacherToAdmin.aspx" />
@@ -382,6 +383,7 @@
     <Compile Include="App_Code\DAL\TeacherData.cs" />
     <Compile Include="App_Code\DAL\VacationsData.cs" />
     <Compile Include="App_Code\General.cs" />
+    <Compile Include="Controllers\addlesoonTeacherController.cs" />
     <Compile Include="Controllers\GetallPayTeacertByIdTeacherController.cs" />
     <Compile Include="Controllers\GetallTastByIdTeacherController.cs" />
     <Compile Include="Controllers\getLessonsWatinngController.cs" />
@@ -399,6 +401,7 @@
     <Compile Include="Controllers\studentLessondController.cs" />
     <Compile Include="Controllers\taemainController.cs" />
     <Compile Include="Controllers\thchersController.cs" />
+    <Compile Include="Controllers\updlessonoverdayController.cs" />
     <Compile Include="Controllers\VacationsController.cs" />
     <Compile Include="Login\SearchTeacher.aspx.cs">
       <DependentUpon>SearchTeacher.aspx</DependentUpon>
@@ -588,6 +591,13 @@
     </Compile>
     <Compile Include="Teacher\OrderTest.aspx.designer.cs">
       <DependentUpon>OrderTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\overDay.aspx.cs">
+      <DependentUpon>overDay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\overDay.aspx.designer.cs">
+      <DependentUpon>overDay.aspx</DependentUpon>
     </Compile>
     <Compile Include="Teacher\payStudent.aspx.cs">
       <DependentUpon>payStudent.aspx</DependentUpon>

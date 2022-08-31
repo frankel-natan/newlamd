@@ -421,6 +421,7 @@ function changListLes(day, minute, langlesson) {
     endd.setMinutes(59);
     endd.setSeconds(0);
     const d3 = new Date(d);
+
     while (d < endd && d3 <= endd) {
         flag = false;
         flag = (c6.length > 0 || listvacctiones.length > 0 ? false : true)
